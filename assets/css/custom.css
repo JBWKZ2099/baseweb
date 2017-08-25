@@ -135,8 +135,8 @@ h1, h2, h3, h4, h5, p { margin: 0; }
 	.pb30 { padding-bottom: 15px; }
 	.pl30 { padding-left: 15px; }
 	.pr30 { padding-right: 15px; }
-	.pt60 { padding-top: 30px; }
-	.pb60 { padding-bottom: 30px; }
+	.pt60, .pt45 { padding-top: 30px; }
+	.pb60, .pb45 { padding-bottom: 30px; }
 	.pl60 { padding-left: 30px; }
 	.pr60 { padding-right: 30px; }
 	.ptb30 { padding: 15px 0; }
@@ -156,8 +156,8 @@ h1, h2, h3, h4, h5, p { margin: 0; }
 	.mtb60 { margin: 15px 0; }
 	.mlr60 { margin: 0 15px; }
 
-	.pt60 { padding-top: 15px; }
-	.pb60 { padding-bottom: 15px; }
+	.pt60, .pt45 { padding-top: 15px; }
+	.pb60, .pb45 { padding-bottom: 15px; }
 	.pl60 { padding-left: 15px; }
 	.pr60 { padding-right: 15px; }
 	.ptb60 { padding: 15px 0; }
