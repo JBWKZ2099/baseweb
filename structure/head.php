@@ -7,13 +7,11 @@
 
 <!-- Bootstrap css minified -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" crossorigin="anonymous">
-<!-- font awesome -->
-<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 <!-- Style custom -->
 <link rel="stylesheet" href="assets/css/custom.css">
 
 <!-- jQuery js minified -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
 <!-- jQuery UI -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <!-- Bootstrap js minified -->
