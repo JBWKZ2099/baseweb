@@ -11,17 +11,17 @@
 				<img src="#" alt="Brand" class="img-responsive">
 			</a>
 		</div>
-		
+
 		<!-- Nav links -->
 		<div id="my-navbar" class="collapse navbar-collapse">
 			<ul class="nav navbar-nav">
-				<li class="<? if( $active=="index" ) echo 'active'; ?>">
+				<li class="<?php if( $active=="index" ) echo 'active'; ?>">
 					<a href="#">Link</a>
 				</li>
-				<li class="<? if( $active=="var_01" ) echo 'active'; ?>">
+				<li class="<?php if( $active=="var_01" ) echo 'active'; ?>">
 					<a href="#">Link</a>
 				</li>
-				<li class="dropdown<? if( $active=="var_02" ) echo 'active'; ?>">
+				<li class="dropdown<?php if( $active=="var_02" ) echo 'active'; ?>">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
 						Dropdown <span class="caret"></span>
 					</a>

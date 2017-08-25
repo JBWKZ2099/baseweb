@@ -7,3 +7,4 @@
 		</div>
 	</div>
 </footer>
+<script src="assets/js/foot.js"></script>

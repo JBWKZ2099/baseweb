@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<?
+	<?php
 		/*
-		* Cambiar los valores de $up_dir dependiendo de en que nivel se encuentre 
+		* Cambiar los valores de $up_dir dependiendo de en que nivel se encuentre
 		* la vista que se agregó, por ejemplo:
 		*	proyecto/
 		*	├── assets/
@@ -21,10 +21,10 @@
 		*/
 		$up_dir = 0; for( $i01=1; $i01<=$up_dir; $i01++ ) { $dir.="../"; }
 	?>
-	<? $view_name="title"; include($dir."structure/head.php") ?>
+	<?php $view_name="title"; include(/*$dir.*/"structure/head.php") ?>
 </head>
 <body>
-	<? $active="index"; include($dir."structure/navbar.php") ?>
+	<?php $active="index"; include(/*$dir.*/"structure/navbar.php") ?>
 
 	<section class="background-default-02 pt60 pb60">
 		<div class="container-custom">
@@ -34,6 +34,6 @@
 		</div>
 	</section>
 
-	<? include($dir."structure/footer.php") ?>
+	<?php include(/*$dir.*/"structure/footer.php") ?>
 </body>
 </html>
