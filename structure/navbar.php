@@ -1,46 +1,29 @@
-<nav class="navbar navbar-default">
-	<div class="container-custom">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#my-navbar" aria-expanded="false">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			<a href="#" class="navbar-brand">
-				<!-- <img src="http://placehold.it/200x50.jpg&text=200x50" alt="Brand" class="img-responsive"> -->
-				<img src="#" alt="Brand" class="img-responsive">
-			</a>
-		</div>
-		
-		<!-- Nav links -->
-		<div id="my-navbar" class="collapse navbar-collapse">
-			<ul class="nav navbar-nav">
-				<li class="<? if( $active=="index" ) echo 'active'; ?>">
-					<a href="#">Link</a>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+	<div class="container">
+		<a class="navbar-brand" href="#">
+			<!-- <img src="http://placehold.it/200x50.jpg&text=200x50" alt="Brand" class="img-responsive"> -->
+			<img src="#" alt="Brand" class="img-responsive">
+		</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item <? if( $active=="index" ) echo 'active'; ?>">
+					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
 				</li>
-				<li class="<? if( $active=="var_01" ) echo 'active'; ?>">
-					<a href="#">Link</a>
+				<li class="nav-item <? if( $active=="var_01" ) echo 'active'; ?>">
+					<a class="nav-link" href="#">Link</a>
 				</li>
-				<li class="dropdown<? if( $active=="var_02" ) echo 'active'; ?>">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-						Dropdown <span class="caret"></span>
-					</a>
+				<li class="nav-item <? if( $active=="var_02" ) echo 'active'; ?>">
+					<a class="nav-link disabled" href="#">Disabled</a>
 				</li>
 			</ul>
-
-			<form class="navbar-form navbar-left">
-				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Search">
-					<button type="button" class="btn btn-default">Submit</button>
-				</div>
+			<form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
 			</form>
-
-			<ul class="nav navbar-nav navbar-right">
-				<li class="">
-					<a href="#">Link navbar-right</a>
-				</li>
-			</ul>
 		</div>
-		<!-- Nav links -->
 	</div>
 </nav>
