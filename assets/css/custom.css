@@ -1,48 +1,20 @@
 /*=============================================================================
 GENERAL
 =============================================================================*/
-a, button, input[type="button"] { transition: background 0.2s, color 0.2s; }
 h1, h2, h3, h4, h5, p { margin: 0; }
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
-	font-weight: 400 !important;
-}
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { font-weight: 400 !important; }
+button { transition: 0.2s; }
 .relativer { position: relative; }
 .absoluter { position: absolute; }
-.h100 { height: 100%; }
-.w100 { width: 100%; }
-.container-custom {
-	width: 100%;
-	margin: 0 auto;
-	padding: 0 15px;
-	position: relative;
-}
+.container-custom { width: 100%; margin: 0 auto; padding: 0 15px; position: relative; }
+.nb-container { width: 100%; max-width: 100%; }
 .fw100 { font-weight: 100; }
 .fw200 { font-weight: 200; }
 .fw300 { font-weight: 300; }
 .fw { font-weight: 400; }
 .fw500 { font-weight: 500; }
 .fw600 { font-weight: 600; }
-.cover {
-  -webkit-background-size: cover!important;
-  -moz-background-size: cover!important;
-  -o-background-size: cover!important;
-  background-size: cover!important;
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='.myBackground.jpg', sizingMethod='scale');
-	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='myBackground.jpg', sizingMethod='scale')";
-}
-.coverFixed { background: url(images/bg.jpg) no-repeat center center fixed; }
-/*Table*/
-.tabler { display: table; }
-.celler { display: table-cell; }
-.vmiddler { vertical-align: middle; }
-.tfnone { float: none; }
-.tamawa { display: table; margin: auto; width: auto; }
-@media(max-width: 767px) {
-	.tfnone { float: left; }
-}
-/*Table*/
 /*Margin*/
-.mauto { margin: auto; }
 .m0 { margin: 0px; }
 .m15 { margin: 15px; }
 .mt0 { margin-top: 0px; }
@@ -58,16 +30,20 @@ h1, h2, h3, h4, h5, p { margin: 0; }
 .ml0 { margin-left: 0px; }
 .ml15 { margin-left: 15px; }
 .ml30 { margin-left: 30px; }
+.ml45 { margin-left: 45px; }
 .ml60 { margin-left: 60px; }
 .mr0 { margin-right: 0px; }
 .mr15 { margin-right: 15px; }
 .mr30 { margin-right: 30px; }
+.mr45 { margin-right: 45px; }
 .mr60 { margin-right: 60px; }
 .mtb15 { margin: 15px 0; }
 .mtb30 { margin: 30px 0; }
+.mtb45 { margin: 45px 0; }
 .mtb60 { margin: 60px 0; }
 .mlr15 { margin: 0 15px; }
 .mlr30 { margin: 0 30px; }
+.mlr45 { margin: 0 45px; }
 .mlr60 { margin: 0 60px; }
 /*Margin*/
 /*Padding*/
@@ -85,51 +61,54 @@ h1, h2, h3, h4, h5, p { margin: 0; }
 .pl15 { padding-left: 15px; }
 .pl0 { padding-left: 0px; }
 .pl30 { padding-left: 30px; }
+.pl45 { padding-left: 45px; }
 .pl60 { padding-left: 60px; }
 .pr15 { padding-right: 15px; }
 .pr0 { padding-right: 0px; }
 .pr30 { padding-right: 30px; }
+.pr45 { padding-right: 45px; }
 .pr60 { padding-right: 60px; }
 .ptb15 { padding: 15px 0; }
 .ptb30 { padding: 30px 0; }
+.ptb45 { padding: 45px 0; }
 .ptb60 { padding: 60px 0; }
 .plr15 { padding: 0 15px; }
 .plr30 { padding: 0 30px; }
+.plr45 { padding: 0 45px; }
 .plr60 { padding: 0 60px; }
 /*Padding*/
 .background-default { background-color: #eee; border: 1px solid #ddd; }
 .background-default-02 { background-color: #ddd; border: 1px solid #ccc; }
 .cwhite { color: #FFF; }
 .cblack { color: #000; }
-/*btn*/
-[class*='btn-'] {
-	border-radius: 12px;
-	padding: 7.5px 60px;
-	border: 1px solid transparent;
-}
-.btn-color:matches(:hover, :focus, :active, .active) {
-	background-color: #FFF;
-	color: #ECB620;
-}
-/*btn*/
-@media( min-width: 1200px ) { .container-custom { width: 1200px; } }
+
+@media( min-width: 1200px ) { .container-custom, .nb-container { width: 1200px !important; max-width: 1200px !important; } }
 @media( max-width: 991px ) {
 	h1 { font-size: 32px; }
 	h2 { font-size: 26px; }
 	h3 { font-size: 20px; }
 	h4 { font-size: 16px; }
+
 	.mt30 { margin-top: 15px; }
 	.mb30 { margin-bottom: 15px; }
 	.ml30 { margin-left: 15px; }
 	.mr30 { margin-right: 15px; }
 	.mt60, .mt45 { margin-top: 30px; }
 	.mb60, .mb45 { margin-bottom: 30px; }
-	.ml60 { margin-left: 30px; }
-	.mr60 { margin-right: 30px; }
-	.mtb30 { margin: 15px 0; }
+	.ml60, .ml45 { margin-left: 30px; }
+	.mr60, .mr45 { margin-right: 30px; }
+	.mtb30, .mtb45 { margin: 15px 0; }
 	.mtb60 { margin: 30px 0; }
 	.mlr30 { margin: 0 15px; }
-	.mlr60 { margin: 0 30px; }
+	.mlr60, .mlr45 { margin: 0 30px; }
+
+
+	.pt45 { padding-top: 45px; }
+	.pb45 { padding-bottom: 45px; }
+	.pl45 { padding-left: 45px; }
+	.pr45 { padding-right: 45px; }
+	.ptb45 { padding: 45px 0; }
+	.plr45 { padding: 0 45px; }
 
 	.pt30 { padding-top: 15px; }
 	.pb30 { padding-bottom: 15px; }
@@ -137,31 +116,31 @@ h1, h2, h3, h4, h5, p { margin: 0; }
 	.pr30 { padding-right: 15px; }
 	.pt60, .pt45 { padding-top: 30px; }
 	.pb60, .pb45 { padding-bottom: 30px; }
-	.pl60 { padding-left: 30px; }
-	.pr60 { padding-right: 30px; }
+	.pl60, .pl45 { padding-left: 30px; }
+	.pr60, .pr45 { padding-right: 30px; }
 	.ptb30 { padding: 15px 0; }
-	.ptb60 { padding: 30px 0; }
+	.ptb60, .ptb45 { padding: 30px 0; }
 	.plr30 { padding: 0 15px; }
-	.plr60 { padding: 0 30px; }
+	.plr60, .plr45 { padding: 0 30px; }
 }
 @media( max-width: 767px ) {
-	h1 { font-size: 32px; }
-	h2 { font-size: 26px; }
-	h3 { font-size: 20px; }
-	h4 { font-size: 16px; }
+	h1 { font-size: 26px; }
+	h2 { font-size: 20px; }
+	h3 { font-size: 16px; }
+	h4 { font-size: 14px; }
 	.mt60, .mt45 { margin-top: 15px; }
 	.mb60, .mb45 { margin-bottom: 15px; }
-	.ml60 { margin-left: 15px; }
-	.mr60 { margin-right: 15px; }
-	.mtb60 { margin: 15px 0; }
-	.mlr60 { margin: 0 15px; }
+	.ml60, .ml45 { margin-left: 15px; }
+	.mr60, .mr45 { margin-right: 15px; }
+	.mtb60, .mtb45 { margin: 15px 0; }
+	.mlr60, .mlr45 { margin: 0 15px; }
 
 	.pt60, .pt45 { padding-top: 15px; }
 	.pb60, .pb45 { padding-bottom: 15px; }
-	.pl60 { padding-left: 15px; }
-	.pr60 { padding-right: 15px; }
-	.ptb60 { padding: 15px 0; }
-	.plr60 { padding: 0 15px; }
+	.pl60, .pl45 { padding-left: 15px; }
+	.pr60, .pr45 { padding-right: 15px; }
+	.ptb60, .ptb45 { padding: 15px 0; }
+	.plr60, .plr45 { padding: 0 15px; }
 }
 /*=============================================================================
 NAVBAR
@@ -170,9 +149,4 @@ NAVBAR
 	margin-bottom: 0;
 	border: none;
 	border-radius: 0;
-}
-.navbar-default .navbar-nav > li > a:matches(:hover, .active){
-	color: orange;
-	background-color: transparent;
-	text-shadow: 0 0 0.3px orange;
 }

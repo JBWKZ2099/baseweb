@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
 <!-- Bootstrap css minified -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" crossorigin="anonymous">
 <!-- Style custom -->
 <link rel="stylesheet" href="assets/css/custom.css">
 
@@ -15,12 +15,11 @@
 <!-- jQuery UI -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <!-- Bootstrap js minified -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" crossorigin="anonymous"></script>
-<!-- Bootstrap validator -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <!-- Fontawesome -->
-<script src="https://use.fontawesome.com/5b97f125c2.js"></script>
+<?php /* <script src="https://use.fontawesome.com/5b97f125c2.js"></script> */ ?>
+<script defer src="https://use.fontawesome.com/releases/v5.0.3/js/all.js"></script>
 <!-- Scroll reveal -->
 <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
 <!-- Script custom -->

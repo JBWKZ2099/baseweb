@@ -29,7 +29,7 @@
 	<section class="background-default-02 pt60 pb60">
 		<div class="container-custom">
 			<div class="row">
-				<div class="col-sm-12">CONTENT</div>
+				<div class="col-md-12">CONTENT</div>
 			</div>
 		</div>
 	</section>
