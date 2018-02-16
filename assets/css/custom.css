@@ -142,6 +142,15 @@ button { transition: 0.2s; }
 	.ptb60, .ptb45 { padding: 15px 0; }
 	.plr60, .plr45 { padding: 0 15px; }
 }
+.full-carousel .carousel-item {
+	height: 100vh;
+	min-height: 300px;
+	background: no-repeat center center scroll;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
 /*=============================================================================
 NAVBAR
 =============================================================================*/
