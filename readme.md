@@ -11,6 +11,7 @@ You can use this base to develop your website using the most up-to-date CDNs:
 - Code to make absolute paths in src attribute (example: `http://www.domain-name.com/assets/img/img_name.jpg`).
 - Font Files from font-awesome deleted.
 - Navbar CSS Fixes.
+- .gitignore updated.
 
 ### v1.0.2:
 - Added classes that are used recurrently (margin, padding, h1, h2, h3, h4, contianer-custom, among ohters).
