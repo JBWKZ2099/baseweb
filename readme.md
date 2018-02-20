@@ -7,7 +7,7 @@ You can use this base to develop your website using the most up-to-date CDNs:
 - [Font Awesome (JS)](https://fontawesome.com/)
 
 ## Changelog
-### v1.0.3
+### v1.0.3 [New]
 - Code to make absolute paths in src attribute (example: `http://www.domain-name.com/assets/img/img_name.jpg`).
 - Font Files from font-awesome deleted.
 - Navbar CSS Fixes.
