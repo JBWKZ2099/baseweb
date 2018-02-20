@@ -3,7 +3,7 @@ GENERAL
 =============================================================================*/
 h1, h2, h3, h4, h5, p { margin: 0; }
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { font-weight: 400 !important; }
-button { transition: 0.2s; }
+a, button, .btn { transition: 0.2s; }
 .relativer { position: relative; }
 .absoluter { position: absolute; }
 .container-custom { width: 100%; margin: 0 auto; padding: 0 15px; position: relative; }
@@ -77,10 +77,9 @@ button { transition: 0.2s; }
 .plr45 { padding: 0 45px; }
 .plr60 { padding: 0 60px; }
 /*Padding*/
-.background-default { background-color: #eee; border: 1px solid #ddd; }
-.background-default-02 { background-color: #ddd; border: 1px solid #ccc; }
-.cwhite { color: #FFF; }
-.cblack { color: #000; }
+.bg-default { background-color: #eee; border: 1px solid #ddd; }
+.bg-default-02 { background-color: #ddd; border: 1px solid #ccc; }
+.text-black { color: #000; }
 
 @media( min-width: 1200px ) { .container-custom, .nb-container { width: 1200px !important; max-width: 1200px !important; } }
 @media( max-width: 991px ) {

@@ -1,17 +1,18 @@
-/*
-** Eventos
-*/
+/**
+ * Events
+ */
 $(document).ready(() => {
   $(window).resize(function(e) {
   });
 });
-/*
-** Eventos
-*/
-/*
-** Funciones
-*/
 
-/*
-** Funciones
-*/
+/**
+ * /. Events
+ */
+
+/**
+ * Functions
+ */
+/**
+ * /. Functions
+ */

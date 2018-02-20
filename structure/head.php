@@ -1,25 +1,40 @@
-<?php ini_set('display_errors', 'Off'); ?>
-<link rel="shortcut icon" href="http://placehold.it/64.png" />
+<?php
+	ini_set('display_errors', 'Off');
+	/**
+	 * Code to make absoulute paths (example: http://www.domain-name.com/assets/img/img_name.jpg);
+	 */
+	$production = false;
+	$path = (!empty($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'];
+	// When you are working on local (no virtualhosts) you need to add the folder name to '$path' (else condition),
+	// but if you are working with virtual hosts there are no problem if '$production' is 'true'
+	if( $production )
+		$path .= "/";
+	else
+		$path .= "/base-b4/";
+  // $path = $_SERVER['HTTP_HOST'] == 'localhost:8888' ? '/fabricadesoluciones.com/' : '';
+?>
+<link rel="shortcut icon" href="http://placehold.it/64.png"/>
 <meta charset="UTF-8">
-<title> <?php echo $view_name; ?> | site </title>
+<title> <?php echo $view_name; ?> | site_name </title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-<!-- Bootstrap css minified -->
+<?php /* CSS Tags */ ?>
+<?php /*Bootstrap css minified*/ ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
-<!-- Style custom -->
-<link rel="stylesheet" href="assets/css/custom.css">
+<?php /*Style custom*/ ?>
+<link rel="stylesheet" href="<?php echo $path; ?>assets/css/custom.css">
 
-<!-- jQuery js minified -->
+<?php /* JS Tags */ ?>
+<?php /*jQuery js minified*/ ?>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
-<!-- jQuery UI -->
+<?php /*jQuery UI*/ ?>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-<!-- Bootstrap js minified -->
+<?php /*Bootstrap js minified*/ ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
-<!-- Fontawesome -->
+<?php /*Fontawesome*/ ?>
 <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-<!-- Scroll reveal -->
+<?php /*Scroll reveal*/ ?>
 <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
-<!-- Script custom -->
-<script src="assets/js/head.js"></script>
+<?php /*Script custom*/ ?>
+<script src="<?php echo $path; ?>assets/js/head.js"></script>

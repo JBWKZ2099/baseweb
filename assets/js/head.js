@@ -1,19 +1,18 @@
-/*
-** Eventos
-*/
-
+/**
+ * Events
+ */
 $(document).ready(() => {
   $(window).resize(function(e) {
   });
 });
 
-/*
-** Eventos
-*/
-/*
-** Funciones
-*/
+/**
+ * /. Events
+ */
 
+/**
+ * Functions
+ */
 //Ejemplo: var variable = getUrlVar("variable"); para ?variable=1 obtiene 1
 function getUrlVar(variable) {
   var query = window.location.search.substring(1);
@@ -24,7 +23,6 @@ function getUrlVar(variable) {
   }
   return(false);
 }
-
-/*
-** Funciones
-*/
+/**
+ * /. Functions
+ */

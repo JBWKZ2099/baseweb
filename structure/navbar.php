@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light">
-	<div class="nb-container m-auto">
+	<div class="container nb-container m-auto">
 		<a class="navbar-brand" href="#">
 			<!-- <img src="http://placehold.it/200x50.jpg&text=200x50" alt="Brand" class="img-responsive"> -->
 			<img src="#" alt="Brand" class="img-responsive">

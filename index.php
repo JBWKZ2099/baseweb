@@ -21,12 +21,16 @@
 		*/
 		$up_dir = 0; for( $i01=1; $i01<=$up_dir; $i01++ ) { $dir.="../"; }
 	?>
-	<?php $view_name="title"; include(/*$dir.*/"structure/head.php") ?>
+	<?php
+		$view_name="title";
+		include(/*$dir.*/"structure/head.php");
+		$asset = "assets/img/folder_name/"; // Path where are storaged media files (img, video, etc)
+	?>
 </head>
 <body>
 	<?php $active="index"; include(/*$dir.*/"structure/navbar.php") ?>
 
-	<section class="background-default-02 pt60 pb60">
+	<section class="bg-default-02 pt60 pb60">
 		<div class="container-custom">
 			<div class="row">
 				<div class="col-md-12">CONTENT</div>
