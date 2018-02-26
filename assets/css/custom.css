@@ -6,7 +6,7 @@ h1, h2, h3, h4, h5, p { margin: 0; }
 a, button, .btn { transition: 0.2s; }
 .relativer { position: relative; }
 .absoluter { position: absolute; }
-.container-custom { width: 100%; margin: 0 auto; padding: 0 15px; position: relative; }
+.container-custom { width: 100%; margin: 0 auto; padding: 0 1rem; position: relative; }
 .nb-container { width: 100%; max-width: 100%; }
 .fw100 { font-weight: 100; }
 .fw200 { font-weight: 200; }
@@ -15,67 +15,48 @@ a, button, .btn { transition: 0.2s; }
 .fw500 { font-weight: 500; }
 .fw600 { font-weight: 600; }
 /*Margin*/
-.m0 { margin: 0px; }
-.m15 { margin: 15px; }
-.mt0 { margin-top: 0px; }
-.mt15 { margin-top: 15px; }
-.mt30 { margin-top: 30px; }
-.mt45 { margin-top: 45px; }
-.mt60 { margin-top: 60px; }
-.mb0 { margin-bottom: 0px; }
-.mb15 { margin-bottom: 15px; }
-.mb30 { margin-bottom: 30px; }
-.mb45 { margin-bottom: 45px; }
-.mb60 { margin-bottom: 60px; }
-.ml0 { margin-left: 0px; }
-.ml15 { margin-left: 15px; }
-.ml30 { margin-left: 30px; }
-.ml45 { margin-left: 45px; }
-.ml60 { margin-left: 60px; }
-.mr0 { margin-right: 0px; }
-.mr15 { margin-right: 15px; }
-.mr30 { margin-right: 30px; }
-.mr45 { margin-right: 45px; }
-.mr60 { margin-right: 60px; }
-.mtb15 { margin: 15px 0; }
-.mtb30 { margin: 30px 0; }
-.mtb45 { margin: 45px 0; }
-.mtb60 { margin: 60px 0; }
-.mlr15 { margin: 0 15px; }
-.mlr30 { margin: 0 30px; }
-.mlr45 { margin: 0 45px; }
-.mlr60 { margin: 0 60px; }
+.mt-30 { margin-top: 2rem; }
+.mt-45 { margin-top: 2.85rem; }
+.mt-60 { margin-top: 4rem; }
+.mb-30 { margin-bottom: 2rem; }
+.mb-45 { margin-bottom: 2.85rem; }
+.mb-60 { margin-bottom: 4rem; }
+.ml-30 { margin-left: 2rem; }
+.ml-45 { margin-left: 2.85rem; }
+.ml-60 { margin-left: 4rem; }
+.mr-30 { margin-right: 2rem; }
+.mr-45 { margin-right: 2.85rem; }
+.mr-60 { margin-right: 4rem; }
+.mtb-15 { margin: 1rem 0; }
+.mtb-30 { margin: 2rem 0; }
+.mtb-45 { margin: 2.85rem 0; }
+.mtb-60 { margin: 4rem 0; }
+.mlr-15 { margin: 0 1rem; }
+.mlr-30 { margin: 0 2rem; }
+.mlr-45 { margin: 0 2.85rem; }
+.mlr-60 { margin: 0 4rem; }
 /*Margin*/
 /*Padding*/
-.p0 { padding: 0px; }
-.pt15 { padding-top: 15px; }
-.pt0 { padding-top: 0px; }
-.pt30 { padding-top: 30px; }
-.pt45 { padding-top: 45px; }
-.pt60 { padding-top: 60px; }
-.pb15 { padding-bottom: 15px; }
-.pb0 { padding-bottom: 0px; }
-.pb30 { padding-bottom: 30px; }
-.pb45 { padding-bottom: 45px; }
-.pb60 { padding-bottom: 60px; }
-.pl15 { padding-left: 15px; }
-.pl0 { padding-left: 0px; }
-.pl30 { padding-left: 30px; }
-.pl45 { padding-left: 45px; }
-.pl60 { padding-left: 60px; }
-.pr15 { padding-right: 15px; }
-.pr0 { padding-right: 0px; }
-.pr30 { padding-right: 30px; }
-.pr45 { padding-right: 45px; }
-.pr60 { padding-right: 60px; }
-.ptb15 { padding: 15px 0; }
-.ptb30 { padding: 30px 0; }
-.ptb45 { padding: 45px 0; }
-.ptb60 { padding: 60px 0; }
-.plr15 { padding: 0 15px; }
-.plr30 { padding: 0 30px; }
-.plr45 { padding: 0 45px; }
-.plr60 { padding: 0 60px; }
+.pt-30 { padding-top: 2rem; }
+.pt-45 { padding-top: 2.85rem; }
+.pt-60 { padding-top: 4rem; }
+.pb-30 { padding-bottom: 2rem; }
+.pb-45 { padding-bottom: 2.85rem; }
+.pb-60 { padding-bottom: 4rem; }
+.pl-30 { padding-left: 2rem; }
+.pl-45 { padding-left: 2.85rem; }
+.pl-60 { padding-left: 4rem; }
+.pr-30 { padding-right: 2rem; }
+.pr-45 { padding-right: 2.85rem; }
+.pr-60 { padding-right: 4rem; }
+.ptb-15 { padding: 1rem 0; }
+.ptb-30 { padding: 2rem 0; }
+.ptb-45 { padding: 2.85rem 0; }
+.ptb-60 { padding: 4rem 0; }
+.plr-15 { padding: 0 1rem; }
+.plr-30 { padding: 0 2rem; }
+.plr-45 { padding: 0 2.85rem; }
+.plr-60 { padding: 0 4rem; }
 /*Padding*/
 .bg-default { background-color: #eee; border: 1px solid #ddd; }
 .bg-default-02 { background-color: #ddd; border: 1px solid #ccc; }
@@ -83,63 +64,63 @@ a, button, .btn { transition: 0.2s; }
 
 @media( min-width: 1200px ) { .container-custom, .nb-container { width: 1200px !important; max-width: 1200px !important; } }
 @media( max-width: 991px ) {
-	h1 { font-size: 32px; }
-	h2 { font-size: 26px; }
-	h3 { font-size: 20px; }
-	h4 { font-size: 16px; }
+	h1 { font-size: 2rem; }
+	h2 { font-size: 1.625rem; }
+	h3 { font-size: 1.25rem; }
+	h4 { font-size: 1rem; }
 
-	.mt30 { margin-top: 15px; }
-	.mb30 { margin-bottom: 15px; }
-	.ml30 { margin-left: 15px; }
-	.mr30 { margin-right: 15px; }
-	.mt60, .mt45 { margin-top: 30px; }
-	.mb60, .mb45 { margin-bottom: 30px; }
-	.ml60, .ml45 { margin-left: 30px; }
-	.mr60, .mr45 { margin-right: 30px; }
-	.mtb30, .mtb45 { margin: 15px 0; }
-	.mtb60 { margin: 30px 0; }
-	.mlr30 { margin: 0 15px; }
-	.mlr60, .mlr45 { margin: 0 30px; }
+	.mt-30 { margin-top: 1rem; }
+	.mb-30 { margin-bottom: 1rem; }
+	.ml-30 { margin-left: 1rem; }
+	.mr-30 { margin-right: 1rem; }
+	.mt-60, .mt-45 { margin-top: 2rem; }
+	.mb-60, .mb-45 { margin-bottom: 2rem; }
+	.ml-60, .ml-45 { margin-left: 2rem; }
+	.mr-60, .mr-45 { margin-right: 2rem; }
+	.mtb-30, .mtb-45 { margin: 1rem 0; }
+	.mtb-60 { margin: 2rem 0; }
+	.mlr-30 { margin: 0 1rem; }
+	.mlr-60, .mlr-45 { margin: 0 2rem; }
 
 
-	.pt45 { padding-top: 45px; }
-	.pb45 { padding-bottom: 45px; }
-	.pl45 { padding-left: 45px; }
-	.pr45 { padding-right: 45px; }
-	.ptb45 { padding: 45px 0; }
-	.plr45 { padding: 0 45px; }
+	.pt-45 { padding-top: 2.85rem; }
+	.pb-45 { padding-bottom: 2.85rem; }
+	.pl-45 { padding-left: 2.85rem; }
+	.pr-45 { padding-right: 2.85rem; }
+	.ptb-45 { padding: 2.85rem 0; }
+	.plr-45 { padding: 0 2.85rem; }
 
-	.pt30 { padding-top: 15px; }
-	.pb30 { padding-bottom: 15px; }
-	.pl30 { padding-left: 15px; }
-	.pr30 { padding-right: 15px; }
-	.pt60, .pt45 { padding-top: 30px; }
-	.pb60, .pb45 { padding-bottom: 30px; }
-	.pl60, .pl45 { padding-left: 30px; }
-	.pr60, .pr45 { padding-right: 30px; }
-	.ptb30 { padding: 15px 0; }
-	.ptb60, .ptb45 { padding: 30px 0; }
-	.plr30 { padding: 0 15px; }
-	.plr60, .plr45 { padding: 0 30px; }
+	.pt-30 { padding-top: 1rem; }
+	.pb-30 { padding-bottom: 1rem; }
+	.pl-30 { padding-left: 1rem; }
+	.pr-30 { padding-right: 1rem; }
+	.pt-60, .pt-45 { padding-top: 2rem; }
+	.pb-60, .pb-45 { padding-bottom: 2rem; }
+	.pl-60, .pl-45 { padding-left: 2rem; }
+	.pr-60, .pr-45 { padding-right: 2rem; }
+	.ptb-30 { padding: 1rem 0; }
+	.ptb-60, .ptb-45 { padding: 2rem 0; }
+	.plr-30 { padding: 0 1rem; }
+	.plr-60, .plr-45 { padding: 0 2rem; }
 }
 @media( max-width: 767px ) {
-	h1 { font-size: 26px; }
-	h2 { font-size: 20px; }
-	h3 { font-size: 16px; }
-	h4 { font-size: 14px; }
-	.mt60, .mt45 { margin-top: 15px; }
-	.mb60, .mb45 { margin-bottom: 15px; }
-	.ml60, .ml45 { margin-left: 15px; }
-	.mr60, .mr45 { margin-right: 15px; }
-	.mtb60, .mtb45 { margin: 15px 0; }
-	.mlr60, .mlr45 { margin: 0 15px; }
+	h1 { font-size: 1.625rem; }
+	h2 { font-size: 1.25rem; }
+	h3 { font-size: 1rem; }
+	h4 { font-size: .875rem; }
+	.mt-60, .mt-45 { margin-top: 1rem; }
+	.mb-60, .mb-45 { margin-bottom: 1rem; }
+	.ml-60, .ml-45 { margin-left: 1rem; }
+	.mr-60, .mr-45 { margin-right: 1rem; }
+	.mtb-60, .mtb-45 { margin: 1rem 0; }
+	.mlr-60, .mlr-45 { margin: 0 1rem; }
 
-	.pt60, .pt45 { padding-top: 15px; }
-	.pb60, .pb45 { padding-bottom: 15px; }
-	.pl60, .pl45 { padding-left: 15px; }
-	.pr60, .pr45 { padding-right: 15px; }
-	.ptb60, .ptb45 { padding: 15px 0; }
-	.plr60, .plr45 { padding: 0 15px; }
+	.pt-60, .pt-45 { padding-top: 1rem; }
+	.pb-60, .pb-45 { padding-bottom: 1rem; }
+	.pl-60, .pl-45 { padding-left: 1rem; }
+	.pr-60, .pr-45 { padding-right: 1rem; }
+	.ptb-60, .ptb-45 { padding: 1rem 0; }
+	.plr-60, .plr-45 { padding: 0 1rem; }
 }
 .full-carousel .carousel-item {
 	height: 100vh;

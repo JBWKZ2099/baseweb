@@ -3,14 +3,26 @@
 	/**
 	 * Code to make absoulute paths (example: http://www.domain-name.com/assets/img/img_name.jpg);
 	 */
-	$production = false;
 	$path = (!empty($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'];
-	// When you are working on local (no virtualhosts) you need to add the folder name to '$path' (else condition),
-	// but if you are working with virtual hosts there are no problem if '$production' is 'true'
-	if( $production )
-		$path .= "/";
-	else
-		$path .= "/base-b4/";
+	/**
+	 * Optimized code to work on local with virtualhosts or localhost or production server
+	 */
+	$path = (!empty($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'];
+
+	$app_name = "base-b4";
+	switch( $path ) {
+		case "http://localhost":
+			$path .= "/".$app_name."/";
+			break;
+
+		case "http://fabricadesoluciones.info":
+			$path .= "/".$app_name."/";
+			break;
+
+		default:
+			$path .= "/";
+			break;
+	}
   // $path = $_SERVER['HTTP_HOST'] == 'localhost:8888' ? '/fabricadesoluciones.com/' : '';
 ?>
 <link rel="shortcut icon" href="http://placehold.it/64.png"/>

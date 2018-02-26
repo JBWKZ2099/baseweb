@@ -7,7 +7,13 @@ You can use this base to develop your website using the most up-to-date CDNs:
 - [Font Awesome (JS)](https://fontawesome.com/)
 
 ## Changelog
-### v1.0.3 [New]
+### v1.0.4 [New]
+- Absolute Paths Code optimized to work on Localhost with VHosts and localhost and Production Server without `$production` variable.
+- "Margin" and "Padding" custom classes have now the same syntax as bootstrap (pt-60, pt-45, pt-30, etc).
+- CSS px coverted to rem.
+- Slug Code to make custom paths (example: `http://www.domain-name.com/blog/blog-name`).
+
+### v1.0.3
 - Code to make absolute paths in src attribute (example: `http://www.domain-name.com/assets/img/img_name.jpg`).
 - Font Files from font-awesome deleted.
 - Navbar CSS Fixes.

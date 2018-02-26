@@ -1,4 +1,4 @@
-<footer class="pt60 pb60 bg-default">
+<footer class="pt-60 pb-60 bg-default">
 	<div class="container-custom">
 		<div class="row">
 			<div class="col-sm-12">

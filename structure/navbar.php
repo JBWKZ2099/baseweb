@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light">
 	<div class="container nb-container m-auto">
-		<a class="navbar-brand" href="#">
+		<a class="navbar-brand" href="<?php echo $path ?>">
 			<!-- <img src="http://placehold.it/200x50.jpg&text=200x50" alt="Brand" class="img-responsive"> -->
 			<img src="#" alt="Brand" class="img-responsive">
 		</a>
@@ -11,13 +11,19 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item <?php if( $active=="index" ) echo 'active'; ?>">
-					<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					<a class="nav-link" href="<?php echo $path ?>">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item <?php if( $active=="slugger" ) echo 'active'; ?>">
+					<a class="nav-link" href="<?php echo $path ?>slugger">Slugger</a>
 				</li>
 				<li class="nav-item <?php if( $active=="var_01" ) echo 'active'; ?>">
 					<a class="nav-link" href="#">Link</a>
 				</li>
 				<li class="nav-item <?php if( $active=="var_02" ) echo 'active'; ?>">
 					<a class="nav-link disabled" href="#">Disabled</a>
+				</li>
+				<li class="nav-item <?php if( $active=="contact" ) echo 'active'; ?>">
+					<a class="nav-link" href="<?php echo $path ?>contacto">Contacto</a>
 				</li>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">

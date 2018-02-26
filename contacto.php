@@ -22,18 +22,34 @@
 		$up_dir = 0; for( $i01=1; $i01<=$up_dir; $i01++ ) { $dir.="../"; }
 	?>
 	<?php
-		$view_name="title";
+		$view_name="Contact";
 		include(/*$dir.*/"structure/head.php");
 		$asset = "assets/img/folder_name/"; // Path where are storaged media files (img, video, etc)
 	?>
 </head>
 <body>
-	<?php $active="index"; include(/*$dir.*/"structure/navbar.php") ?>
+	<?php $active="contact"; include(/*$dir.*/"structure/navbar.php") ?>
 
 	<section class="bg-default-02 pt-60 pb-60">
 		<div class="container-custom">
 			<div class="row">
-				<div class="col-md-12">CONTENT</div>
+				<div class="col-md-12">
+					<form action="php/process.php" method="POST">
+						<div class="form-group">
+							<input type="text" class="form-control" name="name" value="" placeholder="Nombre:" required>
+						</div>
+						<div class="form-group">
+							<input type="email" class="form-control" name="email" value="" placeholder="E-Mail:" required>
+						</div>
+						<div class="form-group">
+							<input type="text" class="form-control" name="subject" value="" placeholder="Asunto:" required>
+						</div>
+						<div class="form-group">
+							<textarea class="form-control" name="message" rows="5" placeholder="Mensaje:"></textarea>
+						</div>
+						<button type="submit" class="btn btn-secondary">Enviar</button>
+					</form>
+				</div>
 			</div>
 		</div>
 	</section>
