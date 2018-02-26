@@ -24,7 +24,6 @@ You can use this base to develop your website using the most up-to-date CDNs:
 - `<head>` tag now is inside of `structure/head.php` with a variable called `$view_name` to put page name (interior name) and `$page` is to indicate the website name that is developing.
 
 ### v1.0.1:
-- Head actualizado con bootstrap-validator.js, font-awesome.css y lineas requeridas para activar responsive en dispositivos moviles.
 - Head tags updated with bootstrap-validator.js, font-awesome.css and required lines to enable Responsive Design on mobile devices.
 
 ---
