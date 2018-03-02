@@ -16,6 +16,9 @@
 				<li class="nav-item <?php if( $active=="slugger" ) echo 'active'; ?>">
 					<a class="nav-link" href="<?php echo $path ?>slugger">Slugger</a>
 				</li>
+				<li class="nav-item <?php if( $active=="blog" ) echo 'active'; ?>">
+					<a class="nav-link" href="<?php echo $path ?>blog">Blog</a>
+				</li>
 				<li class="nav-item <?php if( $active=="var_01" ) echo 'active'; ?>">
 					<a class="nav-link" href="#">Link</a>
 				</li>

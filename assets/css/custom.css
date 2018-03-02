@@ -139,3 +139,102 @@ NAVBAR
 	border: none;
 	border-radius: 0;
 }
+/*=============================================================================
+BLOG
+=============================================================================*/
+.img-blog{
+	min-height: 800px;
+	background-image: url("../img/Blog/header.jpg");
+	background-position: center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+.container-blog{
+  padding-right: 30px;
+  padding-left: 30px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  width: 100%;
+}
+.i-text{
+  background: #e2dede;
+  border: none;
+  border-radius: 10px;
+  color: #757575;
+  text-align: center;
+  font-size: 12px;
+  padding: 10px 40px;
+  margin-right: 10px;
+}
+
+.bolder{
+	font-weight: bolder !important;
+}
+
+.hr-blog{
+	max-width: 15%;
+  	border: 1px solid #e2dede;
+  	box-shadow: 0px 2px 3px #e2e2e2;
+}
+
+.text-intblog{
+	width: 100%;
+	position: absolute;
+  bottom: 10px;
+}
+
+.btn-blog{
+	width: 100%;
+  background: black;
+  border: none;
+  font-weight: 100;
+  font-family: sans-serif;
+  color: #fff;
+}
+
+.btn-blog2{
+  background: black;
+  border: none;
+  font-weight: 100;
+  font-family: sans-serif;
+  color: #fff;
+}
+
+.btn-blog3{
+	background: black;
+  border: 1PX solid #FFF;
+  font-weight: 100;
+  font-family: sans-serif;
+  color: #fff;
+  padding: 6px 50px;
+  font-size: 16px;
+  transition: 0.2s;
+}
+.btn-blog3:hover { color: #000; background-color: #FFF; text-decoration: none; }
+
+.text-initblogf{
+	position: absolute;
+  top: 30%;
+  left: 30%;
+}
+
+.img-finalblog{
+	background-image: url("../img/Blog/footer.jpg");
+	background-position: center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+.custom-dropdown > li > .dropdown-menu,
+.dropdown-child { background-color: #333; }
+.dropdown-child > a { color: #FFF; }
+.custom-dropdown > li > .dropdown-menu > .nav-link:hover,
+.custom-dropdown > li > .dropdown-menu > .dropdown-item:hover,
+.dropdown-child > a:hover {
+	background-color: #222;
+}
+.dropdown-child > a:hover { color: #FFF; }

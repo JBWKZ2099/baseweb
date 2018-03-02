@@ -7,7 +7,10 @@ You can use this base to develop your website using the most up-to-date CDNs:
 - [Font Awesome (JS)](https://fontawesome.com/)
 
 ## Changelog
-### v1.0.4 [New]
+### v1.0.5 [New]
+	- WIP
+<!-- - Blog y administrador agregaros si la web lo require. -->
+### v1.0.4
 - Absolute Paths Code optimized to work on Localhost with VHosts and localhost and Production Server without `$production` variable.
 - "Margin" and "Padding" custom classes have now the same syntax as bootstrap (pt-60, pt-45, pt-30, etc).
 - CSS px coverted to rem.

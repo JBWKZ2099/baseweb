@@ -1,0 +1,71 @@
+.jumbotron-container {
+	height: 100vh;
+}
+.jumbotron {
+	position: relative;
+	top: 50%;
+	-ms-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+.logo-container {
+	padding: 10px;
+	border-radius: 5px;
+	width: 100%;
+	max-width: 260px;
+	margin: 0 auto;
+	margin-bottom: 25px;
+}
+.logo {
+	max-width: 100%;
+}
+table th { cursor: pointer; transition: 0.2s; opacity: 0.8; }
+table th:hover { opacity: 1; }
+table th:last-child {
+	min-width: 215px;
+}
+table th:nth-child(4) {
+	min-width: 90px;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+input {	font-family: "Montserrat"; }
+
+.cke_maximized {
+  z-index: 9999999;
+}
+table [class*='btn-'] {
+  border-radius: 7px;
+  padding: 5px 5px;
+  font-size: 12px;
+}
+
+form [class*='btn-'], p [class*='btn-'] {
+  border-radius: 7px;
+  padding: 5px 15px;
+  font-size: 14px;
+}
+
+a[class*='btn-'] {
+  color: #FFF;
+}
+.btn-default {
+  border: 1px solid #adadad;
+  color: #808080 !important;
+}
+
+.btn-orange {
+	color: #fff;
+	background-color: #d9534f;
+	border-color: #d43f3a;
+}
+.btn-orange:hover {
+    color: #fff;
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
