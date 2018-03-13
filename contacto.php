@@ -34,7 +34,7 @@
 		<div class="container-custom">
 			<div class="row">
 				<div class="col-md-12">
-					<form action="php/process.php" method="POST">
+					<form action="<?php echo $path; ?>php/mailer/mail.php" method="POST">
 						<div class="form-group">
 							<input type="text" class="form-control" name="name" value="" placeholder="Nombre:" required>
 						</div>
@@ -45,7 +45,7 @@
 							<input type="text" class="form-control" name="subject" value="" placeholder="Asunto:" required>
 						</div>
 						<div class="form-group">
-							<textarea class="form-control" name="message" rows="5" placeholder="Mensaje:"></textarea>
+							<textarea class="form-control" name="msg" rows="5" placeholder="Mensaje:"></textarea>
 						</div>
 						<button type="submit" class="btn btn-secondary">Enviar</button>
 					</form>
@@ -53,6 +53,9 @@
 			</div>
 		</div>
 	</section>
+
+	<?php /*ALERTAS DE ERROR O ÉXITO*/ ?>
+	<?php session_start(); include("alerts/alerts.php"); ?>
 
 	<?php include(/*$dir.*/"structure/footer.php") ?>
 </body>

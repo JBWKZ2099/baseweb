@@ -1,3 +1,15 @@
+<?php
+	function act($item, $active) { echo $item == $active ? " active" : ""; }
+	$items = json_decode(json_encode(array(
+		array("active" => "index", "link" => "index", "word" => "Home", "sub" => 0),
+		array("active" => "slugger", "link" => "slugger", "word" => "Slugger", "sub" => 0),
+		array("active" => "blog", "link" => "blog", "word" => "Blog", "sub" => 0),
+		array("active" => "link", "link" => "#", "word" => "Link", "sub" => 0),
+		array("active" => "disabled", "link" => "#", "word" => "Disabled", "sub" => 0),
+		array("active" => "contacto", "link" => "contacto", "word" => "Contacto", "sub" => 0),
+	)), FALSE);
+?>
+
 <nav class="navbar navbar-expand-md navbar-light bg-light">
 	<div class="container nb-container m-auto">
 		<a class="navbar-brand" href="<?php echo $path ?>">
@@ -10,24 +22,11 @@
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
-				<li class="nav-item <?php if( $active=="index" ) echo 'active'; ?>">
-					<a class="nav-link" href="<?php echo $path ?>">Home <span class="sr-only">(current)</span></a>
-				</li>
-				<li class="nav-item <?php if( $active=="slugger" ) echo 'active'; ?>">
-					<a class="nav-link" href="<?php echo $path ?>slugger">Slugger</a>
-				</li>
-				<li class="nav-item <?php if( $active=="blog" ) echo 'active'; ?>">
-					<a class="nav-link" href="<?php echo $path ?>blog">Blog</a>
-				</li>
-				<li class="nav-item <?php if( $active=="var_01" ) echo 'active'; ?>">
-					<a class="nav-link" href="#">Link</a>
-				</li>
-				<li class="nav-item <?php if( $active=="var_02" ) echo 'active'; ?>">
-					<a class="nav-link disabled" href="#">Disabled</a>
-				</li>
-				<li class="nav-item <?php if( $active=="contact" ) echo 'active'; ?>">
-					<a class="nav-link" href="<?php echo $path ?>contacto">Contacto</a>
-				</li>
+				<?php foreach($items as $item) { ?>
+					<li class='nav-item<?php act($item->active, $active) ?>'>
+						<a class='nav-link text-center' href='<?php echo $path.$item->link; ?>'><?php echo $item->word ?></a>
+					</li>
+				<?php } ?>
 			</ul>
 			<form class="form-inline my-2 my-lg-0">
 				<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">

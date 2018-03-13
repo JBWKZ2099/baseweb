@@ -131,6 +131,39 @@ a, button, .btn { transition: 0.2s; }
 	-o-background-size: cover;
 	background-size: cover;
 }
+/**
+ * Carousel with Circle indicator
+ * it needs to add <div class="inner-circle"></div> on li elements (carousel-indicator)
+ */
+.circle-indicators .carousel-indicators li {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	margin-top: 3px;
+	text-indent: -999px;
+	cursor: pointer;
+	background-color: rgba(0,0,0,0);
+	border-radius: 10px;
+	background-color: #FFF;
+	border: none;
+}
+.circle-indicators .carousel-indicators .active {
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  margin-top: 0;
+  margin-bottom: -2px;
+  border: 1px solid #FFF;
+}
+.circle-indicators .carousel-indicators li.active .inner-circle { display: block; }
+.circle-indicators .inner-circle {
+	width: 8px;
+	height: 8px;
+	border-radius: 12px;
+	margin: 3px;
+	background-color: #FFF;
+	display: none;
+}
 /*=============================================================================
 NAVBAR
 =============================================================================*/
