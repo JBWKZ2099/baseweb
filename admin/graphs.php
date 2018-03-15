@@ -1,6 +1,5 @@
 <?php
 	session_start();
-	// ini_set("display_errors", "On");
 	include("../php/db/conn.php");
 	include("../php/db/auth.php");
 	
@@ -21,6 +20,7 @@
 	<div class="content-wrapper">
 		<div class="contianer-fluid">
 			Bienvenido
+			<?php echo $_SERVER["REQUEST_URI"] ?>
 		</div>
 	</div>
 
