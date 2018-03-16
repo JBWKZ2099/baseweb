@@ -3,8 +3,8 @@
 <html lang="es">
 <head>
 	<?php
-		include('admin/php/db.php');
-		include('admin/php/utils.php');
+		include('admin2/php/db.php');
+		include('admin2/php/utils.php');
 		date_default_timezone_set('America/Mexico_City');
 		$tabla = 'blogs';
 		$mysqli = conectar_db();
