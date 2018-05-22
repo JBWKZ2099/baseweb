@@ -23,8 +23,16 @@
 			$_SESSION["usr"] = $row["username"];
 			$_SESSION["start"] = time();
 			$_SESSION["expire"] = $_SESSION["start"] + (60*120); /* (sec*min) = total secs */
+			/* Si se desea modificar el tiempo de la sesión, también hay que modificar el archivo /php/db/session.php */
 			return true;
 		}
+	}
+
+	function loginAfterReg($username) {
+		$_SESSION["auth"] = true;
+		$_SESSION["usr"] = $username;
+		$_SESSION["start"] = time();
+		$_SESSION["expire"] = $_SESSION["start"] + (60*120); /* (sec*min) = total secs */
 	}
 
 	function authCheck() {

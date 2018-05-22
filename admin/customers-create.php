@@ -50,7 +50,7 @@ ini_set("display_errors", "On");
 										$sql = null; $sql = "SELECT * FROM permissions";
 										$u_result = consulta_tb($mysqli,$sql);
 									?>
-									<?php include("forms/customer-form.php") ?>
+									<?php include("forms/customer-form.php"); ?>
 									<button type="submit" class="btn btn-success">Registrar</button>
 								</form>
 							</div>
@@ -61,13 +61,13 @@ ini_set("display_errors", "On");
 		</div>
 	</div>
 
-	<?php include("structure/footer.php") ?>
+	<?php include("structure/footer.php"); ?>
 
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded" href="#page-top">
 		<i class="fa fa-angle-up"></i>
 	</a>
-	<?php include("widgets/modal.php") ?>
+	<?php include("widgets/modal.php"); ?>
 </body>
 </html>
 <?php

@@ -338,6 +338,54 @@
 				echo dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
 
+			case "blog":
+				$tbl = "`blogs`";
+				$columns = array( 
+					0 => "$tbl.id",
+					1 => "$tbl.name",
+					2 => "$tbl.author",
+					3 => "$tbl.created_at",
+					4 => "$tbl.edited_at",
+				);
+				$col_clean = array( 
+					0 => "id",
+					1 => "name",
+					2 => "author",
+					3 => "created_at",
+					4 => "edited_at",
+				);
+				$sql_data = array(
+					0 => "$tbl.`id`, $tbl.`name`, $tbl.`author`, $tbl.`created_at`, $tbl.`edited_at` ",
+					1 => $tbl,
+					2 => " WHERE $tbl.`deleted_at` IS NULL "
+				);
+				echo dataTable($_POST, $columns, $col_clean, $sql_data);
+				break;
+
+			case "blog-restore":
+				$tbl = "`blogs`";
+				$columns = array( 
+					0 => "$tbl.id",
+					1 => "$tbl.name",
+					2 => "$tbl.author",
+					3 => "$tbl.created_at",
+					4 => "$tbl.edited_at",
+				);
+				$col_clean = array( 
+					0 => "id",
+					1 => "name",
+					2 => "author",
+					3 => "created_at",
+					4 => "edited_at",
+				);
+				$sql_data = array(
+					0 => "$tbl.`id`, $tbl.`name`, $tbl.`author`, $tbl.`created_at`, $tbl.`edited_at` ",
+					1 => $tbl,
+					2 => " WHERE $tbl.`deleted_at` IS NOT NULL "
+				);
+				echo dataTable($_POST, $columns, $col_clean, $sql_data);
+				break;
+
 			case "delete":
 				$id = $_POST["id"];
 				$tbl = $_POST["table"];

@@ -10,7 +10,7 @@
 	?>
 </head>
 <body>
-	<?php $active="slugger"; include("structure/navbar.php") ?>
+	<?php $active="slugger"; include("structure/navbar.php"); ?>
 	
 	<?php if(isFile()[0] == "no") { ?>
 		<section class="bg-default-02 pt-60 pb-60">
@@ -38,6 +38,6 @@
 		</section>
 	<?php } ?>
 
-	<?php include("structure/footer.php") ?>
+	<?php include("structure/footer.php"); ?>
 </body>
 </html>

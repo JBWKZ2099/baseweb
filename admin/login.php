@@ -17,7 +17,7 @@
 <body class="bg-dark" id="page-top">
 
 	<?php if( authCheck() ) { ?>
-		<?php include("structure/navbar.php") ?>
+		<?php include("structure/navbar.php"); ?>
 	<?php } ?>
 
 	
@@ -33,7 +33,7 @@
 								</a>
 							</div>
 							<div class="card-body">
-								<?php include("../alerts/errors.php") ?>
+								<?php include("../alerts/errors.php"); ?>
 								<form id="needs-validation" action="../php/db/requests.php" method="POST" autocomplete="off" novalidate>
 									<input type="hidden" name="request" value="login">
 									<div class="form-group">
@@ -61,14 +61,14 @@
 		</div>
 	</div>
 
-	<?php include("structure/footer.php") ?>
+	<?php include("structure/footer.php"); ?>
 
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded" href="#page-top">
 		<i class="fa fa-angle-up"></i>
 	</a>
 
-	<?php include("widgets/modal.php") ?>
+	<?php include("widgets/modal.php"); ?>
 	<script src="assets/js/plugins/novalidate.js"></script>
 </body>
 </html>

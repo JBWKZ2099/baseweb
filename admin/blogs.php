@@ -9,30 +9,28 @@
 <html lang="es">
 <head>
 	<?php
-		$title="Usuarios";
+		$title="Blogs";
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
 	<script src="assets/js/datatables/jquery.js"></script>
 	<script src="assets/js/datatables/jquery.dataTables.js"></script>
 
-	<?php $restore=false; $dt_which="customer"; include("widgets/data-table-script.php"); ?>
+	<?php $restore=false; $dt_which="blog"; include("widgets/data-table-script.php"); ?>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<?php
-		$active_menu = $dt_which."_mn";
-		$collapse = $dt_which;
-		$active_opt = $dt_which."-view";
+		$active_menu = "blog_mn";
+		$collapse = "blog";
+		$active_opt = "blog-view";
 		include("structure/navbar.php");
 		
-		$data_table_which = "Usuarios";
+		$data_table_which = "Blogs";
 		$table_head = array(
 			"Nombre",
-			"Apellido Paterno",
-			"Apellido Materno",
-			"Nombre de Usuario",
-			"E-Mail",
-			"Permisos",
+			"Autor",
+			"Creado",
+			"Editado",
 		);
 		include("widgets/data-table.php");
 	?>
@@ -45,7 +43,7 @@
 	</a>
 	<?php
 		include("widgets/modal.php");
-		$table = "users"; $path = "customers";
+		$table = $path = "blogs";
 		include("widgets/modal-delete.php");
 	?>
 </body>

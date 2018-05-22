@@ -28,7 +28,7 @@
 	?>
 </head>
 <body>
-	<?php $active="contact"; include(/*$dir.*/"structure/navbar.php") ?>
+	<?php $active="contact"; include(/*$dir.*/"structure/navbar.php"); ?>
 
 	<section class="bg-default-02 pt-60 pb-60">
 		<div class="container-custom">
@@ -57,6 +57,6 @@
 	<?php /*ALERTAS DE ERROR O ÉXITO*/ ?>
 	<?php session_start(); include("alerts/alerts.php"); ?>
 
-	<?php include(/*$dir.*/"structure/footer.php") ?>
+	<?php include(/*$dir.*/"structure/footer.php"); ?>
 </body>
 </html>

@@ -1,5 +1,6 @@
 <?php
 	ini_set('display_errors', 'Off');
+	$company_name = "Brand";
 	/**
 	 * Code to make absoulute paths (example: http://www.domain-name.com/assets/img/img_name.jpg);
 	 */
@@ -31,7 +32,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title> <?php echo $title; ?> | Brand </title>
+<title> <?php echo $title." | ".$company_name; ?> </title>
 <!-- Bootstrap core CSS-->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
 <!-- Page level plugin CSS-->

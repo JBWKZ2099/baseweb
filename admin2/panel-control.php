@@ -3,7 +3,7 @@ include('php/validator.php');
 ?>
 	<!DOCTYPE html>
 	<html lang="en">
-	<?php require("structure/head.php") ?>
+	<?php require("structure/head.php"); ?>
 	<body>
 		<div class="container-custom">
 			<div class="row pt30">

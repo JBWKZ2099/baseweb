@@ -28,16 +28,18 @@
 	?>
 </head>
 <body>
-	<?php $active="index"; include(/*$dir.*/"structure/navbar.php") ?>
+	<?php $active="index"; include(/*$dir.*/"structure/navbar.php"); ?>
 
 	<section class="bg-default-02 pt-60 pb-60">
 		<div class="container-custom">
 			<div class="row">
-				<div class="col-md-12">CONTENT</div>
+				<div class="col-md-12">
+					<img class="img-fluid" data-src="holder.js/300x200.SVG?random=yes&text=300x200.SVG">
+				</div>
 			</div>
 		</div>
 	</section>
 
-	<?php include(/*$dir.*/"structure/footer.php") ?>
+	<?php include(/*$dir.*/"structure/footer.php"); ?>
 </body>
 </html>

@@ -13,8 +13,8 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light">
 	<div class="container nb-container m-auto">
 		<a class="navbar-brand" href="<?php echo $path ?>">
-			<!-- <img src="http://placehold.it/200x50.jpg&text=200x50" alt="Brand" class="img-responsive"> -->
-			<img src="#" alt="Brand" class="img-responsive">
+			<!-- <img src="holder.js/200x50.svg?random=yes&text=200x50 SVG" alt="Brand" class="img-fluid"> -->
+			<img src="#" alt="Brand" class="img-fluid">
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav mr-auto">
 				<?php foreach($items as $item) { ?>
-					<li class='nav-item<?php act($item->active, $active) ?>'>
+					<li class='nav-item<?php act($item->active, $active); ?>'>
 						<a class='nav-link text-center' href='<?php echo $path.$item->link; ?>'><?php echo $item->word ?></a>
 					</li>
 				<?php } ?>

@@ -1,3 +1,4 @@
+php_flag short_open_tag on
 ErrorDocument 404 /404.php
 Options +MultiViews
 RewriteEngine On

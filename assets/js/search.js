@@ -1,7 +1,7 @@
 $(document).ready(function() {
 	$("#search-btn").click(function(event) {
 		$.ajax({
-			url: "admin/php/search.php",
+			url: "admin2/php/search.php",
 			type: "POST",
 			dataType: "html",
 			data: { search: $("#search").val() },

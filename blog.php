@@ -1,4 +1,4 @@
-<?php ini_set("display_errors", "Off") ?>
+<?php ini_set("display_errors", "Off"); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,12 +17,17 @@
 			$page = 1;
 
 		if(wblog() == "no") {
+			if( isset($_GET["search"]) && !empty($_GET["search"]) ) // If user searchs something
+				$search = $_GET["search"];
+			else
+				$search = null;
 
-			$blog = blog_actual($mysqli, $tabla, null, null, null, $page); $blogroot = "false";
+			$blog = blog_actual($mysqli, $tabla, null, null, null, $page, $search); $blogroot = "false";
 		} else {
 			$blogroot = "true";
 			$ssblog = blog_ver($mysqli, $tabla, wblog()['idblog'], 1);
 			$catblog = blog_ver($mysqli, $tabla, wblog()['isblog'], 2);
+
 
 			$show_catblog = 0;
 			if( wblog()['idblog'] )
@@ -33,17 +38,17 @@
 		<meta name="keywords" content="<?php echo $ssblog[0]['meta_keywords'] ?>">
 		<meta name="description" content="<?php echo $ssblog[0]['meta'] ?>">
 	<?php } ?>
-	<?php $view_name="Blog"; include("structure/head.php") ?>
+	<?php $view_name="Blog"; include("structure/head.php"); ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo $path; ?>/assets/css/multilevel.css">
 </head>
 <body>
-	<?php $active="blog"; include("structure/navbar.php") ?>
+	<?php $active="blog"; include("structure/navbar.php"); ?>
 	<?php if($blogroot == 'true') { ?>
 		<?php if(isset($blog[0]['name']) || isset($ssblog[0]['name'])) { ?>
 			<?php $bg_color="bg-black"; $blog = true; ?>
 			<section class="container-fluid">
 				<?php if( isset($ssblog[0]['cover']) && !empty($ssblog[0]['cover']) ) { ?>
-					<div class="row relativer bg-container bg-mh bg-widget-cover appear" style="background-image: url('<?php echo $path; ?>/uploads/<?php echo $ssblog[0]['cover'] ?>')"> </div>
+					<div class="row relativer bg-container bg-mh bg-widget-cover appear" style="background-image: url('<?php echo $path; ?>uploads/<?php echo $ssblog[0]['cover'] ?>')"> </div>
 				<?php } else { ?>
 					<div class="row relativer bg-container bg-mh bg-widget-cover align-items-center justify-content-center" style="border-bottom: 1px solid #333;">
 							<p> <?php  echo $ssblog[0]['cover_alt']; ?> </p>
@@ -51,7 +56,7 @@
 				<?php } ?>
 			</section>
 
-			<section class="pt-60 pb-60">
+			<section class="pt60 pb60">
 				<div class="container-custom">
 					<div class="row justify-content-center">
 						<div class="col-md-12 text-center mb45">
@@ -59,14 +64,24 @@
 							<h4> <em>por <?php echo $ssblog[0]["author"] ?></em> </h4>
 						</div>
 						<div class="col-md-10">
-							<img class="img-fluid d-block m-auto" src="<?php echo $path; ?>/uploads/<?php echo $ssblog[0]['img'] ?>" alt="<?php echo $ssblog[0]['img_alt'] ?>">
+							<?php if( isset($ssblog[0]['video']) ) { ?>
+								<div class="play-container blog-play-container">
+									<img class="play-ico" src="<?php echo $path; ?>assets/img/play-13.svg" alt="PlayIco">
+									<img class="custom-thumbnail img-fluid d-block m-auto" src="<?php echo $path; ?>/uploads/<?php echo $ssblog[0]['img'] ?>" alt="<?php echo $ssblog[0]['img_alt'] ?>">
+									<div class="embed-responsive embed-responsive-16by9 d-none">
+										<iframe id="emb-iframe" class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $ssblog[0]['video']; ?>" allowfullscreen></iframe>
+									</div>
+								</div>
+							<?php } else { ?>
+								<img class="img-fluid d-block m-auto" src="<?php echo $path; ?>/uploads/<?php echo $ssblog[0]['img'] ?>" alt="<?php echo $ssblog[0]['img_alt'] ?>">
+							<?php } ?>
 							
 							<p class="mb-3"></p>
 							<?php echo $ssblog[0]["body"]; ?>
 
 							<div class="row justify-content-center mt60">
 								<div class="col-md-4">
-									<a href="<?php echo $path; ?>blog" class="btn btn-info btn-block d-block">VOLVER</a>
+									<a href="<?php echo $path;?>blog" class="btn btn-success d-block">VOLVER</a>
 								</div>
 							</div>
 						</div>
@@ -81,20 +96,19 @@
 						$type = $catblog[0]["type"];
 						$val = $catblog[0]["category"];
 					}
-					$blog = blog_actual($mysqli, $tabla, $val, $type, wblog()["isblog"], $page);
+					$blog = blog_actual($mysqli, $tabla, $val, $type, wblog()["isblog"], $page, null);
 				?>
 				<section class="container-fluid">
 					<div class="row relativer bg-container bg-mh bg-widget-cover bg-blog-img appear">
 				</section>
 
-				<div class="container-blog pt-60 pb-60">
+				<div class="container-custom pt60 pb60">
 					<div class="row">
 						<div class="col-md-6 offset-md-3 text-center">
-							<?php /*<img src="<?php echo $path; ?>assets/img/logo-34.svg" alt="logo">*/ ?>
-							<img src="http://placehold.it/50.svg?text=50" alt="logo">
+							<img src="<?php echo $path."/"; ?>assets/img/logo-34.svg" alt="logo">
 						</div>
 						<div class="col-md-12 text-center mt-5">
-							<h1 class="bolder h1-bigger">NUESTRO BLOG</h1>
+							<h1 class="bolder">NUESTRO BLOG</h1>
 							<hr class="hr-blog">
 							
 							<?php include("widgets/categories.php"); ?>
@@ -103,40 +117,97 @@
 							array_pop($blog); /*Delete last array element*/
 							$blogs = $blog;
 						?>
+					</div>
+					<div class="row align-items-center">
 						<?php if( isset($blogs) && !empty($blogs) ) { ?>
+							<?php $b_counter = 0; ?>
 							<?php foreach( $blogs as $blog ) { ?>
-								<div class="col-md-7 text-center mt-60">
-									<div class="row justify-content-center">
-										<div class="col-md-7">
-											<img class="img-fluid d-block" src="<?php echo $path; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
+								<?php if( $b_counter==0 ) { ?>
+									<div class="col-md-7 text-center mt60 mb-3 mb-md-5">
+										<div class="row justify-content-center">
+											<div class="col-md-12">
+												<img class="img-fluid d-block" src="<?php echo $path."/"; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
+											</div>
 										</div>
 									</div>
-								</div>	
-								<div class="col-md-4 mt-60">
-									<div class="text-intblog">
-										<h2 class="bolder text-uppercase"><?php echo $blog["name"]; ?></h2>
-										<p class="mt-3 mb-3 mb-md-5 text-lgray">
-											<?php
-												if( strlen($blog["body"])>255 )
-													echo substr($blog["body"], 0, 255)."...";
-												else
-													echo $blog["body"];
-											?>
-										</p>
-										<?php
-											$url = $path."blog/";
-											if( $blog["type"]=="exccom-services" )
-												$url .= $blog["category"]."/";
-											else if( $blog["type"]=="atm" )
-												$url .= "atm/";
-											else if( $blog["type"]=="capacitacion" )
-												$url .= "capacitacion/";
+									<div class="col-md-5 mt60 mb-3 mb-md-5">
+										<div class="row">
+											<div class="col-md-12">
+												<h3 class="bolder text-uppercase"><?php echo $blog["name"]; ?></h3>
+												<p class="mt-3 mb-3 mb-md-5 text-lgray">
+													<?php
+														if( strlen($blog["body"])>900 )
+															echo substr($blog["body"], 0, 900)."...";
+														else
+															echo $blog["body"];
+													?>
+												</p>
+											</div>
 
-											$url .= slugger($blog["name"]);
-										?>
-										<a href="<?php echo $url; ?>" class="btn btn-success btn-block mt-4 text-white">LEER COMPLETO</a>
+											<div class="col-md-12">
+												<?php
+													$url = $path."blog/";
+													if( $blog["type"]=="exccom-services" )
+														$url .= $blog["category"]."/";
+													else if( $blog["type"]=="atm" )
+														$url .= "atm/";
+													else if( $blog["type"]=="capacitacion" )
+														$url .= "capacitacion/";
+
+													$url .= slugger($blog["name"]);
+												?>
+												<a href="<?php echo $url; ?>" class="btn btn-success btn-block mt-4 text-white">LEER COMPLETO</a>
+											</div>
+										</div>
 									</div>
-								</div>
+								<?php } else { ?>
+									<div class="col-md-4">
+										<div class="row align-items-center">
+											<div class="col-md-12 mb-3">
+												<img class="img-fluid d-block" src="<?php echo $path."/"; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
+											</div>
+
+											<div class="col-md-12 mb-3 blog-title">
+												<h5 class="bolder text-uppercase">
+													<?php
+														if( strlen($blog["name"]>50) )
+															echo substr($blog["name"], 0, 50)."...";
+														else
+															echo $blog["name"];
+													?>
+												</h5>
+											</div>
+
+											<div class="col-md-12 blog-preview-content">
+												<div class="mt-3 mb-3 mb-md-5 text-lgray">
+													<?php
+														if( strlen($blog["body"])>250 )
+															echo substr($blog["body"], 0, 250)."...";
+														else
+															echo $blog["body"];
+													?>
+												</div>
+											</div>
+
+											<div class="col-md-12">
+												<?php
+													$url = $path."blog/";
+													if( $blog["type"]=="exccom-services" )
+														$url .= $blog["category"]."/";
+													else if( $blog["type"]=="atm" )
+														$url .= "atm/";
+													else if( $blog["type"]=="capacitacion" )
+														$url .= "capacitacion/";
+
+													$url .= slugger($blog["name"]);
+												?>
+												<a href="<?php echo $url; ?>" class="btn btn-success btn-block mt-4 text-white">LEER COMPLETO</a>
+											</div>
+										</div>
+									</div>
+								<?php } ?>
+
+								<?php $b_counter++; ?>
 							<?php } ?>
 						<?php } else { ?>
 							<div class="col-md-12 mt-3 text-center">
@@ -153,14 +224,14 @@
 						    		<a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a>
 						    	</li>
 						    <?php } ?>
-						    <li class="page-item"><a class="page-link" href="<?php if( isset($_GET["page"]) ) {if( $_GET["page"]==$blog["pages"] ) echo "#"; else echo "?page=".($page+1); } else echo "?page=".($page+1); ?>">Siguiente</a></li>
+						    <li class="page-item"><a class="page-link" href="<?php if( isset($_GET["page"]) ) { if( $_GET["page"]==$blog["pages"] ) echo "#"; else echo "?page=".($page+1); } else {if( $page==$blog["pages"] ) echo "#"; else echo "?page=".($page+1); } ?>">Siguiente</a></li>
 						  </ul>
 						</div>
 					<?php } ?>
 					
 					<?php /*<div class="row justify-content-center mt60">
 						<div class="col-md-4">
-							<a href="<?php echo $path; ?>blog" class="btn info btn-block-black d-block">VOLVER</a>
+							<a href="<?php echo $path; ?>blog" class="btn btn-success d-block">VOLVER</a>
 						</div>
 					</div>*/ ?>
 				</div>
@@ -169,12 +240,11 @@
 					<div class="row relativer bg-container bg-mh bg-widget-cover bg-blog-img appear">
 				</section>
 
-				<section class="pt-60 pb-60">
+				<section class="pt60 pb60">
 					<div class="container-custom">
 						<div class="row">
 							<div class="col-md-6 offset-md-3 text-center">
-								<?php /*<img src="<?php echo $path; ?>assets/img/logo-34.svg" alt="logo">*/ ?>
-								<img src="http://placehold.it/50.svg?text=50" alt="logo">
+								<img src="<?php echo $path."/"; ?>assets/img/logo-34.svg" alt="logo">
 							</div>
 							<div class="col-md-12 text-center mt-5">
 								<h2 class="bolder">NO HAY CONTENIDO EN ESTA CATEGORÍA.</h2>
@@ -184,7 +254,7 @@
 
 						<div class="row justify-content-center mt60">
 							<div class="col-md-4">
-								<a href="<?php echo $path; ?>blog" class="btn btn-info btn-block d-block">VOLVER</a>
+								<a href="<?php echo $path;?>blog" class="btn btn-success d-block">VOLVER</a>
 							</div>
 						</div>
 					</div>
@@ -198,11 +268,10 @@
 			<div class="row relativer bg-container bg-mh bg-widget-cover bg-blog-img appear">
 		</section>
 
-		<div class="container-blog pt-60 pb-60">
+		<div class="container-custom pt60 pb60">
 			<div class="row">
 				<div class="col-md-6 offset-md-3 text-center">
-					<?php /*<img src="<?php echo $path; ?>assets/img/logo-34.svg" alt="logo">*/ ?>
-					<img src="http://placehold.it/50.svg?text=50" alt="logo">
+					<img src="<?php echo $path."/"; ?>assets/img/logo-34.svg" alt="logo">
 				</div>
 				<div class="col-md-3 float-right input-group">
 					<input id="search" class="form-control text-center" placeholder="BUSCAR">
@@ -213,7 +282,7 @@
 				  </div>
 				</div>
 				<div class="col-md-12 text-center mt-5">
-					<h1 class="bolder h1-bigger">NUESTRO BLOG</h1>
+					<h1 class="bolder">NUESTRO BLOG</h1>
 					<hr class="hr-blog">
 
 					<?php include("widgets/categories.php"); ?>
@@ -225,40 +294,95 @@
 					if( $_GET["page"]<=$blog[0]["pages"] ) { ?>
 						<?php if( isset($blogs) && !empty($blogs) ) { ?>
 							<div id="blogs-container" class="col-md-12">
-								<div class="row">
+								<div class="row align-items-center">
+									<?php $b_counter = 0; ?>
 									<?php foreach( $blogs as $blog ) { ?>
-										<div class="col-md-7 text-center mt-60">
-											<div class="row justify-content-center">
-												<div class="col-md-7">
-													<img class="img-fluid d-block" src="<?php echo $path; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
+										<?php if( $b_counter==0 ) { ?>
+											<div class="col-md-7 text-center mt60 mb-3 mb-md-5">
+												<div class="row justify-content-center">
+													<div class="col-md-12">
+														<img class="img-fluid d-block" src="<?php echo $path."/"; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="col-md-4 mt-60">
-											<div class="text-intblog">
-												<h3 class="bolder text-uppercase"><?php echo $blog["name"]; ?></h3>
-												<p class="mt-3 mb-3 mb-md-5 text-lgray">
-													<?php
-														if( strlen($blog["body"])>255 )
-															echo substr($blog["body"], 0, 255)."...";
-														else
-															echo $blog["body"];
-													?>
-												</p>
-												<?php
-													$url = $path."blog/";
-													if( $blog["type"]=="exccom-services" )
-														$url .= $blog["category"]."/";
-													else if( $blog["type"]=="atm" )
-														$url .= "atm/";
-													else if( $blog["type"]=="capacitacion" )
-														$url .= "capacitacion/";
+											<div class="col-md-5 mt60 mb-3 mb-md-5">
+												<div class="row">
+													<div class="col-md-12">
+														<h3 class="bolder text-uppercase"><?php echo $blog["name"]; ?></h3>
+														<p class="mt-3 mb-3 mb-md-5 text-lgray">
+															<?php
+																if( strlen($blog["body"])>900 )
+																	echo substr($blog["body"], 0, 900)."...";
+																else
+																	echo $blog["body"];
+															?>
+														</p>
+													</div>
 
-													$url .= slugger($blog["name"]);
-												?>
-												<a href="<?php echo $url; ?>" class="btn btn-success btn-block mt-4 text-white">LEER COMPLETO</a>
+													<div class="col-md-12">
+														<?php
+															$url = $path."blog/";
+															if( $blog["type"]=="exccom-services" )
+																$url .= $blog["category"]."/";
+															else if( $blog["type"]=="atm" )
+																$url .= "atm/";
+															else if( $blog["type"]=="capacitacion" )
+																$url .= "capacitacion/";
+
+															$url .= slugger($blog["name"]);
+														?>
+														<a href="<?php echo $url; ?>" class="btn btn-success btn-block mt-4 text-white">LEER COMPLETO</a>
+													</div>
+												</div>
 											</div>
-										</div>
+										<?php } else { ?>
+											<div class="col-md-4">
+												<div class="row align-items-center">
+													<div class="col-md-12 mb-3">
+														<img class="img-fluid d-block" src="<?php echo $path."/"; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
+													</div>
+
+													<div class="col-md-12 mb-3 blog-title">
+														<h5 class="bolder text-uppercase">
+															<?php
+																if( strlen($blog["name"]>50) )
+																	echo substr($blog["name"], 0, 50)."...";
+																else
+																	echo $blog["name"];
+															?>
+														</h5>
+													</div>
+
+													<div class="col-md-12 blog-preview-content">
+														<div class="mt-3 mb-3 mb-md-5 text-lgray">
+															<?php
+																if( strlen($blog["body"])>250 )
+																	echo substr($blog["body"], 0, 250)."...";
+																else
+																	echo $blog["body"];
+															?>
+														</div>
+													</div>
+
+													<div class="col-md-12">
+														<?php
+															$url = $path."blog/";
+															if( $blog["type"]=="exccom-services" )
+																$url .= $blog["category"]."/";
+															else if( $blog["type"]=="atm" )
+																$url .= "atm/";
+															else if( $blog["type"]=="capacitacion" )
+																$url .= "capacitacion/";
+
+															$url .= slugger($blog["name"]);
+														?>
+														<a href="<?php echo $url; ?>" class="btn btn-success btn-block mt-4 text-white">LEER COMPLETO</a>
+													</div>
+												</div>
+											</div>
+										<?php } ?>
+
+										<?php $b_counter++; ?>
 									<?php } ?>
 								</div>
 							</div>
@@ -282,7 +406,7 @@
 				    		<a class="page-link" href="blog?page=<?php echo $i; ?>"><?php echo $i; ?></a>
 				    	</li>
 				    <?php } ?>
-				    <li class="page-item"><a class="page-link" href="<?php if( isset($_GET["page"]) ) {if( $_GET["page"]==$blog["pages"] ) echo "#"; else echo "blog?page=".($page+1); } else echo "blog?page=".($page+1); ?>">Siguiente</a></li>
+				    <li class="page-item"><a class="page-link" href="<?php if( isset($_GET["page"]) ) { if( $_GET["page"]==$blog["pages"] ) echo "#"; else echo "blog?page=".($page+1); } else {if( $page==$blog["pages"] ) echo "#"; else echo "blog?page=".($page+1); } ?>">Siguiente</a></li>
 				  </ul>
 				</div>
 			<?php } ?>
@@ -295,7 +419,7 @@
 			if(isset($blog[0]['name']) || isset($ssblog[0]['name'])) {
 				$id_blog = $ssblog[0]["id"];
 				$comments = getComments($mysqli,$id_blog); ?>
-		<section class="container-custom pb-60">
+		<section class="container-custom pb60">
 			<div class="row justify-content-center">
 				<div class="col-md-12"> <?php include("alerts/success.php"); ?> </div>
 					<div class="col-md-6 text-center">
@@ -337,8 +461,10 @@
 		}
 	?>
 	
+	<?php include("widgets/frm-cont.php"); ?>
 	<?php include("structure/footer.php"); ?>
 	<script src="<?php echo $path; ?>/assets/js/multilevel.js" async="async"></script>
 	<script src="<?php echo $path; ?>/assets/js/search.js"></script>
+	<script src="<?php echo $path; ?>/assets/js/landing-cover.js"></script>
 </body>
 </html>

@@ -1,35 +1,38 @@
 <?php
     require('defines.php');
     function conectar_db(){
-    	$mysqli = mysqli_connect(SERVER, USER, PASSWORD) 	or die ("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><p>No se pudo establer la conexi¨®n al servidor.</p></div>");
-    	mysqli_query($mysqli, 'SET NAMES "utf8"');
-    	return $mysqli;
+        $mysqli = mysqli_connect(SERVER, USER, PASSWORD)    or die ("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><p>No se pudo establer la conexi¨®n al servidor.</p></div>");
+        mysqli_query($mysqli, 'SET NAMES "utf8"');
+        return $mysqli;
     }
 
     function selecciona_db($mysqli){
-    	mysqli_select_db($mysqli, DATABASE) or die ("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><p>No se pudo establer la conexión con la Base de Datos.</p></div>");
+        mysqli_select_db($mysqli, DATABASE) or die ("<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><p>No se pudo establer la conexión con la Base de Datos.</p></div>");
     }
 
     function registro_nuevo($tabla, $datos, $columna){
-    	$mysqli = conectar_db();
-    	selecciona_db($mysqli);
+        $mysqli = conectar_db();
+        selecciona_db($mysqli);
 
-    	$Consulta = "INSERT INTO $tabla VALUES (";
-    		for ($i=0; $i < count($datos); $i++) {
-    			$Consulta = $Consulta.$datos[$i];
-    			if ($i != count($datos)-1)
-    				$Consulta.=",";
-    		}
-    		$Consulta.=")";
-    	$pConsulta = consulta_tb($mysqli, $Consulta);
+        $Consulta = "INSERT INTO $tabla VALUES (";
+            for ($i=0; $i < count($datos); $i++) {
+                $Consulta = $Consulta.$datos[$i];
+                if ($i != count($datos)-1)
+                    $Consulta.=",";
+            }
+            $Consulta.=")";
 
-    	if (!$pConsulta) {
-    		echo "<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><p>No se pudo almacenar su informaci¨®n.</p></div>";
-    	}
-    	else{
+            // print_r($datos);
+            // print_r($Consulta);
+            // exit();
+        $pConsulta = consulta_tb($mysqli, $Consulta);
+        if (!$pConsulta) {
+            echo "<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><p>No se pudo almacenar su informaci¨®n.</p></div>";
+        }
+        else{
 
-    	}
-    	cerrar_db($mysqli);
+        }
+        cerrar_db($mysqli);
     }
 
     function getComments($mysqli,$id_blog) {
@@ -65,8 +68,8 @@
       }
 
       function total_registros($mysqli, $tabla){
-    	$result = mysqli_query($mysqli, "SELECT * FROM ".$tabla." ORDER BY name ASC");
-    	   return $result;
+        $result = mysqli_query($mysqli, "SELECT * FROM ".$tabla." ORDER BY name ASC");
+           return $result;
            mysqli_close($mysqli);
       }
       function filtro_registros($mysqli, $tabla, $tipo){
@@ -77,7 +80,7 @@
         mysqli_close($mysqli);
       }
 
-      function blog_actual($mysqli, $tabla, $category, $type, $btype, $page) {
+      function blog_actual($mysqli, $tabla, $category, $type, $btype, $page, $search) {
         // '$page' es la página actual ($_GET["page"])
         // '$total' es el total de registros y se ocupa para poder calcular el número de resultados por página
         // '$total_pages' guarda la cantidad total de páginas
@@ -86,17 +89,28 @@
 
         $btype = explode("?",$btype)[0];
 
-        $query = "SELECT COUNT(*) as num_rows FROM blogs WHERE status = 1 ";
+        $query = "SELECT COUNT(*) as num_rows FROM blogs WHERE";
+        if( $search!=null ) { // If user searchs something
+            $query .= " name LIKE '%$search%'";
+            $query .= " OR author LIKE '%$search%'";
+            $query .= " OR meta LIKE '%$search%'";
+            $query .= " OR meta_keywords LIKE '%$search%'";
+            $query .= " OR body LIKE '%$search%' AND";
+        }
+
         if( isset($category) && !empty($category) && $type==1 )
-            $query .= "AND type = 1 AND category = $category ";
+            $query .= " type = 1 AND category = $category AND ";
         else if( $btype=="atm" )
-            $query .= "AND type = 2 ";
+            $query .= " type = 2 AND ";
         else if( $btype=="capacitacion" )
-            $query .= "AND type = 3 ";
+            $query .= " type = 3 AND ";
+
+        $query .= " status = 1 ";
+        // echo $query;
 
         $res = mysqli_query($mysqli, $query);
         $total = mysqli_fetch_array($res)["num_rows"];
-        $limit_1 = 3;
+        $limit_1 = 4;
         mysqli_free_result($res);
 
         $total_pages = $total / $limit_1;
@@ -114,6 +128,7 @@
         }
 
         $sql .= "AND status = 1 ORDER BY created_at DESC LIMIT $limit_0,$limit_1";
+        // echo $sql;
 
         $query = mysqli_query($mysqli,$sql);
         $datos = array();
@@ -304,7 +319,8 @@
                     'cover' => $row['cover'],
                     'cover_alt' => $row['cover_alt'],
                     'created_at' => $row['created_at'],
-                    'body' => $row['body']
+                    'body' => $row['body'],
+                    'video' => $row['video']
                 );
                 if($pedro <= 9) $pedro++;
             }
@@ -451,6 +467,6 @@
     }
 
     function cerrar_db($mysqli){
-    	mysqli_close($mysqli);
+        mysqli_close($mysqli);
     }
 ?>

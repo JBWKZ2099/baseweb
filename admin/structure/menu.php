@@ -42,6 +42,26 @@
     </li>
   */ ?>
   <?php if( user()["permission"]==1 ) { ?>
+    <li class="nav-item <?php if( $active_menu=="blog_mn" ) echo "active"; ?>" data-toggle="tooltip" data-placement="right" title="Usuarios">
+      <a class="nav-link nav-link-collapse <?php if( $active_menu=="blog_mn" ) echo ""; else echo "collapsed"; ?>" data-toggle="collapse" href="#blogCollapse" data-parent="#exampleAccordion">
+        <i class="fa fa-fw fa-rss-square"></i>
+        <span class="nav-link-text">
+          Blogs</span>
+      </a>
+      <ul class="sidenav-second-level collapse <?php if( $collapse=="blog" ) echo "show"; ?>" id="blogCollapse">
+        <li <?php if( $active_opt=="blog-view" ) echo "class='active'"; ?>>
+          <a href="<?php echo $abs_path."/"; ?>blogs">Lista de Blogs</a>
+        </li>
+        <li <?php if( $active_opt=="blog-create" ) echo "class='active'"; ?>>
+          <a href="<?php echo $abs_path."/"; ?>blogs-create">Agregar Blog</a>
+        </li>
+        <li <?php if( $active_opt=="blog-deleted" ) echo "class='active'"; ?>>
+          <a href="<?php echo $abs_path."/"; ?>blogs-deleted">Blogs Eliminados</a>
+        </li>
+      </ul>
+    </li>
+  <?php } ?>
+  <?php if( user()["permission"]==1 ) { ?>
     <li class="nav-item <?php if( $active_menu=="customer_mn" ) echo "active"; ?>" data-toggle="tooltip" data-placement="right" title="Usuarios">
       <a class="nav-link nav-link-collapse <?php if( $active_menu=="customer_mn" ) echo ""; else echo "collapsed"; ?>" data-toggle="collapse" href="#customerCollapse" data-parent="#exampleAccordion">
         <i class="fa fa-fw fa-user-circle"></i>
