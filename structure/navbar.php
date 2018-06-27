@@ -1,4 +1,9 @@
 <?php
+	/*
+		If page is only one landing you can add  id="parallax-navbar" to <ul class="navbar-nav mr-auto">
+		And if you do, add "data-target"=>"#id-to-scroll" to $items array to can make the js work
+		Example: array("active" => "none", "link" => "#", "word" => "Nosotros", "sub" => 0, "data_target" => "#nosotros"),
+	*/
 	function act($item, $active) { echo $item == $active ? " active" : ""; }
 	$items = json_decode(json_encode(array(
 		array("active" => "index", "link" => "index", "word" => "Home", "sub" => 0),
@@ -24,7 +29,7 @@
 			<ul class="navbar-nav mr-auto">
 				<?php foreach($items as $item) { ?>
 					<li class='nav-item<?php act($item->active, $active); ?>'>
-						<a class='nav-link text-center' href='<?php echo $path.$item->link; ?>'><?php echo $item->word ?></a>
+						<a class='nav-link text-center' href='<?php echo $path.$item->link; ?>' data-target="<?php echo $item->data_target; ?>"><?php echo $item->word ?></a>
 					</li>
 				<?php } ?>
 			</ul>

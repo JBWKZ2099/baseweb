@@ -30,6 +30,10 @@
 <body>
 	<?php $active="index"; include(/*$dir.*/"structure/navbar.php"); ?>
 
+	<section class="cover bg-cover-index">
+		<span class="sr-only">If you need to add a cover to your page</span>
+	</section>
+
 	<section class="bg-default-02 pt-60 pb-60">
 		<div class="container-custom">
 			<div class="row">

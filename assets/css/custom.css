@@ -8,12 +8,16 @@ a, button, .btn { transition: 0.2s; }
 .absoluter { position: absolute; }
 .container-custom { width: 100%; margin: 0 auto; padding: 0 1rem; position: relative; }
 .nb-container { width: 100%; max-width: 100%; }
+.thanks-page { height: 60vh; }
+.thanks-page img { width: 400px; max-width: 100%; }
+.o-hidden { overflow: hidden; }
 .fw100 { font-weight: 100; }
 .fw200 { font-weight: 200; }
 .fw300 { font-weight: 300; }
 .fw { font-weight: 400; }
 .fw500 { font-weight: 500; }
 .fw600 { font-weight: 600; }
+.h1-bigger { font-size: 4rem; }
 /*Margin*/
 .mt-30 { margin-top: 2rem; }
 .mt-45 { margin-top: 2.85rem; }
@@ -68,6 +72,7 @@ a, button, .btn { transition: 0.2s; }
 	h2 { font-size: 1.625rem; }
 	h3 { font-size: 1.25rem; }
 	h4 { font-size: 1rem; }
+	.h1-bigger { font-size: 3rem; }
 
 	.mt-30 { margin-top: 1rem; }
 	.mb-30 { margin-bottom: 1rem; }
@@ -108,6 +113,7 @@ a, button, .btn { transition: 0.2s; }
 	h2 { font-size: 1.25rem; }
 	h3 { font-size: 1rem; }
 	h4 { font-size: .875rem; }
+	.h1-bigger { font-size: 2.5rem; }
 	.mt-60, .mt-45 { margin-top: 1rem; }
 	.mb-60, .mb-45 { margin-bottom: 1rem; }
 	.ml-60, .ml-45 { margin-left: 1rem; }
@@ -121,6 +127,9 @@ a, button, .btn { transition: 0.2s; }
 	.pr-60, .pr-45 { padding-right: 1rem; }
 	.ptb-60, .ptb-45 { padding: 1rem 0; }
 	.plr-60, .plr-45 { padding: 0 1rem; }
+}
+@media( max-width: 576px ) {
+	.h1-bigger { font-size: 2rem; }
 }
 .full-carousel .carousel-item {
 	height: 100vh;
@@ -193,6 +202,45 @@ a, button, .btn { transition: 0.2s; }
  transform: translateX(0) translate3d(0, 0, 0);
 }
 /*carousel-fade*/
+/*Gallery styles*/
+.gallery-control {
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+.gallery-control [data-dir] {
+	width: 40px;
+  height: 40px;
+	position: absolute; cursor: pointer;
+  background-color: #FFF;
+  border-radius: 25px;
+  border: 4px solid #aaa;
+  opacity: .4;
+  text-align: center;
+  -webkit-transition: .2s;
+  -o-transition: .2s;
+  transition: .2s;
+}
+.gallery-control [data-dir]:hover { opacity: .8; }
+.gallery-control [data-dir="left"] { left: 1rem; }
+.gallery-control [data-dir="right"] { right: 1rem; }
+/*Gallery styles*/
+.cover {
+	height: calc( 85vh - 100px );
+	min-height: 300px;
+	background: no-repeat center center scroll;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+.bg-cover-index {
+	background-image: url("http://placehold.it/1920x1080");
+}
 /*=============================================================================
 NAVBAR
 =============================================================================*/
