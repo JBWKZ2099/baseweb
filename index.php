@@ -38,7 +38,7 @@
 		<div class="container-custom">
 			<div class="row">
 				<div class="col-md-12">
-					<img class="img-fluid" data-src="holder.js/300x200.SVG?random=yes&text=300x200.SVG">
+					<img class="img-fluid" src="http://placehold.it/300x200.svg?text=300x200.svg" alt="300x200.svg">
 				</div>
 			</div>
 		</div>

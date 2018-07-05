@@ -9,7 +9,7 @@
 <html lang="es">
 <head>
 	<?php
-		$title="Clientes";
+		$title="Blogs";
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
@@ -20,9 +20,9 @@
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<?php
-		$active_menu = "blog_mn";
-		$collapse = "blog";
-		$active_opt = "blog-deleted";
+		$active_menu = $dt_which."_mn";
+		$collapse = $dt_which;
+		$active_opt = $dt_which."-deleted";
 		include("structure/navbar.php");
 		
 		$data_table_which = "Blogs";

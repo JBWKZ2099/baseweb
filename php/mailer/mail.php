@@ -8,10 +8,10 @@
 	$_SESSION["_errors"] = "<ul>";
 	$_errors = 0;
 
-	/*$_POST["name"] = "Ivan Ramírez";
+	$_POST["name"] = "Ivan Ramírez";
 	$_POST["email"] = "iramirez@fabricadesoluciones.com";
 	$_POST["subject"] = "Viajes redondos";
-	$_POST["msg"] = "Mensaje de prueba.";*/
+	$_POST["msg"] = "Mensaje de prueba.";
 
 	if( !isset($_POST["name"]) && empty($_POST["name"]) ) {
 		$_errors++;
@@ -37,7 +37,25 @@
 		$mensaje = $_POST["msg"];
 		$production = false;
 		$noreply = "contacto@nombre_dominio.com";
-		$company = "Concierge MX";
+		$company = "Domain Name";
+
+		// Save data on database
+		include("../db/data.php");
+		include("../db/conn.php");
+
+		$mysqli = conectar_db();
+		selecciona_db($mysqli);
+		$data = array(
+			0 => 'NULL',
+			1 => "'".$name = $_POST["name"]."'",
+			2 => "'".$usr_mail = $_POST["email"]."'",
+			3 => "'".$subject = $_POST["subject"]."'",
+			4 => "'".$mensaje = $_POST["msg"]."'",
+			5 => "'".setTimeStamp()."'",
+			6 => 'NULL',
+			7 => 'NULL',
+		);
+		registro_nuevo("contact", $data, $columna=null);
 
 		// GMail account
 		// noreply.usogas@gmail.com

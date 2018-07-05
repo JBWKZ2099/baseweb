@@ -32,7 +32,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <?php /* CSS Tags */ ?>
 <?php /*Bootstrap css minified*/ ?>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" crossorigin="anonymous">
 <?php /*Style custom*/ ?>
 <link rel="stylesheet" href="<?php echo $path; ?>assets/css/custom.css">
 
@@ -42,13 +42,11 @@
 <?php /*jQuery UI*/ ?>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <?php /*Bootstrap js minified*/ ?>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <?php /*Fontawesome*/ ?>
-<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
 <?php /*Scroll reveal*/ ?>
 <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
-<?php /*Script img placeholder*/ ?>
-<script src="<?php echo $path; ?>assets/js/holder.min.js"></script>
 <?php /*Script custom*/ ?>
 <script src="<?php echo $path; ?>assets/js/head.js"></script>

@@ -18,7 +18,8 @@
 			<div class="col-md-12 text-center">
 				<div class="row mb-3">
 					<div class="col-md-12">
-						<img src="<?php echo $path.$asset_root; ?>logo-03.svg" alt="conciergemxSVG" class="img-fluid d-block m-auto">
+						<?php /*<img src="<?php echo $path.$asset_root; ?>logo-03.svg" alt="LogoSVG" class="img-fluid d-block m-auto">*/ ?>
+						<img src="http://placehold.it/300x80.svg" alt="LogoSVG" class="img-fluid d-block m-auto">
 					</div>
 				</div>
 				<h1 class="mb-3"><?php echo $_SESSION["thanks_message"]; ?></h1>

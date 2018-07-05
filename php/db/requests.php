@@ -36,176 +36,6 @@
 				logout();
 				break;
 
-			case "get-customers":
-				echo getCustomers();
-				break;
-
-			case "get-gtitle":
-				$id = $_POST["id_customer"];
-				echo getGTitle($id);
-				break;
-
-			case "get-lchart":
-				$id = $_POST["id_customer"];
-				echo getLineChart($id);
-				break;
-
-			case "get-bchart":
-				$id = $_POST["id_customer"];
-				echo getBarChart($id);
-				break;
-
-			case "get-pchart":
-				$id = $_POST["id_customer"];
-				echo getCircleChart($id);
-				break;
-
-			case "check-customer-data":
-				echo checkCustomerData($_POST);
-				break;
-
-			case "update-gtitle":
-				echo updateTitles($_POST);
-				break;
-
-			case "upload-file":
-				echo processFile($_POST, "upload");
-				break;
-
-			case "process-file":
-				echo processFile($_POST, "process");
-				break;
-
-			case "historic":
-				$tbl = "`historics`";
-				$tbl2 = "`users`";
-				$columns = array( 
-					0 => "$tbl.id",
-					1 => "$tbl.name",
-					2 => "$tbl.pdf",
-					3 => "$tbl.user"
-				);
-				$col_clean = array( 
-					0 => "id",
-					1 => "name",
-					2 => "pdf",
-					3 => "user"
-				);
-				$sql_data = array(
-					0 => "$tbl.`id`, $tbl.`name`, $tbl.`pdf`, CONCAT( $tbl2.name, ' ', $tbl2.first_name ) AS user ",
-					1 => $tbl,
-					2 => "INNER JOIN $tbl2 ON $tbl.`user`=$tbl2.`id` WHERE $tbl.`deleted_at` IS NULL "
-				);
-				if( isset($user_id) )
-					$sql_data[2].="AND $tbl.`user`=".$user_id;
-				echo dataTable($_POST, $columns, $col_clean, $sql_data);
-				break;
-
-			case "update-historic":
-				date_default_timezone_set("UTC");
-				date_default_timezone_set("America/Mexico_City");
-				// var_dump($_FILES);
-				// exit();
-				if( isset($_FILES) ) {
-					if( !uploadPDF($_FILES)[1] ) {
-						header("Location: ".$up_dir."admin/historics-edit?id=".$_POST["which"]);
-						$new_name = uploadPDF($_FILES)[0];
-					} else {
-						$new_name = uploadPDF($_FILES)[0];
-					}
-				} else {
-					$mysqli = conectar_db();
-					selecciona_db($mysqli);
-					$sql = "SELECT * FROM historics WHERE id=".$_POST["which"];
-					$result = mysqli_query( $mysqli, $sql );
-					$row = mysqli_fetch_array($result);
-					$new_name = $row["pdf"];
-					mysqli_close($mysqli);
-				}
-				// var_dump($new_name); exit();
-
-				$columns = array(
-					0 => "name",
-					1 => "pdf",
-				);
-				$data = array(
-					0 => $_POST["name"],
-					1 => $new_name,
-				);
-				$tbl = "historics";
-				updateData($_POST["which"], $columns, $data, $tbl);
-				// exit();
-				header("Location: ".$up_dir."admin/historics");
-				break;
-
-			case "create-historic":
-				date_default_timezone_set("UTC");
-				date_default_timezone_set("America/Mexico_City");
-				$upload_path = "".$up_dir."admin/uploads/pdf/";
-				$info = pathinfo( $_FILES["pdf"]["name"] ); // Get file info
-				$ext = $info["extension"]; // Get extension
-				$validate_ext = "pdf";
-				
-				if( $ext==$validate_ext ) {
-					$fname = $info["filename"]; // Get file name without extension
-					$rand = date("Y_m_d_Gis"); // Generate rand string (date)
-					$new_name = $rand."_".$fname.".".$ext; // Creating new file name
-					$target = $upload_path.$new_name; // Full path to save file
-					move_uploaded_file($_FILES["pdf"]["tmp_name"], $target);
-				} else {
-					$arr = array("status" => "error_ext");
-					session_start();
-					$_SESSION["error"] = "La extensión del archivo subido no es correcta, debe ser ".$validate_ext;
-					header("Location: ".$up_dir."admin/historics");
-				}
-
-				$tbl = $_POST["table"];
-				$columns = array(
-					0 => "id",
-					1 => "name",
-					2 => "pdf",
-					3 => "user",
-					4 => "created_at",
-					5 => "update_at",
-					6 => "deleted_at",
-				);
-				$data = array(
-					0 => 'NULL',
-					1 => "'".$_POST["name"]."'",
-					2 => "'".$new_name."'",
-					3 => "'".$_POST["user"]."'",
-					4 => "'".setTimeStamp()."'",
-					5 => 'NULL',
-					6 => 'NULL',
-				);
-
-				registro_nuevo($tbl, $data, $columns);
-				header("Location: ".$up_dir."admin/historics-create");
-				break;
-
-			case "historic-restore":
-				$tbl = "`historics`";
-				$tbl2 = "`users`";
-				$columns = array( 
-					0 => "$tbl.id",
-					1 => "$tbl.name",
-					2 => "$tbl.pdf",
-					3 => "$tbl.user"
-				);
-				$col_clean = array( 
-					0 => "id",
-					1 => "name",
-					2 => "pdf",
-					3 => "user"
-				);
-				$sql_data = array(
-					0 => "$tbl.`id`, $tbl.`name`, $tbl.`pdf`, CONCAT( $tbl2.name, ' ', $tbl2.first_name ) AS user ",
-					1 => $tbl,
-					2 => "INNER JOIN $tbl2 ON $tbl.`user`=$tbl2.`id` WHERE $tbl.`deleted_at` IS NOT NULL "
-				);
-				echo dataTable($_POST, $columns, $col_clean, $sql_data);
-				break;
-
 			case "customer":
 				$tbl = "`users`";
 				$tbl2 = "`permissions`";
@@ -263,6 +93,9 @@
 					$data[] = cryptBlowfish($password);
 
 				$data[] = $_POST["permission"];
+
+				$columns[] = "updated_at";
+				$data[] = setTimeStamp();
 				$tbl = "users";
 				// var_dump($data); exit();
 				updateData($_POST["which"], $columns, $data, $tbl);
@@ -282,10 +115,9 @@
 					5 => "email",
 					6 => "password",
 					7 => "permission",
-					8 => "remember_token",
-					9 => "created_at",
-					10 => "update_at",
-					11 => "deleted_at",
+					8 => "created_at",
+					9 => "update_at",
+					10 => "deleted_at",
 				);
 				$password = cryptBlowfish($_POST["password"]);
 				$data = array(
@@ -297,16 +129,15 @@
 					5 => "'".$_POST["email"]."'",
 					6 => "'".$password."'",
 					7 => "'".$_POST["permission"]."'",
-					8 => "''",
-					9 => "'".setTimeStamp()."'",
+					8 => "'".setTimeStamp()."'",
+					9 => 'NULL',
 					10 => 'NULL',
-					11 => 'NULL',
 				);
 				// var_dump($data);
 				// exit();
 
 				registro_nuevo($tbl, $data, $columns);
-				header("Location: ".$up_dir."admin/customers-create");
+				header("Location: ".$up_dir."admin/customers");
 				break;
 
 			case "customer-restore":
@@ -345,21 +176,199 @@
 					1 => "$tbl.name",
 					2 => "$tbl.author",
 					3 => "$tbl.created_at",
-					4 => "$tbl.edited_at",
+					4 => "$tbl.updated_at",
 				);
 				$col_clean = array( 
 					0 => "id",
 					1 => "name",
 					2 => "author",
 					3 => "created_at",
-					4 => "edited_at",
+					4 => "updated_at",
 				);
 				$sql_data = array(
-					0 => "$tbl.`id`, $tbl.`name`, $tbl.`author`, $tbl.`created_at`, $tbl.`edited_at` ",
+					0 => "$tbl.`id`, $tbl.`name`, $tbl.`author`, $tbl.`created_at`, $tbl.`updated_at` ",
 					1 => $tbl,
 					2 => " WHERE $tbl.`deleted_at` IS NULL "
 				);
 				echo dataTable($_POST, $columns, $col_clean, $sql_data);
+				break;
+
+			case "create-blog":
+				include('../slug.lib.php');
+				$tabla = "blogs";
+				$dir_subida = $dir_subida02 = '../../uploads/';
+				$name = date("Y_m_d_His_").$_FILES['files']['name'];
+				$dir_subida = $dir_subida .$name;
+				$resultado = move_uploaded_file($_FILES['files']['tmp_name'], $dir_subida);
+
+				$cover_name = date("Y_m_d_His_").$_FILES['cover']['name'];
+				$dir_subida02 = $dir_subida02.$cover_name;
+				$resultado02 = move_uploaded_file($_FILES['cover']['tmp_name'], $dir_subida02);
+
+				if(!empty($resultado) && !empty($resultado02)){
+
+					$slug = slugger($_POST['name']);
+
+					$columna[0] = "id";
+					$columna[1] = "name";
+					$columna[2] = "subname";
+					$columna[3] = "author";
+					$columna[4] = "type";
+					$columna[5] = "category";
+					$columna[6] = "subcategory";
+					$columna[7] = "slug";
+					$columna[8] = "meta";
+					$columna[9] = "meta_keywords";
+					$columna[10] = "img";
+					$columna[11] = "img_alt";
+					$columna[12] = "cover";
+					$columna[13] = "cover_alt";
+					$columna[14] = "video";
+					$columna[15] = "body";
+					$columna[16] = "created_at";
+					$columna[17] = "edited_at";
+					$columna[18] = "deleted_at";
+					$columna[19] = "status";
+
+					if( $_POST['type']==2 || $_POST['type']==3 )
+						$category = NULL;
+					else
+						$category = $_POST['category'];
+
+					$datos[0] = "NULL";
+					$datos[1] = "'".$_POST['name']."'";
+					$datos[2] = "'NULL'";
+					$datos[3] = "'".$_POST['author']."'";
+					$datos[4] = "'".$_POST['type']."'";
+					$datos[5] = "'".$category."'";
+					$datos[6] = "'".$_POST['subcategory']."'";
+					$datos[7] = "'".$slug."'";
+					$datos[8] = "'".$_POST['meta']."'";
+					$datos[9] = "'".$_POST['meta_keywords']."'";
+					$datos[10] = "'".$name."'";
+					$datos[11] = "'".$_POST['img_alt']."'";
+					$datos[12] = "'".$cover_name."'";
+					$datos[13] = "'".$_POST['cover_alt']."'";
+
+					if( isset($_POST["is_video"]) && $_POST["is_video"]=="1" )
+						$datos[14] = "'".$_POST["url_video"]."'";
+					else
+						$datos[14] = "NULL";
+
+					$datos[15] = "'".str_replace('"', '\"', $_POST['body'])."'";
+					$datos[16] = setTimeStamp();
+					$datos[17] = "NULL";
+					$datos[18] = "NULL";
+					$datos[19] = "'".$_POST['status']."'";
+					// echo $_POST["is_video"];
+				  // var_dump($columna);
+				  // var_dump($datos);
+				  // exit();
+					registro_nuevo($tabla, $datos, $columna);
+				} else {
+					session_start();
+					$_SESSION["error"] = "Ocurrió un error: No se pudo crear el blog.";
+				}
+				header("Location: ".$up_dir."admin/blogs");
+				break;
+
+			case "update-blog":
+				include('../slug.lib.php');
+
+				$tabla = "blogs";
+				$dir_subida = '../../uploads/';
+				$name_real = $_FILES['files']['name'];
+				$name = date("Y_m_d_His_").$_FILES['files']['name'];
+				$id = $_POST['id'];
+
+
+				if($name_real != ''){
+					$dir_subida = $dir_subida .$name;
+					$resultado = move_uploaded_file($_FILES['files']['tmp_name'], $dir_subida);
+				}
+
+				$dir_subida02 = '../../uploads/';
+				$name_real02 = $_FILES['cover']['name'];
+				$name02 = date("Y_m_d_His_").$_FILES['cover']['name'];
+				if($name_real02 != ''){
+					$dir_subida02 = $dir_subida02 .$name02;
+					$resultado02 = move_uploaded_file($_FILES['cover']['tmp_name'], $dir_subida02);
+				}
+
+				$slug = slugger($_POST['name']);
+
+				if( $_POST["type"]==2 || $_POST["type"]==3 )
+					$category = NULL;
+				else
+					$category = $_POST['category'];
+
+				$columna[0] = "name";
+				$columna[1] = "subname";
+				$columna[2] = "author";
+				$columna[3] = "type";
+				$columna[4] = "category";
+				$columna[5] = "subcategory";
+				$columna[6] = "slug";
+				$columna[7] = "meta";
+				$columna[8] = "meta_keywords";
+				$columna[9] = "video";
+				$columna[10] = "body";
+				$columna[11] = "status";
+				$filled01 = false;
+				if($name_real != '') {
+					$columna[12] = "img";
+					$columna[13] = "img_alt";
+					$filled01 = true;
+				}
+				if($name_real02 != '' && $filled01) {
+					$columna[14] = "cover";
+					$columna[15] = "cover_alt";
+				} else {
+					if( $name_real02 ) {
+						$columna[12] = "cover";
+						$columna[13] = "cover_alt";
+					}
+				}
+
+				$datos[0] = $_POST['name'];
+				$datos[1] = "NULL";
+				$datos[2] = $_POST['author'];
+				$datos[3] = $_POST['type'];
+				$datos[4] = $category;
+				$datos[5] = $_POST['subcategory'];
+				$datos[6] = $slug;
+				$datos[7] = $_POST['meta'];
+				$datos[8] = $_POST['meta_keywords'];
+				if( isset($_POST["is_video"]) && $_POST["is_video"]=="1" )
+					$id_video = $_POST["url_video"];
+				else
+					$id_video = NULL;
+
+				$datos[9] = $id_video;
+				$datos[10] = str_replace('"', '\"', $_POST['body']);
+				$datos[11] = $_POST['status'];
+				$filled = false;
+				if($name_real != '') {
+					$datos[12] = $name;
+					$datos[13] = $_POST["img_alt"];
+					$filled = true;
+				}
+				if($name_real02 != '' && $filled) {
+					$datos[14] = $name02;
+					$datos[15] = $_POST["cover_alt"];
+				} else {
+					if( $name_real02 ) {
+						$datos[12] = $name02;
+						$datos[13] = $_POST["cover_alt"];
+					}
+				}
+
+				// var_dump($columna); echo "<br>";
+				// var_dump($datos);
+				// exit();
+
+				updateData($id, $columna, $datos, $tabla);
+				header("Location: ".$up_dir."admin/blogs");
 				break;
 
 			case "blog-restore":
@@ -369,17 +378,17 @@
 					1 => "$tbl.name",
 					2 => "$tbl.author",
 					3 => "$tbl.created_at",
-					4 => "$tbl.edited_at",
+					4 => "$tbl.updated_at",
 				);
 				$col_clean = array( 
 					0 => "id",
 					1 => "name",
 					2 => "author",
 					3 => "created_at",
-					4 => "edited_at",
+					4 => "updated_at",
 				);
 				$sql_data = array(
-					0 => "$tbl.`id`, $tbl.`name`, $tbl.`author`, $tbl.`created_at`, $tbl.`edited_at` ",
+					0 => "$tbl.`id`, $tbl.`name`, $tbl.`author`, $tbl.`created_at`, $tbl.`updated_at` ",
 					1 => $tbl,
 					2 => " WHERE $tbl.`deleted_at` IS NOT NULL "
 				);
