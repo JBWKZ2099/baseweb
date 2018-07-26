@@ -33,7 +33,9 @@
 <?php /* CSS Tags */ ?>
 <?php /*Bootstrap css minified*/ ?>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" crossorigin="anonymous">
-<?php /*Style custom*/ ?>
+<?php /*Style Core*/ ?>
+<link rel="stylesheet" href="<?php echo $path; ?>assets/css/core.css">
+<?php /*Style Custom*/ ?>
 <link rel="stylesheet" href="<?php echo $path; ?>assets/css/custom.css">
 
 <?php /* JS Tags */ ?>

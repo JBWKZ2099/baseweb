@@ -47,7 +47,10 @@
 		$sql = "SELECT * FROM users WHERE username = '$usr'";
 
 		$result = mysqli_query(  $mysqli, $sql );
-		return mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+		$response = json_decode(json_encode( mysqli_fetch_array($result, MYSQLI_ASSOC) ), FALSE);
+		// $response = mysqli_fetch_array($result, MYSQLI_ASSOC);
+		return $response;
 	}
 
 	function logout() {

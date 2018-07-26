@@ -17,7 +17,7 @@
 
 <nav class="navbar navbar-expand-md navbar-light bg-light">
 	<div class="container nb-container m-auto">
-		<a class="navbar-brand" href="<?php echo $path ?>">
+		<a class="navbar-brand" href="<?php echo $path; ?>">
 			<!-- <img src="holder.js/200x50.svg?random=yes&text=200x50 SVG" alt="Brand" class="img-fluid"> -->
 			<img src="#" alt="Brand" class="img-fluid">
 		</a>

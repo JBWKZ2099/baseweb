@@ -4,7 +4,7 @@ ini_set("display_errors", "On");
 	include("../php/db/conn.php");
 	include("../php/db/auth.php");
 	
-	if( authCheck() && user()["permission"]==1 ) {
+	if( authCheck() && user()->permission==1 ) {
 		$mysqli = conectar_db();
 		selecciona_db($mysqli);
 ?>

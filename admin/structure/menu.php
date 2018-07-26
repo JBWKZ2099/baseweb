@@ -10,7 +10,7 @@
         <li <?php if( $active_opt=="charts" ) echo "class='active'"; ?>>
           <a href="charts">Ver</a>
         </li>
-        <?php if( user()["permission"]==1 ) { ?>
+        <?php if( user()->permission==1 ) { ?>
           <li <?php if( $active_opt=="charts-create" ) echo "class='active'"; ?>>
             <a href="<?php echo $abs_path."/"; ?>charts-create">Crear / Actualizar</a>
           </li>
@@ -30,7 +30,7 @@
         <li <?php if( $active_opt=="historic-view" ) echo "class='active'"; ?>>
           <a href="<?php echo $abs_path."/"; ?>historics">Lista de Históricos</a>
         </li>
-        <?php if( user()["permission"]==1 ) { ?>
+        <?php if( user()->permission==1 ) { ?>
           <li <?php if( $active_opt=="historic-create" ) echo "class='active'"; ?>>
             <a href="<?php echo $abs_path."/"; ?>historics-create">Agregar Histórico</a>
           </li>
@@ -41,7 +41,7 @@
       </ul>
     </li>
   */ ?>
-  <?php if( user()["permission"]==1 ) { ?>
+  <?php if( user()->permission==1 ) { ?>
     <li class="nav-item <?php if( $active_menu=="blog_mn" ) echo "active"; ?>" data-toggle="tooltip" data-placement="right" title="Usuarios">
       <a class="nav-link nav-link-collapse <?php if( $active_menu=="blog_mn" ) echo ""; else echo "collapsed"; ?>" data-toggle="collapse" href="#blogCollapse" data-parent="#exampleAccordion">
         <i class="fa fa-fw fa-rss-square"></i>
@@ -61,7 +61,7 @@
       </ul>
     </li>
   <?php } ?>
-  <?php if( user()["permission"]==1 ) { ?>
+  <?php if( user()->permission==1 ) { ?>
     <li class="nav-item <?php if( $active_menu=="customer_mn" ) echo "active"; ?>" data-toggle="tooltip" data-placement="right" title="Usuarios">
       <a class="nav-link nav-link-collapse <?php if( $active_menu=="customer_mn" ) echo ""; else echo "collapsed"; ?>" data-toggle="collapse" href="#customerCollapse" data-parent="#exampleAccordion">
         <i class="fa fa-fw fa-user-circle"></i>

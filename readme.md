@@ -7,9 +7,14 @@ You can use this base to develop your website using the most up-to-date CDNs:
 - [Font Awesome (JS)](https://fontawesome.com/)
 
 ## Changelog
-### v1.0.5 [New]
-	- WIP
-<!-- - Blog y administrador agregaros si la web lo require. -->
+### v1.0.5 [WIP]
+	- core.css added - file which includes all core classes, (margin, padding, carousel-indicators), to see more please review /assets/css/core.css file.
+	- Clases h2-bigger, h3-bigger, h4-bigger, h5-bigger, h6-bigger added.
+	- Styles for h5 and h6 added to core.css
+	- Classes migration from mlr to mx-, mtb to my-, plr to px-, and ptb to py-
+	- Admin page and blog module added if website requires them, else you can delete the "admin" folder.
+	- Some changes and improvements on admin backend.
+	- Login variable on admin now is refreshed each time the user navigates through the page instead of having a default value.
 ### v1.0.4
 - Absolute Paths Code optimized to work on Localhost with VHosts and localhost and Production Server without `$production` variable.
 - "Margin" and "Padding" custom classes have now the same syntax as bootstrap (pt-60, pt-45, pt-30, etc).

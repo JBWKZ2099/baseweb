@@ -3,7 +3,7 @@
 	include("../php/db/conn.php");
 	include("../php/db/auth.php");
 	
-	if( authCheck() && user()["permission"]==1 ) {
+	if( authCheck() && user()->permission==1 ) {
 ?>
 <!DOCTYPE html>
 <html lang="es">

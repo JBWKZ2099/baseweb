@@ -38,8 +38,10 @@
 <!-- Page level plugin CSS-->
 <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 <!-- Custom styles for this template-->
-<link href="assets/css/sb-admin.css" rel="stylesheet">
-<link href="assets/css/custom.css" rel="stylesheet">
+<link href="<?php echo $abs_path."/"; ?>assets/css/sb-admin.css" rel="stylesheet">
+<link href="<?php echo $abs_path."/"; ?>assets/css/admin.css" rel="stylesheet">
+<link href="<?php echo $abs_path."/"; ?>../assets/css/core.css" rel="stylesheet">
+<link href="<?php echo $abs_path."/"; ?>../assets/css/custom.css" rel="stylesheet">
 
 <script src="https://use.fontawesome.com/5b97f125c2.js"></script>
 <!-- Bootstrap core JavaScript-->
@@ -47,13 +49,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
 <!-- Page level plugin JavaScript-->
-<script src="vendor/chart.js/Chart.min.js"></script>
+<script src="<?php echo $abs_path."/"; ?>vendor/chart.js/Chart.min.js"></script>
 <!-- <script src="vendor/datatables/dataTables.bootstrap4.js"></script> -->
 <!-- Custom scripts for all pages-->
-<script src="assets/js/sb-admin.min.js"></script>
+<script src="<?php echo $abs_path."/"; ?>assets/js/sb-admin.min.js"></script>
 <!-- Custom scripts for this page-->
 <!-- <script src="assets/js/sb-admin-datatables.min.js"></script> -->
-<script src="assets/js/script.js"></script>
+<script src="<?php echo $abs_path."/"; ?>assets/js/script.js"></script>
 
 <script>
 	/*var direction = "http://216.108.227.105/~reactordm";*/

@@ -1,0 +1,99 @@
+/*=============================================================================
+ADMIN - GENERAL STYLES
+=============================================================================*/
+.btn-black {
+	color: #C85F45;
+	background-color: #363636;
+	border: 1px solid #363636;
+	transition: 0.2s;
+}
+.btn-black:hover, .btn-black:focus, .btn-black:active {
+	color: #363636;
+	background-color: #FFF
+}
+.btn-orange {
+	color: #FFF;
+	background-color: #ED8606;
+	border: 1px solid #ED8606;
+	border-radius: 0;
+	transition: 0.2s;
+}
+.btn-orange:hover, .btn-orange:focus, .btn-orange:active {
+	color: #ED8606;
+	background-color: #FFF
+}
+.separator { width: 100%; height: 100px; }
+/*=============================================================================
+ADMIN
+=============================================================================*/
+.bg-blue {
+	background-color: #21A3DD;
+}
+.fill-white svg g:nth-child(2) path:nth-child(1),
+.fill-white svg g:nth-child(2) polygon:nth-child(2),
+.fill-white svg g:nth-child(2) path:nth-child(3),
+.fill-white svg g:nth-child(2) path:nth-child(4),
+.fill-white svg g:nth-child(2) polygon:nth-child(5),
+.fill-white svg g:nth-child(2) path:nth-child(6),
+.fill-white svg g:nth-child(2) path:nth-child(7) { fill: #FFF; }
+.card-login .card-header { background-color: #363636; }
+.jumbotron-container { height: calc( 100vh - 56px ); }
+.jumbotron-container .jumbotron { background-color: transparent; }
+.admin-logo { height: 42px; }
+.background-login {
+	background: url("http://placehold.it/1900x1080.png?text=1900x1080.png") no-repeat center center fixed;
+	-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+#mainNav.navbar-dark .navbar-collapse .navbar-sidenav>.nav-item .sidenav-second-level>li.active>a{
+	color: #449ccc !important;
+	background: #545c65 !important;
+}
+.chart-container { height: 0; transition: 0.2s; }
+.chart-container.show {
+	height: auto;
+}
+.chart-container.hide-chart canvas {
+	display: none !important;
+}
+.cust_pagination {
+	display: -ms-flexbox;
+	display: flex;
+	padding-left: 0;
+	list-style: none;
+	border-radius: .25rem;
+}
+.cust_pagination span {
+	border: 1px solid #eee;
+	padding: 5px 1rem;
+}
+.cust_pagination .previous {
+	border-top: 1px solid #eee;
+	border-left: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	border-top-left-radius: .25rem;
+	border-bottom-left-radius: .25rem;
+	padding: 5px 1rem;
+	transition: 0.2s;
+}
+.cust_pagination .next {
+	border-top: 1px solid #eee;
+	border-right: 1px solid #eee;
+	border-bottom: 1px solid #eee;
+	border-top-right-radius: .25rem;
+	border-bottom-right-radius: .25rem;
+	padding: 5px 1rem;
+	transition: 0.2s;
+}
+.cust_pagination .previous:hover, .cust_pagination .next:hover {
+	background-color: #eee;
+	cursor: default;
+	text-decoration: none;
+}
+.no-btn {
+	padding: 0;
+	border: none;
+	background-color: rgba(0,0,0,0);
+}

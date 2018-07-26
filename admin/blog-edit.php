@@ -5,7 +5,7 @@ ini_set("display_errors", "On");
 	include("../php/db/auth.php");
 	
 	$word = "blog";
-	if( authCheck() && user()["permission"]==1 ) {
+	if( authCheck() && user()->permission==1 ) {
 		if( isset($_GET["id"]) ) {
 			$id = (int)$_GET["id"];
 			$table = "blogs";
