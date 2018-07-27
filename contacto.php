@@ -26,15 +26,30 @@
 		include(/*$dir.*/"structure/head.php");
 		$asset = "assets/img/folder_name/"; // Path where are storaged media files (img, video, etc)
 	?>
+
+	<!-- Google reCaptcha -->
+	<script src="https://www.google.com/recaptcha/api.js?onload=renderCaptcha&render=explicit" async="async" defer="defer"></script>
+	<script>
+		var recaptcha;
+		var renderCaptcha = function() {
+			recaptcha = grecaptcha.render('g-recaptcha', {
+				'sitekey': '6LeQ02YUAAAAAKBAujSmwV4MvJ04ea6Lo2qvvlt2',
+				'theme': 'light'
+			});
+		};
+	</script>
+	<!-- Google reCaptcha -->
 </head>
 <body>
 	<?php $active="contact"; include(/*$dir.*/"structure/navbar.php"); ?>
+	<?php /*ALERTAS DE ERROR O ÉXITO*/ ?>
+	<?php session_start(); include("alerts/alerts.php"); ?>
 
 	<section class="bg-default-02 pt-60 pb-60">
 		<div class="container-custom">
 			<div class="row">
 				<div class="col-md-12">
-					<form action="<?php echo $path; ?>php/mailer/mail.php" method="POST">
+					<form action="<?php echo $path; ?>php/mailer/index.php" method="POST">
 						<div class="form-group">
 							<input type="text" class="form-control" name="name" value="" placeholder="Nombre:" required>
 						</div>
@@ -47,15 +62,15 @@
 						<div class="form-group">
 							<textarea class="form-control" name="msg" rows="5" placeholder="Mensaje:"></textarea>
 						</div>
+						<div class="form-group">
+							<div id="g-recaptcha"></div>
+						</div>
 						<button type="submit" class="btn btn-secondary">Enviar</button>
 					</form>
 				</div>
 			</div>
 		</div>
 	</section>
-
-	<?php /*ALERTAS DE ERROR O ÉXITO*/ ?>
-	<?php session_start(); include("alerts/alerts.php"); ?>
 
 	<?php include(/*$dir.*/"structure/footer.php"); ?>
 </body>

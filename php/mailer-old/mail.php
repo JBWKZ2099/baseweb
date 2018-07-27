@@ -8,10 +8,10 @@
 	$_SESSION["_errors"] = "<ul>";
 	$_errors = 0;
 
-	$_POST["name"] = "Ivan Ramírez";
-	$_POST["email"] = "iramirez@fabricadesoluciones.com";
-	$_POST["subject"] = "Viajes redondos";
-	$_POST["msg"] = "Mensaje de prueba.";
+	// $_POST["name"] = "Ivan Ramírez";
+	// $_POST["email"] = "iramirez@fabricadesoluciones.com";
+	// $_POST["subject"] = "Viajes redondos";
+	// $_POST["msg"] = "Mensaje de prueba.";
 
 	if( !isset($_POST["name"]) && empty($_POST["name"]) ) {
 		$_errors++;
