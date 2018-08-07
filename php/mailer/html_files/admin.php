@@ -6,15 +6,14 @@
   <title>%company% - Contacto Web</title>
 </head>
 <body>
-<div style="width: 640px; font-family: Arial, Helvetica, sans-serif; font-size: 11px;">
-  <p>El usuario <b>%name%</b> de la empresa <b>%empresa%</b> se puso en contacto contigo.</p>
+<div style="width: 640px; font-family: Arial, Helvetica, sans-serif;">
+  <p>El usuario <b>%name%</b> se puso en contacto contigo.</p>
 	<b>Datos:</b>
-	<p>Medio: <b>%medio%</b></p>
+	<p>Asunto: <b>%subject%</b></p>
 	<p>"%msg%"</p>
 	<b>Datos de contacto</b>
 	<p>
-		<b>Correo:</b> %usr_mail%<br>
-		<b>Teléfono:</b> %phone%
+		<b>Correo:</b> %email%<br>
 	</p>
 </div>
 </body>

@@ -11,10 +11,10 @@
 	$_SESSION["_errors"] = "<ul>";
 	$_errors = 0;
 	
-	// $_POST["name"] = "Ivan Ramírez";
-	// $_POST["email"] = "iramirez@fabricadesoluciones.com";
-	// $_POST["subject"] = "Viajes redondos";
-	// $_POST["msg"] = "Mensaje de prueba.";
+	$_POST["name"] = "Ivan Ramírez";
+	$_POST["email"] = "iramirez@fabricadesoluciones.com";
+	$_POST["subject"] = "Viajes redondos";
+	$_POST["msg"] = "Mensaje de prueba.";
 	
 	if( !isset($_POST["name"]) && empty($_POST["name"]) ) {
 		$_errors++;
@@ -26,14 +26,15 @@
 	}
 	if( !isset($_POST["subject"]) && empty($_POST["subject"]) ) {
 		$_errors++;
-		$_SESSION["_errors"] .= "<li>El campo <b>Servicio de interés</b> es requerido.</li>";
+		$_SESSION["_errors"] .= "<li>El campo <b>Asunto</b> es requerido.</li>";
 	}
 	if( !isset($_POST["msg"]) && empty($_POST["msg"]) ) {
 		$_errors++;
 		$_SESSION["_errors"] .= "<li>El campo <b>Mensaje</b> es requerido.</li>";
 	}
 
-	if( isset($_POST["g-recaptcha-response"]) && !empty($_POST["g-recaptcha-response"]) ) {} else {
+	// if( isset($_POST["g-recaptcha-response"]) && !empty($_POST["g-recaptcha-response"]) ) {} else {
+	if( !isset($_POST["g-recaptcha-response"]) && empty($_POST["g-recaptcha-response"]) ) {} else {
 		$_errors++;
 		$_SESSION["_errors"] .= "<li> Por favor da click en el reCaptcha. </li>";
 	}
@@ -66,7 +67,7 @@
 		curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($params) );
 		$result = curl_exec( $ch );
 		$response_data = json_decode( $result );
-
+		$response_data = true;
 
 		/*success*/
 		if( $response_data ) {
@@ -85,14 +86,30 @@
 				);
 			}
 
+			// Save data on database
+			include("../db/data.php");
+			include("../db/conn.php");
+
+			$mysqli = conectar_db();
+			selecciona_db($mysqli);
+			$data = array(
+				0 => 'NULL',
+				1 => "'".$name = $_POST["name"]."'",
+				2 => "'".$usr_mail = $_POST["email"]."'",
+				3 => "'".$subject = $_POST["subject"]."'",
+				4 => "'".$mensaje = $_POST["msg"]."'",
+				5 => "'".setTimeStamp()."'",
+				6 => 'NULL',
+				7 => 'NULL',
+			);
+			registro_nuevo("contact", $data, $columna=null);
+
 			$supplier_data = json_decode(json_encode(array(
 				"webmaster" => false,
-				"name" => $_POST["nombre"],
-				"empresa" => $_POST["empresa"],
-				"usr_mail" => $_POST["correo"],
-				"phone" => $_POST["telefono"],
-				"medio" => $_POST["medio"],
-				"msg" => $_POST["mensaje"],
+				"name" => $_POST["name"],
+				"email" => $_POST["email"],
+				"subject" => $_POST["subject"],
+				"msg" => $_POST["msg"],
 			)), FALSE);
 
 
@@ -100,15 +117,17 @@
 
 			if( $phpmailer ) {
 				require 'PHPMailerAutoload.php';
-				sendMailCustom($supplier_data, null);
+				sendMailCustom($supplier_data, $supplier_data);
 				sendMailCustom($mail_data, $supplier_data);
 			} else {
-				sendMailDefault($supplier_data, null);
+				sendMailDefault($supplier_data, $supplier_data);
 				sendMailDefault($mail_data, $supplier_data);
 			}
 
 			$errors = 0;
 			unset($_SESSION["_errors"]);
+			$_SESSION["_success"] = true;
+			$_SESSION["thanks_message"] = "¡Muchas gracias por su interés! En breve nos comunicaremos con usted.";
 		} else { /*error*/
 			$_SESSION["_errors"] .= "<li> Ocurrió un error al verificar el reCaptcha, por favor intentalo de nuevo. </li>";
 			$_SESSION["_errors"] .= "</ul>";
@@ -123,6 +142,8 @@
 	else
 		header("Location: ../../contacto");
 
+
+	// PHPMailer
 	function sendMailCustom($_mail, $_supplier_data) {
 		global $webmaster;
 		global $wm_name;
@@ -187,19 +208,21 @@
 			unset( $_mail->webmaster );
 
 			//Set CC
-			foreach( $_mail as $val )
-				$mail->AddCC($val);
+			foreach( $_mail as $val ) {
+				if( isset($val) && !empty($val) ) {
+					$mail->AddCC($val); /* Con Copia */
+					// $mail->AddBCC($val);  /* Con Copia Oculta */
+				}	
+			}
 
 
 			$subject = "Recientemente se pusieron en contacto";
 			$initial = utf8_encode( file_get_contents("html_files/admin.php") );
 			$initial1 = str_replace("%company%", $company, $initial);
 			$initial2 = str_replace("%name%", $_supplier_data->name, $initial1);
-			$initial3 = str_replace("%empresa%", $_supplier_data->empresa, $initial2);
-			$initial4 = str_replace("%medio%", $_supplier_data->medio, $initial3);
-			$initial5 = str_replace("%msg%", $_supplier_data->msg, $initial4);
-			$initial6 = str_replace("%usr_mail%", $_supplier_data->usr_mail, $initial5);
-			$body_file = str_replace("%phone%", $_supplier_data->phone, $initial6);
+			$initial3 = str_replace("%email%", $_supplier_data->email, $initial2);
+			$initial4 = str_replace("%subject%", $_supplier_data->subject, $initial3);
+			$body_file = str_replace("%msg%", $_supplier_data->msg, $initial4);
 			$alt_body = "Se pusieron en contacto contigo.";
 		} else {
 			// Unset webmaster to read the array correctly
@@ -236,6 +259,7 @@
 		}*/
 	}
 
+	// mail() native function
 	function sendMailDefault($_mail, $supplier_data) {
 		global $webmaster;
 		global $company;
@@ -251,21 +275,19 @@
 			$initial = utf8_encode( file_get_contents("html_files/admin.php") );
 			$initial1 = str_replace("%company%", $company, $initial);
 			$initial2 = str_replace("%name%", $_supplier_data->name, $initial1);
-			$initial3 = str_replace("%empresa%", $_supplier_data->empresa, $initial2);
-			$initial4 = str_replace("%medio%", $_supplier_data->medio, $initial3);
-			$initial5 = str_replace("%msg%", $_supplier_data->msg, $initial4);
-			$initial6 = str_replace("%usr_mail%", $_supplier_data->usr_mail, $initial5);
-			$body_file = str_replace("%phone%", $_supplier_data->phone, $initial6);
+			$initial3 = str_replace("%email%", $_supplier_data->email, $initial2);
+			$initial4 = str_replace("%subject%", $_supplier_data->subject, $initial3);
+			$body_file = str_replace("%msg%", $_supplier_data->msg, $initial4);
 		} else {
 			$to = $_mail->usr_mail;
 			$subject = "Recientemente se pusieron en contacto";
-			$headers .= "From: Contacto Web - ".$company."<".$webmaster.">\r\n".
+			$headers .= "From: Contacto Web - ".$company."<".$webmaster.">\r\n";
 			$initial = utf8_encode( file_get_contents("html_files/supplier.php") );
 			$body_file = str_replace("%company%", $company, $initial);
 		}
 
 		$headers .= "X-Mailer: PHP/".phpversion();
 
-		mail($to, $subject, $body_file, $headers);
+		$mail_response = mail($to, $subject, $body_file, $headers);
 	}
 ?>

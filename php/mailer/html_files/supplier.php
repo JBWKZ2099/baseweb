@@ -6,10 +6,10 @@
   <title>%company% - Contacto Web</title>
 </head>
 <body>
-<div style="width: 640px; font-family: Arial, Helvetica, sans-serif; font-size: 11px;">
+<div style="width: 640px; font-family: Arial, Helvetica, sans-serif;">
   <p>¡Muchas gracias por su interés! En breve nos comunicaremos con usted.</p>
   <p>Saludos</p>
-  <p>ARPAPEL</p>
+  <p>%company%</p>
 </div>
 </body>
 </html>
