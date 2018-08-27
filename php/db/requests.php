@@ -256,7 +256,7 @@
 						$datos[14] = "NULL";
 
 					$datos[15] = "'".str_replace('"', '\"', $_POST['body'])."'";
-					$datos[16] = setTimeStamp();
+					$datos[16] = "'".setTimeStamp()."'";
 					$datos[17] = "NULL";
 					$datos[18] = "NULL";
 					$datos[19] = "'".$_POST['status']."'";
