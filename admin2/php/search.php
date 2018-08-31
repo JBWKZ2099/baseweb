@@ -5,6 +5,7 @@
 	include("utils.php");
 	$path = (!empty($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'];
   $path .= $_SERVER['HTTP_HOST'] == 'localhost:8888' ? '/fabricadesoluciones.com/' : '';
+  $path .= "/";
 
 	$mysqli = conectar_db();
   selecciona_db($mysqli);
@@ -111,7 +112,7 @@
 				<div class="col-md-7 text-center mt60 mb-3 mb-md-5">
 					<div class="row justify-content-center">
 						<div class="col-md-12">
-							<img class="img-fluid d-block" src="<?php echo $path."/"; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
+							<img class="img-fluid d-block" src="<?php echo $path; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
 						</div>
 					</div>
 				</div>
@@ -149,7 +150,7 @@
 				<div class="col-md-4 mb-3">
 					<div class="row align-items-center">
 						<div class="col-md-12 mb-3">
-							<img class="img-fluid d-block" src="<?php echo $path."/"; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
+							<img class="img-fluid d-block" src="<?php echo $path; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
 						</div>
 
 						<div class="col-md-12 mb-3 blog-title">

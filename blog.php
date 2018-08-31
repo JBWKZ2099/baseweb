@@ -39,7 +39,7 @@
 		<meta name="description" content="<?php echo $ssblog[0]['meta'] ?>">
 	<?php } ?>
 	<?php $view_name="Blog"; include("structure/head.php"); ?>
-	<link rel="stylesheet" type="text/css" href="<?php echo $path; ?>/assets/css/multilevel.css">
+	<link rel="stylesheet" type="text/css" href="<?php echo $path; ?>assets/css/multilevel.css">
 </head>
 <body>
 	<?php $active="blog"; include("structure/navbar.php"); ?>
@@ -67,13 +67,13 @@
 							<?php if( isset($ssblog[0]['video']) ) { ?>
 								<div class="play-container blog-play-container">
 									<img class="play-ico" src="<?php echo $path; ?>assets/img/play-13.svg" alt="PlayIco">
-									<img class="custom-thumbnail img-fluid d-block m-auto" src="<?php echo $path; ?>/uploads/<?php echo $ssblog[0]['img'] ?>" alt="<?php echo $ssblog[0]['img_alt'] ?>">
+									<img class="custom-thumbnail img-fluid d-block m-auto" src="<?php echo $path; ?>uploads/<?php echo $ssblog[0]['img'] ?>" alt="<?php echo $ssblog[0]['img_alt'] ?>">
 									<div class="embed-responsive embed-responsive-16by9 d-none">
 										<iframe id="emb-iframe" class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $ssblog[0]['video']; ?>" allowfullscreen></iframe>
 									</div>
 								</div>
 							<?php } else { ?>
-								<img class="img-fluid d-block m-auto" src="<?php echo $path; ?>/uploads/<?php echo $ssblog[0]['img'] ?>" alt="<?php echo $ssblog[0]['img_alt'] ?>">
+								<img class="img-fluid d-block m-auto" src="<?php echo $path; ?>uploads/<?php echo $ssblog[0]['img'] ?>" alt="<?php echo $ssblog[0]['img_alt'] ?>">
 							<?php } ?>
 							
 							<p class="mb-3"></p>
@@ -105,7 +105,7 @@
 				<div class="container-custom pt60 pb60">
 					<div class="row">
 						<div class="col-md-6 offset-md-3 text-center">
-							<img src="<?php echo $path."/"; ?>assets/img/logo-34.svg" alt="logo">
+							<img src="<?php echo $path; ?>assets/img/logo-34.svg" alt="logo">
 						</div>
 						<div class="col-md-12 text-center mt-5">
 							<h1 class="bolder">NUESTRO BLOG</h1>
@@ -126,7 +126,7 @@
 									<div class="col-md-7 text-center mt60 mb-3 mb-md-5">
 										<div class="row justify-content-center">
 											<div class="col-md-12">
-												<img class="img-fluid d-block" src="<?php echo $path."/"; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
+												<img class="img-fluid d-block" src="<?php echo $path; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
 											</div>
 										</div>
 									</div>
@@ -136,8 +136,8 @@
 												<h3 class="bolder text-uppercase"><?php echo $blog["name"]; ?></h3>
 												<p class="mt-3 mb-3 mb-md-5 text-lgray">
 													<?php
-														if( strlen($blog["body"])>900 )
-															echo substr($blog["body"], 0, 900)."...";
+														if( strlen($blog["body"])>500 )
+															echo substr($blog["body"], 0, 500)."...";
 														else
 															echo $blog["body"];
 													?>
@@ -164,7 +164,7 @@
 									<div class="col-md-4">
 										<div class="row align-items-center">
 											<div class="col-md-12 mb-3">
-												<img class="img-fluid d-block" src="<?php echo $path."/"; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
+												<img class="img-fluid d-block" src="<?php echo $path; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
 											</div>
 
 											<div class="col-md-12 mb-3 blog-title">
@@ -179,13 +179,17 @@
 											</div>
 
 											<div class="col-md-12 blog-preview-content">
-												<div class="mt-3 mb-3 mb-md-5 text-lgray">
-													<?php
-														if( strlen($blog["body"])>250 )
-															echo substr($blog["body"], 0, 250)."...";
-														else
-															echo $blog["body"];
-													?>
+												<div class="row no-gutters align-items-center h-100">
+													<div class="col-md-12">
+														<div class="mt-3 mb-3 text-lgray">
+															<?php
+																if( strlen($blog["body"])>300 )
+																	echo substr($blog["body"], 0, 300)."...";
+																else
+																	echo $blog["body"];
+															?>
+														</div>
+													</div>
 												</div>
 											</div>
 
@@ -244,7 +248,7 @@
 					<div class="container-custom">
 						<div class="row">
 							<div class="col-md-6 offset-md-3 text-center">
-								<img src="<?php echo $path."/"; ?>assets/img/logo-34.svg" alt="logo">
+								<img src="<?php echo $path; ?>assets/img/logo-34.svg" alt="logo">
 							</div>
 							<div class="col-md-12 text-center mt-5">
 								<h2 class="bolder">NO HAY CONTENIDO EN ESTA CATEGORÍA.</h2>
@@ -271,7 +275,7 @@
 		<div class="container-custom pt60 pb60">
 			<div class="row">
 				<div class="col-md-6 offset-md-3 text-center">
-					<img src="<?php echo $path."/"; ?>assets/img/logo-34.svg" alt="logo">
+					<img src="<?php echo $path; ?>assets/img/logo-34.svg" alt="logo">
 				</div>
 				<div class="col-md-3 float-right input-group">
 					<input id="search" class="form-control text-center" placeholder="BUSCAR">
@@ -301,7 +305,7 @@
 											<div class="col-md-7 text-center mt60 mb-3 mb-md-5">
 												<div class="row justify-content-center">
 													<div class="col-md-12">
-														<img class="img-fluid d-block" src="<?php echo $path."/"; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
+														<img class="img-fluid d-block" src="<?php echo $path; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
 													</div>
 												</div>
 											</div>
@@ -311,8 +315,8 @@
 														<h3 class="bolder text-uppercase"><?php echo $blog["name"]; ?></h3>
 														<p class="mt-3 mb-3 mb-md-5 text-lgray">
 															<?php
-																if( strlen($blog["body"])>900 )
-																	echo substr($blog["body"], 0, 900)."...";
+																if( strlen($blog["body"])>500 )
+																	echo substr($blog["body"], 0, 500)."...";
 																else
 																	echo $blog["body"];
 															?>
@@ -339,7 +343,7 @@
 											<div class="col-md-4">
 												<div class="row align-items-center">
 													<div class="col-md-12 mb-3">
-														<img class="img-fluid d-block" src="<?php echo $path."/"; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
+														<img class="img-fluid d-block" src="<?php echo $path; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
 													</div>
 
 													<div class="col-md-12 mb-3 blog-title">
@@ -354,13 +358,17 @@
 													</div>
 
 													<div class="col-md-12 blog-preview-content">
-														<div class="mt-3 mb-3 mb-md-5 text-lgray">
-															<?php
-																if( strlen($blog["body"])>250 )
-																	echo substr($blog["body"], 0, 250)."...";
-																else
-																	echo $blog["body"];
-															?>
+														<div class="row no-gutters align-items-center h-100">
+															<div class="col-md-12">
+																<div class="mt-3 mb-3 text-lgray">
+																	<?php
+																		if( strlen($blog["body"])>300 )
+																			echo substr($blog["body"], 0, 300)."...";
+																		else
+																			echo $blog["body"];
+																	?>
+																</div>
+															</div>
 														</div>
 													</div>
 
@@ -463,8 +471,28 @@
 	
 	<?php include("widgets/frm-cont.php"); ?>
 	<?php include("structure/footer.php"); ?>
-	<script src="<?php echo $path; ?>/assets/js/multilevel.js" async="async"></script>
-	<script src="<?php echo $path; ?>/assets/js/search.js"></script>
-	<script src="<?php echo $path; ?>/assets/js/landing-cover.js"></script>
+	<script src="<?php echo $path; ?>assets/js/multilevel.js" async="async"></script>
+	<script src="<?php echo $path; ?>assets/js/search.js"></script>
+	<script src="<?php echo $path; ?>assets/js/landing-cover.js"></script>
+	<script>
+		$(document).ready(function() {
+			var max = 0;
+			$(".blog-preview-content").each(function(){
+				var ws = $(window).width();
+
+				if( ws>767 ) {
+					var actual = $(this).height();
+
+					if( actual>max )
+						max=actual;
+				}
+			});
+
+			var ws = $(window).width();
+
+			if( ws>767 )
+				$(".blog-preview-content").height(max)
+		});
+	</script>
 </body>
 </html>

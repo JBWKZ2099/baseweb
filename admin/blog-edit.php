@@ -16,6 +16,13 @@ ini_set("display_errors", "On");
 				selecciona_db($mysqli);
 				$sql = "SELECT * FROM $table WHERE id=$id";
 				$result = consulta_tb($mysqli,$sql);
+
+				$row = mysqli_fetch_array($result);
+
+				if( $row["deleted_at"]!=null ) {
+					$_SESSION["error"] = "El blog con el ID seleccionado está eliminado.";
+					header("Location: blogs-deleted");
+				}
 			}
 		}
 ?>
@@ -56,7 +63,6 @@ ini_set("display_errors", "On");
 									<input type="hidden" name="request" value="update-<?php echo $word; ?>">
 									<input type="hidden" name="which" value="<?php echo $_GET["id"]; ?>">
 									<?php
-										$row = mysqli_fetch_array($result);
 										$edit = true;
 										include("forms/".$word."-form.php");
 									?>
