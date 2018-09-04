@@ -40,7 +40,7 @@ You can use this base to develop your website using the most up-to-date CDNs:
 You should not worry about if you copy one of these files in the project, gitignore has the necessary code to ignore them:
 
 ```
-# COMPILED SOURCE #
+# Compiled source #
 ###################
 *.com
 *.class
@@ -49,7 +49,7 @@ You should not worry about if you copy one of these files in the project, gitign
 *.o
 *.so
 
-# PACKAGES #
+# Packages #
 ############
 # it's better to unpack these files and commit the raw source
 # git has its own built in compression methods
@@ -62,13 +62,13 @@ You should not worry about if you copy one of these files in the project, gitign
 *.tar
 *.zip
 
-# LOGS AND DATABASES #
+# Logs and databases #
 ######################
 *.log
 *.sql
 *.sqlite
 
-# OS GENERATED FILES #
+# OS generated files #
 ######################
 .DS_Store
 .DS_Store?
@@ -77,4 +77,8 @@ You should not worry about if you copy one of these files in the project, gitign
 .Trashes
 ehthumbs.db
 Thumbs.db
+error_log
+access_log
+uploads
+admin/uploads
 ```
