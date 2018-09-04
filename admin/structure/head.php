@@ -1,5 +1,9 @@
 <?php
 	ini_set('display_errors', 'Off');
+	
+	$root = realpath($_SERVER["DOCUMENT_ROOT"])."/";
+	require $root."php/vendor/autoload.php";
+
 	$company_name = "Brand";
 	/**
 	 * Code to make absoulute paths (example: http://www.domain-name.com/assets/img/img_name.jpg);
@@ -34,7 +38,7 @@
 <meta name="author" content="">
 <title> <?php echo $title." | ".$company_name; ?> </title>
 <!-- Bootstrap core CSS-->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" crossorigin="anonymous">
 <!-- Page level plugin CSS-->
 <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
 <!-- Custom styles for this template-->
@@ -46,8 +50,8 @@
 <script src="https://use.fontawesome.com/5b97f125c2.js"></script>
 <!-- Bootstrap core JavaScript-->
 <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <!-- Page level plugin JavaScript-->
 <script src="<?php echo $abs_path."/"; ?>vendor/chart.js/Chart.min.js"></script>
 <!-- <script src="vendor/datatables/dataTables.bootstrap4.js"></script> -->

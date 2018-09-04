@@ -1,5 +1,5 @@
 <?php
-ini_set("display_errors", "On");
+	ini_set("display_errors", "On");
 	session_start();
 	include("../php/db/conn.php");
 	include("../php/db/auth.php");

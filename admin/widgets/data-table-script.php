@@ -8,12 +8,13 @@
 				type: "post",  // method  , by default get
 				error: function(){  // error handling
 					$(".table_gen_e-ror").html("");
-					$("#table-gen").append('<tbody class="table_gen_e-ror"><tr><th colspan="3">No hay resultados</th></tr></tbody>');
+					$("#table-gen").append('<tbody class="table_gen_e-ror"><tr><th colspan="3">No hay resultados.</th></tr></tbody>');
 					$("#employee-grid_processing").css("display","none");
 				}
 			},
 			"columnDefs": [{
 				"targets": -1,
+				"bSortable": false, // Exclude actions column from ordering
 				"data": null,
 				<?php if( $dt_restore ) { ?>
 					"defaultContent": "<a id='restore' class='text-warning mr-2 link-table' data-toggle='modal' data-target='#restore-record'> <i class='fa fa-repeat'></i> </a>"

@@ -1,5 +1,11 @@
 <?php
 	ini_set('display_errors', 'Off');
+	
+	$root = realpath($_SERVER["DOCUMENT_ROOT"])."/";
+
+	require $root."php/vendor/autoload.php";
+
+
 	/**
 	 * Code to make absoulute paths (example: http://www.domain-name.com/assets/img/img_name.jpg);
 	 */

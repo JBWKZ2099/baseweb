@@ -1,5 +1,5 @@
 <?php
-	ini_set("display_errors", 1);
+	ini_set("display_errors", 0);
 	include("data.php");
 	include("conn.php");
 	include("auth.php");
@@ -481,6 +481,59 @@
 					2 => " WHERE $tbl.`deleted_at` IS NOT NULL "
 				);
 				echo dataTable($_POST, $columns, $col_clean, $sql_data);
+				break;
+
+			case "blog-entry":
+				$tbl = $_POST["table"];
+				$email = $_POST["email"];
+				$name = $_POST["name"];
+				$comment = $_POST["comment"];
+				$id_blog = $_POST["id_blog"];
+				$header = $_POST["header"];
+				
+
+				if( isset( $email ) && isset( $name ) && isset( $comment ) ) {
+					$errors = 0;
+					session_start();
+					$errors = "<ul>";
+					if( empty($email) ) {
+						$errors .= "<li>El campo 'E-MAIL' es requerido.</li>";
+						$errors++;
+					}
+					if( empty($name) ) {
+						$errors .= "<li>El campo 'NOMBRE' es requerido.</li>";
+						$errors++;
+					}
+					if( empty($comment) ) {
+						$errors .= "<li>El campo 'MENSAJE' es requerido.</li>";
+						$errors++;
+					}
+					$errors .= "</ul>";
+
+					if( $errors==0 ) {
+						$datos[0] = "NULL";
+						$datos[1] = "'".$id_blog."'";
+						$datos[2] = "'".$email."'";
+						$datos[3] = "'".$name."'";
+						$datos[4] = "'".$comment."'";
+						$datos[5] = "'".setTimeStamp()."'";
+
+						$columna[0] = "id";
+						$columna[1] = "id_blog";
+						$columna[2] = "email";
+						$columna[3] = "name";
+						$columna[4] = "comment";
+						$columna[5] = "created_at";
+
+						registro_nuevo($tbl, $datos, $columna);
+
+						$_SESSION["message"] = "Gracias por tu comentario.";
+						header("Location: $header");
+					} else {
+						$_SESSION["error"] = $errors;
+						header("Location: $header");
+					}
+				}
 				break;
 
 			case "delete":

@@ -1,10 +1,10 @@
-<?php ini_set("display_errors", "Off"); ?>
+<?php ini_set("display_errors", 0); ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<?php
-		include('admin2/php/db.php');
-		include('admin2/php/utils.php');
+		include('php/blog/core.php');
+		include('php/slug.lib.php');
 		date_default_timezone_set('America/Mexico_City');
 		$tabla = 'blogs';
 		$mysqli = conectar_db();
@@ -56,10 +56,10 @@
 				<?php } ?>
 			</section>
 
-			<section class="pt60 pb60">
+			<section class="py-60">
 				<div class="container-custom">
 					<div class="row justify-content-center">
-						<div class="col-md-12 text-center mb45">
+						<div class="col-md-12 text-center mb-45">
 							<h1 class="mb-3"><strong><?php echo $ssblog[0]["name"] ?></strong></h1>
 							<h4> <em>por <?php echo $ssblog[0]["author"] ?></em> </h4>
 						</div>
@@ -79,7 +79,7 @@
 							<p class="mb-3"></p>
 							<?php echo $ssblog[0]["body"]; ?>
 
-							<div class="row justify-content-center mt60">
+							<div class="row justify-content-center mt-60">
 								<div class="col-md-4">
 									<a href="<?php echo $path;?>blog" class="btn btn-success d-block">VOLVER</a>
 								</div>
@@ -102,7 +102,7 @@
 					<div class="row relativer bg-container bg-mh bg-widget-cover bg-blog-img appear">
 				</section>
 
-				<div class="container-custom pt60 pb60">
+				<div class="container-custom py-60">
 					<div class="row">
 						<div class="col-md-6 offset-md-3 text-center">
 							<img src="<?php echo $path; ?>assets/img/logo-34.svg" alt="logo">
@@ -123,14 +123,14 @@
 							<?php $b_counter = 0; ?>
 							<?php foreach( $blogs as $blog ) { ?>
 								<?php if( $b_counter==0 ) { ?>
-									<div class="col-md-7 text-center mt60 mb-3 mb-md-5">
+									<div class="col-md-7 text-center mt-60 mb-3 mb-md-5">
 										<div class="row justify-content-center">
 											<div class="col-md-12">
 												<img class="img-fluid d-block" src="<?php echo $path; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
 											</div>
 										</div>
 									</div>
-									<div class="col-md-5 mt60 mb-3 mb-md-5">
+									<div class="col-md-5 mt-60 mb-3 mb-md-5">
 										<div class="row">
 											<div class="col-md-12">
 												<h3 class="bolder text-uppercase"><?php echo $blog["name"]; ?></h3>
@@ -233,7 +233,7 @@
 						</div>
 					<?php } ?>
 					
-					<?php /*<div class="row justify-content-center mt60">
+					<?php /*<div class="row justify-content-center mt-60">
 						<div class="col-md-4">
 							<a href="<?php echo $path; ?>blog" class="btn btn-success d-block">VOLVER</a>
 						</div>
@@ -244,7 +244,7 @@
 					<div class="row relativer bg-container bg-mh bg-widget-cover bg-blog-img appear">
 				</section>
 
-				<section class="pt60 pb60">
+				<section class="py-60">
 					<div class="container-custom">
 						<div class="row">
 							<div class="col-md-6 offset-md-3 text-center">
@@ -256,7 +256,7 @@
 							</div>
 						</div>
 
-						<div class="row justify-content-center mt60">
+						<div class="row justify-content-center mt-60">
 							<div class="col-md-4">
 								<a href="<?php echo $path;?>blog" class="btn btn-success d-block">VOLVER</a>
 							</div>
@@ -272,7 +272,7 @@
 			<div class="row relativer bg-container bg-mh bg-widget-cover bg-blog-img appear">
 		</section>
 
-		<div class="container-custom pt60 pb60">
+		<div class="container-custom py-60">
 			<div class="row">
 				<div class="col-md-6 offset-md-3 text-center">
 					<img src="<?php echo $path; ?>assets/img/logo-34.svg" alt="logo">
@@ -302,14 +302,14 @@
 									<?php $b_counter = 0; ?>
 									<?php foreach( $blogs as $blog ) { ?>
 										<?php if( $b_counter==0 ) { ?>
-											<div class="col-md-7 text-center mt60 mb-3 mb-md-5">
+											<div class="col-md-7 text-center mt-60 mb-3 mb-md-5">
 												<div class="row justify-content-center">
 													<div class="col-md-12">
 														<img class="img-fluid d-block" src="<?php echo $path; ?>uploads/<?php echo $blog['img']; ?>" alt="<?php echo $blog['img_alt'] ?>">
 													</div>
 												</div>
 											</div>
-											<div class="col-md-5 mt60 mb-3 mb-md-5">
+											<div class="col-md-5 mt-60 mb-3 mb-md-5">
 												<div class="row">
 													<div class="col-md-12">
 														<h3 class="bolder text-uppercase"><?php echo $blog["name"]; ?></h3>
@@ -427,7 +427,7 @@
 			if(isset($blog[0]['name']) || isset($ssblog[0]['name'])) {
 				$id_blog = $ssblog[0]["id"];
 				$comments = getComments($mysqli,$id_blog); ?>
-		<section class="container-custom pb60">
+		<section id="section-comments" class="container-custom pb-60">
 			<div class="row justify-content-center">
 				<div class="col-md-12"> <?php include("alerts/success.php"); ?> </div>
 					<div class="col-md-6 text-center">
@@ -460,8 +460,34 @@
 						<div class="col-md-12 mb-3"></div>
 		<?php }
 				} else {
-					echo "No hay comentarios para esta entrada.";
+					echo "<div class='col-md-12 mb-3 mb-md-5 text-center'>No hay comentarios para esta entrada.</div>";
 				} ?>
+				<div class="col-md-12 mb-3">
+					<div class="row justify-content-center">
+						<div class="col-md-6">
+							<form action="<?php echo $path; ?>php/db/requests.php" method="POST">
+							<input type="hidden" name="request" value="blog-entry">
+							<input type="hidden" name="table" value="blog_comments">
+								<?php $header = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"; ?>
+								<input type="hidden" name="header" value="<?php echo $header; ?>#section-comments">
+								<input type="hidden" name="id_blog" value="<?php echo $ssblog[0]["id"]; ?>">
+								<div class="form-group">
+									<input type="email" class="form-control fc-custom" name="email" placeholder="E-MAIL:" required>
+								</div>
+								
+								<div class="form-group">
+									<input type="text" class="form-control fc-custom" name="name" placeholder="NOMBRE:" required>
+								</div>
+
+								<div class="form-group">
+									<textarea name="comment" rows="5" class="form-control fc-custom" placeholder="MENSAJE" required></textarea>
+								</div>
+
+								<button class="btn btn-info btn-block" type="submit">ENVIAR</button>
+							</form>
+						</div>
+					</div>
+				</div>	
 			</div>
 		</section>
 	<?php
