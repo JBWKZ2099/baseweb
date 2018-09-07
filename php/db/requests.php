@@ -60,7 +60,7 @@
 				$sql_data = array(
 					0 => "$tbl.`id`, $tbl.`name`, $tbl.`first_name`, $tbl.`last_name`, $tbl.`username`, $tbl.`email`, $tbl.`permission`, $tbl2.`name` AS 'permission' ",
 					1 => $tbl,
-					2 => "INNER JOIN $tbl2 ON $tbl.`permission`=$tbl2.`id` WHERE $tbl.`deleted_at` IS NULL "
+					2 => "INNER JOIN $tbl2 ON $tbl.`permission`=$tbl2.`id` WHERE $tbl.`deleted_at` IS NULL AND `permission` != 1 "
 				);
 				echo dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
