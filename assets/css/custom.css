@@ -25,6 +25,30 @@ NAVBAR
 /*=============================================================================
 BLOG
 =============================================================================*/
+.blog-play-container { height: auto !important; }
+.bg-widget-cover.bg-mh { height: 500px; }
+.bg-widget-cover {
+	background-position: center;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+.play-container { position: relative; height: 100%; }
+.play-container:hover .play-ico { opacity: 1; cursor: pointer; }
+.play-container:hover { cursor: pointer; }
+.play-ico {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	-o-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+	transition: 0.2s;
+	z-index: 1;
+	opacity: 0.5;
+}
 .img-blog {
 	min-height: 800px;
 	background-image: url("../img/Blog/header.jpg");
