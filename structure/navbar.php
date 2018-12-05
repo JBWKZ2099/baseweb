@@ -9,7 +9,7 @@
 		array("active" => "index", "link" => "index", "word" => "Home", "sub" => 0),
 		array("active" => "slugger", "link" => "slugger", "word" => "Slugger", "sub" => 0),
 		array("active" => "blog", "link" => "blog", "word" => "Blog", "sub" => 0),
-		array("active" => "link", "link" => "#", "word" => "Link", "sub" => 0),
+		array("active" => "link", "link" => "scroll-magic", "word" => "Scroll Magic", "sub" => 0),
 		array("active" => "disabled", "link" => "#", "word" => "Disabled", "sub" => 0),
 		array("active" => "contacto", "link" => "contacto", "word" => "Contacto", "sub" => 0),
 	)), FALSE);

@@ -118,6 +118,24 @@ HOVER EFFECT (LIKE WORDPRESS) ON IMAGES
 	-o-transform: scale(1.2);
 	transform: scale(1.2);
 }
+.wp-effect .wp-text {
+	position: absolute;
+	text-align: center;
+	z-index: 2;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%,-50%);
+	-ms-transform: translate(-50%,-50%);
+	-o-transform: translate(-50%,-50%);
+	transform: translate(-50%,-50%);
+}
+@media( max-width: 576px) {
+	.wp-effect > img {
+		width: 100%;
+		max-width: 100%;
+		height: auto;
+	}
+}
 /*=============================================================================
 GALLERY
 =============================================================================*/

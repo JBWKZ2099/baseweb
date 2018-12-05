@@ -56,5 +56,10 @@
 <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
 <?php /*Scroll reveal*/ ?>
 <script src="https://unpkg.com/scrollreveal/dist/scrollreveal.min.js"></script>
+<?php /*Scroll Magic*/ ?>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/animation.gsap.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/debug.addIndicators.js"></script>
 <?php /*Script custom*/ ?>
 <script src="<?php echo $path; ?>assets/js/head.js"></script>

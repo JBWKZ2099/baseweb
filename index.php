@@ -51,6 +51,20 @@
 		<span class="sr-only">If you need to add a cover to your page</span>
 	</section>
 
+	<div class="container-fluid py-3">
+		<div class="row">
+			<div class="col-md-4 p-0">
+				<img class="img-fluid d-block" src="http://placehold.it/650x300.png" alt="">
+			</div>
+			<div class="col-md-4 p-0">
+				<img class="img-fluid d-block" src="http://placehold.it/650x300.png/333/aaa/" alt="">
+			</div>
+			<div class="col-md-4 p-0">
+				<img class="img-fluid d-block" src="http://placehold.it/650x300.png" alt="">
+			</div>
+		</div>
+	</div>
+
 	<section class="bg-default-02 pt-60 pb-60">
 		<div class="container-custom">
 			<div class="row mb-3">

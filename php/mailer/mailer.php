@@ -11,10 +11,10 @@
 	$_SESSION["_errors"] = "<ul>";
 	$_errors = 0;
 	
-	$_POST["name"] = "Ivan Ramírez";
-	$_POST["email"] = "iramirez@fabricadesoluciones.com";
-	$_POST["subject"] = "Viajes redondos";
-	$_POST["msg"] = "Mensaje de prueba.";
+	// $_POST["name"] = "Ivan Ramírez";
+	// $_POST["email"] = "iramirez@fabricadesoluciones.com";
+	// $_POST["subject"] = "Viajes redondos";
+	// $_POST["msg"] = "Mensaje de prueba.";
 	
 	if( !isset($_POST["name"]) && empty($_POST["name"]) ) {
 		$_errors++;
@@ -107,7 +107,7 @@
 			$supplier_data = json_decode(json_encode(array(
 				"webmaster" => false,
 				"name" => $_POST["name"],
-				"email" => $_POST["email"],
+				"usr_mail" => $_POST["email"],
 				"subject" => $_POST["subject"],
 				"msg" => $_POST["msg"],
 			)), FALSE);
