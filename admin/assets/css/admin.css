@@ -36,6 +36,16 @@ ADMIN
 .fill-white svg g:nth-child(2) polygon:nth-child(5),
 .fill-white svg g:nth-child(2) path:nth-child(6),
 .fill-white svg g:nth-child(2) path:nth-child(7) { fill: #FFF; }
+.card-login {
+	position: relative;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	-o-transform: translateX(-50%);
+	transform: translateX(-50%);
+	-webkit-box-shadow: 10px 10px 15px rgba(0,0,0,0.6);
+	box-shadow: 10px 10px 15px rgba(0,0,0,0.6);
+}
 .card-login .card-header { background-color: #363636; }
 .jumbotron-container { height: calc( 100vh - 56px ); }
 .jumbotron-container .jumbotron { background-color: transparent; }

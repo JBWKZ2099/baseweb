@@ -1,6 +1,6 @@
 <?php
 	header('Content-Type: text/html; charset=utf-8');
-	
+
 	//SMTP needs accurate times, and the PHP time zone MUST be set
 	//This should be done in your php.ini, but this is how to do it if you don't have access to that
 	date_default_timezone_set("America/Mexico_City");
@@ -10,12 +10,12 @@
 	session_start();
 	$_SESSION["_errors"] = "<ul>";
 	$_errors = 0;
-	
+
 	// $_POST["name"] = "Ivan Ramírez";
 	// $_POST["email"] = "iramirez@fabricadesoluciones.com";
 	// $_POST["subject"] = "Viajes redondos";
 	// $_POST["msg"] = "Mensaje de prueba.";
-	
+
 	if( !isset($_POST["name"]) && empty($_POST["name"]) ) {
 		$_errors++;
 		$_SESSION["_errors"] .= "<li>El campo <b>Nombre</b> es requerido.</li>";
@@ -67,7 +67,7 @@
 		curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($params) );
 		$result = curl_exec( $ch );
 		$response_data = json_decode( $result );
-		$response_data = true;
+		// $response_data = true;
 
 		/*success*/
 		if( $response_data ) {
@@ -203,7 +203,7 @@
 		if( $_mail->webmaster ) {
 			// Unset the webmaster mail who will receive the mail
 			unset( $_mail->main );
-			
+
 			// Unset webmaster to read the array correctly
 			unset( $_mail->webmaster );
 
@@ -212,7 +212,7 @@
 				if( isset($val) && !empty($val) ) {
 					$mail->AddCC($val); /* Con Copia */
 					// $mail->AddBCC($val);  /* Con Copia Oculta */
-				}	
+				}
 			}
 
 
