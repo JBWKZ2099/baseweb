@@ -29,7 +29,7 @@
 </head>
 <body>
 	<?php $active="index"; include(/*$dir.*/"structure/navbar.php"); ?>
-	
+
 	<?php /*
 	<?php #Carousel example ?>
 	<div id="carouselExampleSlidesOnly" class="carousel full-carousel slide" data-ride="carousel">
