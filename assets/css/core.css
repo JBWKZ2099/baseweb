@@ -196,7 +196,7 @@ CAROUSEL - CIRCLE INDICATORS
 =============================================================================*/
 /**
  * Carousel with Circle indicator
- * it needs to add <div class="inner-circle"></div> on li elements 
+ * it needs to add <div class="inner-circle"></div> on li elements
  * (carousel-indicator)
  */
 .circle-indicators .carousel-indicators li {
@@ -228,6 +228,10 @@ CAROUSEL - CIRCLE INDICATORS
 	background-color: #FFF;
 	display: none;
 }
+/*=============================================================================
+reCaptcha v3
+=============================================================================*/
+.grecaptcha-badge { display: none; visibility: hidden; opacity: 0; position: absolute; z-index: -10000; }
 /*=============================================================================
 MEDIA
 =============================================================================*/

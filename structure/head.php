@@ -1,5 +1,9 @@
 <?php
 	ini_set('display_errors', 'Off');
+	$rcpublic = "6LdZHooUAAAAAJu58OM6OwfGCM05uJ-exyjWE2BE";
+	session_start();
+	$_SESSION["recaptcha"] = "v3";
+	// $_SESSION["recaptcha"] = "v2";
 
 	$root = realpath($_SERVER["DOCUMENT_ROOT"])."/";
 
@@ -57,26 +61,30 @@
 
 <?php /* JS Tags */ ?>
 <?php /*jQuery js minified*/ ?>
-<script src="<?php echo fileTime("assets/js/jquery/jquery.min.js"); ?>" async="async"></script>
+<script src="<?php echo fileTime("assets/js/jquery/jquery.min.js"); ?>"></script>
 <?php /*jQuery UI*/ ?>
-<script src="<?php echo fileTime("assets/js/jquery/jquery-ui.min.js"); ?>" async="async"></script>
+<script src="<?php echo fileTime("assets/js/jquery/jquery-ui.min.js"); ?>"></script>
 <?php /*Bootstrap js minified*/ ?>
-<script src="<?php echo fileTime("assets/js/bootstrap/popper.min.js") ?>" defer="defer"></script>
-<script src="<?php echo fileTime("assets/js/bootstrap/bootstrap.min.js"); ?>" defer="defer"></script>
+<script src="<?php echo fileTime("assets/js/bootstrap/popper.min.js") ?>"></script>
+<script src="<?php echo fileTime("assets/js/bootstrap/bootstrap.min.js"); ?>"></script>
 <?php /*Script Font Awesome*/ ?>
-<script src="<?php echo fileTime("assets/js/fontawesome/all.min.js") ?>" defer="defer"></script>
+<script src="<?php echo fileTime("assets/js/fontawesome/all.min.js") ?>"></script>
 <?php /*Scroll reveal*/ ?>
-<script src="<?php echo fileTime("assets/js/scrollreveal/scrollreveal.min.js"); ?>" defer="defer"></script>
+<script src="<?php echo fileTime("assets/js/scrollreveal/scrollreveal.min.js"); ?>"></script>
 <?php /*Scroll Magic*/ ?>
-<script src="<?php echo fileTime("assets/js/scrollmagic/TweenMax.min.js"); ?>" defer="defer"></script>
-<script src="<?php echo fileTime("assets/js/scrollmagic/ScrollMagic.min.js"); ?>" defer="defer"></script>
-<script src="<?php echo fileTime("assets/js/scrollmagic/animation.gsap.js"); ?>" defer="defer"></script>
-<script src="<?php echo fileTime("assets/js/scrollmagic/debug.addIndicators.js"); ?>" defer="defer"></script>
+<script src="<?php echo fileTime("assets/js/scrollmagic/TweenMax.min.js"); ?>"></script>
+<script src="<?php echo fileTime("assets/js/scrollmagic/ScrollMagic.min.js"); ?>"></script>
+<script src="<?php echo fileTime("assets/js/scrollmagic/animation.gsap.js"); ?>"></script>
+<script src="<?php echo fileTime("assets/js/scrollmagic/debug.addIndicators.js"); ?>"></script>
 <?php /*Script Scrollify*/ ?>
-<script src="<?php echo fileTime("assets/js/scrollify/jquery.scrollify.min.js"); ?>" defer="defer"></script>
+<script src="<?php echo fileTime("assets/js/scrollify/jquery.scrollify.min.js"); ?>"></script>
 <?php /*Script custom*/ ?>
-<script src="<?php echo fileTime("assets/js/script.js"); ?>" defer="defer"></script>
-<script src="<?php echo fileTime("assets/js/img-to-svg.js"); ?>" defer="defer"></script>
+<script src="<?php echo fileTime("assets/js/script.js"); ?>"></script>
+<script src="<?php echo fileTime("assets/js/img-to-svg.js"); ?>"></script>
+<?php /*reCaptcha*/ ?>
+<?php if( $which_recaptcha=="v3" ) { ?>
+<script src='https://www.google.com/recaptcha/api.js?render=<?php echo $_SESSION["recaptcha"]; ?>'></script>
+<?php } ?>
 <script>
 	var direction = "<?php echo $path; ?>";
 </script>

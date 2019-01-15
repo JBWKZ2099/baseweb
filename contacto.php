@@ -27,18 +27,20 @@
 		$asset = "assets/img/folder_name/"; // Path where are storaged media files (img, video, etc)
 	?>
 
-	<!-- Google reCaptcha -->
-	<script src="https://www.google.com/recaptcha/api.js?onload=renderCaptcha&render=explicit" async="async" defer="defer"></script>
-	<script>
-		var recaptcha;
-		var renderCaptcha = function() {
-			recaptcha = grecaptcha.render('g-recaptcha', {
-				'sitekey': '6LeQ02YUAAAAAKBAujSmwV4MvJ04ea6Lo2qvvlt2',
-				'theme': 'light'
-			});
-		};
-	</script>
-	<!-- Google reCaptcha -->
+	<?php if( $_SESSION["recaptcha"]=="v2" ) { ?>
+		<!-- Google reCaptcha -->
+		<script src="https://www.google.com/recaptcha/api.js?onload=renderCaptcha&render=explicit" async="async" defer="defer"></script>
+		<script>
+			var recaptcha;
+			var renderCaptcha = function() {
+				recaptcha = grecaptcha.render('g-recaptcha', {
+					'sitekey': '6LeQ02YUAAAAAKBAujSmwV4MvJ04ea6Lo2qvvlt2',
+					'theme': 'light'
+				});
+			};
+		</script>
+		<!-- Google reCaptcha -->
+	<?php } ?>
 </head>
 <body>
 	<?php $active="contact"; include(/*$dir.*/"structure/navbar.php"); ?>
@@ -49,7 +51,8 @@
 		<div class="container-custom">
 			<div class="row">
 				<div class="col-md-12">
-					<form action="<?php echo $path; ?>php/mailer/index.php" method="POST">
+					<?php include("alerts/alerts.php"); ?>
+					<form id="contact-form" action="<?php echo $path; ?>php/mailer/mailer.php" method="POST">
 						<div class="form-group">
 							<input type="text" class="form-control" name="name" value="" placeholder="Nombre:" required>
 						</div>
@@ -62,11 +65,34 @@
 						<div class="form-group">
 							<textarea class="form-control" name="msg" rows="5" placeholder="Mensaje:"></textarea>
 						</div>
-						<div class="form-group">
-							<div id="g-recaptcha"></div>
-						</div>
+						<?php if( $_SESSION["recaptcha"]=="v2" ) { ?>
+							<div class="form-group">
+								<div id="g-recaptcha"></div>
+							</div>
+						<?php } ?>
 						<button type="submit" class="btn btn-secondary">Enviar</button>
 					</form>
+					<?php if( $_SESSION["recaptcha"]=="v3" ) { ?>
+						<script>
+						  $('form#contact-form').submit(function(event) {
+						    // we stoped it
+						    event.preventDefault();
+						    // needs for recaptacha ready
+						    grecaptcha.ready(function() {
+						      // do request for recaptcha token
+						      // response is promise with passed token
+						      grecaptcha.execute('<?php echo $rcpublic; ?>', {action: 'get_in_touch'}).then(function(token) {
+						          // add token to form
+						          $('form#contact-form').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+						          $('form#contact-form').prepend('<input type="hidden" name="action" value="get_in_touch">');
+						          // return false;
+						          // submit form now
+						          $('form#contact-form').unbind('submit').submit();
+						      });
+						    });
+						  });
+						</script>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

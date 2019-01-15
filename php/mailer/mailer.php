@@ -33,10 +33,17 @@
 		$_SESSION["_errors"] .= "<li>El campo <b>Mensaje</b> es requerido.</li>";
 	}
 
-	// if( isset($_POST["g-recaptcha-response"]) && !empty($_POST["g-recaptcha-response"]) ) {} else {
-	if( !isset($_POST["g-recaptcha-response"]) && empty($_POST["g-recaptcha-response"]) ) {} else {
-		$_errors++;
-		$_SESSION["_errors"] .= "<li> Por favor da click en el reCaptcha. </li>";
+	if( $_SESSION["recaptcha"]=="v3" ) {
+		if( !isset($_POST["action"]) && empty($_POST["action"]) && $_POST["action"]!="get_in_touch" ) {
+			$_errors++;
+			$_SESSION["_errors"] .= "<li>Ocurrió un error, porfavor intenta más tarde.</li>";
+		}
+	} else {
+		// if( isset($_POST["g-recaptcha-response"]) && !empty($_POST["g-recaptcha-response"]) ) {} else {
+		if( !isset($_POST["g-recaptcha-response"]) && empty($_POST["g-recaptcha-response"]) ) {} else {
+			$_errors++;
+			$_SESSION["_errors"] .= "<li> Por favor da click en el reCaptcha. </li>";
+		}
 	}
 
 	// var_dump($_POST);
@@ -66,8 +73,15 @@
 		curl_setopt( $ch, CURLOPT_POST, true );
 		curl_setopt( $ch, CURLOPT_POSTFIELDS, http_build_query($params) );
 		$result = curl_exec( $ch );
-		$response_data = json_decode( $result );
+
+		if( $_SESSION["recaptcha"]=="v3" )
+			$response_data = json_decode( $result->success );
+		else
+			$response_data = json_decode( $result );
+
 		// $response_data = true;
+		var_dump($response_data);
+		exit();
 
 		/*success*/
 		if( $response_data ) {
