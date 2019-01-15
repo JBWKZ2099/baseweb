@@ -82,9 +82,10 @@
 <script src="<?php echo fileTime("assets/js/script.js"); ?>"></script>
 <script src="<?php echo fileTime("assets/js/img-to-svg.js"); ?>"></script>
 <?php /*reCaptcha*/ ?>
-<?php if( $which_recaptcha=="v3" ) { ?>
-<script src='https://www.google.com/recaptcha/api.js?render=<?php echo $_SESSION["recaptcha"]; ?>'></script>
+<?php if( $_SESSION["recaptcha"]=="v3" ) { ?>
+<script src='https://www.google.com/recaptcha/api.js?render=<?php echo $rcpublic; ?>'></script>
 <?php } ?>
 <script>
 	var direction = "<?php echo $path; ?>";
+	var recaptcha = "<?php echo $_SESSION["recaptcha"]; ?>";
 </script>

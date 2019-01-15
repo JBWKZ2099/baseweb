@@ -36,7 +36,7 @@
 	if( $_SESSION["recaptcha"]=="v3" ) {
 		if( !isset($_POST["action"]) && empty($_POST["action"]) && $_POST["action"]!="get_in_touch" ) {
 			$_errors++;
-			$_SESSION["_errors"] .= "<li>Ocurrió un error, porfavor intenta más tarde.</li>";
+			$_SESSION["_errors"] .= "<li>Ocurrió un error, por favor intentalo de nuevo.</li>";
 		}
 	} else {
 		// if( isset($_POST["g-recaptcha-response"]) && !empty($_POST["g-recaptcha-response"]) ) {} else {
@@ -64,7 +64,7 @@
 		$phpmailer = false;
 
 		//web site secret key
-		$secret = "6LeLzmYUAAAAAA17cBXzWNxjZjVQ_v99D5je2sBT";
+		$secret = "6LdZHooUAAAAAN4-5k86kiijoqVCfvbOokyOeeHN";
 		//get verify response data
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -75,13 +75,14 @@
 		$result = curl_exec( $ch );
 
 		if( $_SESSION["recaptcha"]=="v3" )
-			$response_data = json_decode( $result->success );
+			$response_data = json_decode( $result )->success;
 		else
 			$response_data = json_decode( $result );
 
 		// $response_data = true;
-		var_dump($response_data);
-		exit();
+		// var_dump($response_data);
+		// var_dump($_POST);
+		// exit();
 
 		/*success*/
 		if( $response_data ) {
@@ -143,7 +144,10 @@
 			$_SESSION["_success"] = true;
 			$_SESSION["thanks_message"] = "¡Muchas gracias por su interés! En breve nos comunicaremos con usted.";
 		} else { /*error*/
-			$_SESSION["_errors"] .= "<li> Ocurrió un error al verificar el reCaptcha, por favor intentalo de nuevo. </li>";
+			if( $_SESSION["recaptcha"]=="v3" )
+				$_SESSION["_errors"] .= "<li> Ocurrió un error al verificar el reCaptcha, por favor intentalo de nuevo. </li>";
+			else
+				$_SESSION["_errors"] .= "<li> Ocurrió un error, por favor intentalo de nuevo. </li>";
 			$_SESSION["_errors"] .= "</ul>";
 			header("Location: ../../contacto");
 		}
