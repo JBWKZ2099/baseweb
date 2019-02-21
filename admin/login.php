@@ -1,6 +1,6 @@
 <?php
-	session_start();
-	include("../php/db/conn.php");
+	require realpath($_SERVER["DOCUMENT_ROOT"])."/"."php/vendor/autoload.php";
+  include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
 	include("../php/db/auth.php");
 
 	if( !authCheck() ) {

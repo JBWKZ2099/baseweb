@@ -1,4 +1,7 @@
 <?php
+	session_start();
+	ini_set("display_errors",0);
+
 	/**
 	 * Code to make absoulute paths (example: http://www.domain-name.com/assets/img/img_name.jpg);
 	 */
@@ -37,5 +40,6 @@
 		"DB_USERNAME" => "root",
 		"DB_PASSWORD" => "root",
 		"GRECAPTCHA_VERSION" => "v3",
+		"GRECAPTCHA_PUBLIC" => "6LdZHooUAAAAAJu58OM6OwfGCM05uJ-exyjWE2BE",
 	)), FALSE);
 ?>

@@ -1,8 +1,8 @@
 <?php
-	session_start();
-	include("../php/db/conn.php");
+	require realpath($_SERVER["DOCUMENT_ROOT"])."/"."php/vendor/autoload.php";
+  include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
 	include("../php/db/auth.php");
-	
+
 	if( authCheck() && user()->permission==1 ) {
 ?>
 <!DOCTYPE html>
@@ -24,7 +24,7 @@
 		$collapse = "blog";
 		$active_opt = "blog-view";
 		include("structure/navbar.php");
-		
+
 		$data_table_which = "Blogs";
 		$table_head = array(
 			"Nombre",

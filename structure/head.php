@@ -1,7 +1,7 @@
 <?php include( "php/header.lib.php" ); ?>
 <link rel="shortcut icon" href="http://placehold.it/32.png"/>
 <meta charset="UTF-8">
-<title> <?php echo $view_name; ?> | site_name </title>
+<title> <?php echo $view_name; ?> | <?php echo $env->APP_NAME; ?> </title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <?php /* CSS Tags */ ?>
@@ -39,7 +39,7 @@
 <script src="<?php echo fileTime("assets/js/img-to-svg.js"); ?>"></script>
 <?php /*reCaptcha*/ ?>
 <?php if( $_SESSION["recaptcha"]=="v3" ) { ?>
-<script src='https://www.google.com/recaptcha/api.js?render=<?php echo $rcpublic; ?>'></script>
+<script src='https://www.google.com/recaptcha/api.js?render=<?php echo $env->GRECAPTCHA_PUBLIC; ?>'></script>
 <?php } ?>
 <script>
 	var direction = "<?php echo $path; ?>";

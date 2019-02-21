@@ -1,9 +1,8 @@
 <?php
-ini_set("display_errors", "On");
-	session_start();
-	include("../php/db/conn.php");
+	require realpath($_SERVER["DOCUMENT_ROOT"])."/"."php/vendor/autoload.php";
+  include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
 	include("../php/db/auth.php");
-	
+
 	$word = "blog";
 	if( authCheck() && user()->permission==1 ) {
 		$mysqli = conectar_db();

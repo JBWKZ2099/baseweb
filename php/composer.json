@@ -1,5 +1,11 @@
 {
     "require": {
         "wanfeiyy/dd": "^1.0"
+    },
+    "autoload": {
+    	"files": [
+    		"vendor/operations/main.php",
+    		"vendor/operations/database.php"
+    	]
     }
 }

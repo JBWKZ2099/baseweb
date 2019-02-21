@@ -1,7 +1,6 @@
 <?php
-	ini_set("display_errors", 0);
-	include("data.php");
-	include("conn.php");
+	require realpath($_SERVER["DOCUMENT_ROOT"])."/"."php/vendor/autoload.php";
+  include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
 	include("auth.php");
 	$up_dir = "../../";
 
@@ -39,7 +38,7 @@
 			case "customer":
 				$tbl = "`users`";
 				$tbl2 = "`permissions`";
-				$columns = array( 
+				$columns = array(
 					0 => "$tbl.id",
 					1 => "$tbl.name",
 					2 => "$tbl.first_name",
@@ -48,7 +47,7 @@
 					5 => "$tbl.email",
 					6 => "$tbl.permission",
 				);
-				$col_clean = array( 
+				$col_clean = array(
 					0 => "id",
 					1 => "name",
 					2 => "first_name",
@@ -143,7 +142,7 @@
 			case "customer-restore":
 				$tbl = "`users`";
 				$tbl2 = "`permissions`";
-				$columns = array( 
+				$columns = array(
 					0 => "$tbl.id",
 					1 => "$tbl.name",
 					2 => "$tbl.first_name",
@@ -152,7 +151,7 @@
 					5 => "$tbl.email",
 					6 => "$tbl.permission",
 				);
-				$col_clean = array( 
+				$col_clean = array(
 					0 => "id",
 					1 => "name",
 					2 => "first_name",
@@ -171,14 +170,14 @@
 
 			case "blog":
 				$tbl = "`blogs`";
-				$columns = array( 
+				$columns = array(
 					0 => "$tbl.id",
 					1 => "$tbl.name",
 					2 => "$tbl.author",
 					3 => "$tbl.created_at",
 					4 => "$tbl.updated_at",
 				);
-				$col_clean = array( 
+				$col_clean = array(
 					0 => "id",
 					1 => "name",
 					2 => "author",
@@ -373,14 +372,14 @@
 
 			case "blog-restore":
 				$tbl = "`blogs`";
-				$columns = array( 
+				$columns = array(
 					0 => "$tbl.id",
 					1 => "$tbl.name",
 					2 => "$tbl.author",
 					3 => "$tbl.created_at",
 					4 => "$tbl.updated_at",
 				);
-				$col_clean = array( 
+				$col_clean = array(
 					0 => "id",
 					1 => "name",
 					2 => "author",
@@ -397,11 +396,11 @@
 
 			case "category":
 				$tbl = "`categories`";
-				$columns = array( 
+				$columns = array(
 					0 => "$tbl.id",
 					1 => "$tbl.name",
 				);
-				$col_clean = array( 
+				$col_clean = array(
 					0 => "id",
 					1 => "name",
 				);
@@ -467,11 +466,11 @@
 
 			case "category-restore":
 				$tbl = "`categories`";
-				$columns = array( 
+				$columns = array(
 					0 => "$tbl.id",
 					1 => "$tbl.name",
 				);
-				$col_clean = array( 
+				$col_clean = array(
 					0 => "id",
 					1 => "name",
 				);
@@ -490,7 +489,7 @@
 				$comment = $_POST["comment"];
 				$id_blog = $_POST["id_blog"];
 				$header = $_POST["header"];
-				
+
 
 				if( isset( $email ) && isset( $name ) && isset( $comment ) ) {
 					$errors = 0;
@@ -549,11 +548,11 @@
 				$id = $_POST["id"];
 				$tbl = $_POST["table"];
 				$path = $_POST["path"];
-				
+
 				restoreRecord($id, $tbl);
 				header("Location: ".$up_dir."admin/".$path);
 				break;
-			
+
 			default:
 				break;
 		}
