@@ -11,7 +11,7 @@
 </head>
 <body>
 	<?php $active="slugger"; include("structure/navbar.php"); ?>
-	
+
 	<?php if(isFile()[0] == "no") { ?>
 		<section class="bg-default-02 pt-60 pb-60">
 			<div class="container-custom">

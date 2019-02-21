@@ -5,7 +5,7 @@
 	//This should be done in your php.ini, but this is how to do it if you don't have access to that
 	date_default_timezone_set("America/Mexico_City");
 	setlocale(LC_ALL, "es_ES.UTF-8");
-	ini_set("display_errors",1);
+	ini_set("display_errors",0);
 
 	session_start();
 	$_SESSION["_errors"] = "<ul>";
@@ -90,14 +90,20 @@
 				$mail_data_arr = array(
 					"webmaster" => true,
 					"main" => "mail1@example.com",
-					"cc1" => "mail2@example.com",
+					"cc1" => [
+						"mail2@example.com",
+						"John Doe",
+					],
 				);
 
 			} else {
 				$mail_data_arr = array(
 					"webmaster" => true,
 					"main" => "iramirez@fabricadesoluciones.com",
-					"cc1" => "hph2099@hotmail.com",
+					"cc1" => [
+						"hph2099@hotmail.com",
+						"Ivan Ramírez",
+					],
 				);
 			}
 
@@ -228,7 +234,7 @@
 			//Set CC
 			foreach( $_mail as $val ) {
 				if( isset($val) && !empty($val) ) {
-					$mail->AddCC($val); /* Con Copia */
+					$mail->AddCC($val[0],utf8_decode($val[1])); /* Con Copia */
 					// $mail->AddBCC($val);  /* Con Copia Oculta */
 				}
 			}
@@ -263,8 +269,9 @@
 		$mail->AltBody = $alt_body;
 
 		// Debug $mail var
-		// var_dump($mail->Body);
-		// exit();
+		// $root = realpath($_SERVER["DOCUMENT_ROOT"])."/";
+		// require $root."php/vendor/autoload.php";
+		// dd($mail);
 
 		// Send mail
 		$mail->send();

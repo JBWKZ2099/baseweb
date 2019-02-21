@@ -1,6 +1,6 @@
 <?php
 	ini_set('display_errors', 'Off');
-	
+
 	$root = realpath($_SERVER["DOCUMENT_ROOT"])."/";
 	require $root."php/vendor/autoload.php";
 
@@ -72,6 +72,6 @@
 	$path = pathinfo( $query );
 	$current = str_replace(".php", "", $path['basename']);
 
-	if( $current!=$login )
+	if( $current!="login" )
 		include("../php/db/session.php");
 ?>

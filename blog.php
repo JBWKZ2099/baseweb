@@ -10,7 +10,7 @@
 		$mysqli = conectar_db();
 		selecciona_db($mysqli);
 		mysqli_query ($mysqli,"SET NAMES 'UTF8';");
-		
+
 		if( isset($_GET["page"]) )
 			$page = $_GET["page"];
 		else
@@ -75,7 +75,7 @@
 							<?php } else { ?>
 								<img class="img-fluid d-block m-auto" src="<?php echo $path; ?>uploads/<?php echo $ssblog[0]['img'] ?>" alt="<?php echo $ssblog[0]['img_alt'] ?>">
 							<?php } ?>
-							
+
 							<p class="mb-3"></p>
 							<?php echo $ssblog[0]["body"]; ?>
 
@@ -89,7 +89,7 @@
 				</div>
 			</section>
 		<?php } else { ?>
-			<?php if( isset($catblog) && !empty($catblog) && $show_catblog>0 ) { ?> 
+			<?php if( isset($catblog) && !empty($catblog) && $show_catblog>0 ) { ?>
 				<?php
 				// var_dump($catblog[0]["type"]);
 					if( isset($catblog[0]["type"]) && !empty($catblog[0]["type"]) ) {
@@ -110,7 +110,7 @@
 						<div class="col-md-12 text-center mt-5">
 							<h1 class="bolder">NUESTRO BLOG</h1>
 							<hr class="hr-blog">
-							
+
 							<?php include("widgets/categories.php"); ?>
 						</div>
 						<?php
@@ -232,7 +232,7 @@
 						  </ul>
 						</div>
 					<?php } ?>
-					
+
 					<?php /*<div class="row justify-content-center mt-60">
 						<div class="col-md-4">
 							<a href="<?php echo $path; ?>blog" class="btn btn-success d-block">VOLVER</a>
@@ -420,7 +420,7 @@
 			<?php } ?>
 		</div>
 	<?php } ?>
-	
+
 
 	<?php
 		if( $blogroot == 'true' ) {
@@ -474,7 +474,7 @@
 								<div class="form-group">
 									<input type="email" class="form-control fc-custom" name="email" placeholder="E-MAIL:" required>
 								</div>
-								
+
 								<div class="form-group">
 									<input type="text" class="form-control fc-custom" name="name" placeholder="NOMBRE:" required>
 								</div>
@@ -487,14 +487,14 @@
 							</form>
 						</div>
 					</div>
-				</div>	
+				</div>
 			</div>
 		</section>
 	<?php
 			}
 		}
 	?>
-	
+
 	<?php include("widgets/frm-cont.php"); ?>
 	<?php include("structure/footer.php"); ?>
 	<script src="<?php echo $path; ?>assets/js/multilevel.js" async="async"></script>

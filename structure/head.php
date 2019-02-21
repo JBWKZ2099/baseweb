@@ -1,48 +1,4 @@
-<?php
-	ini_set('display_errors', 'Off');
-	$rcpublic = "6LdZHooUAAAAAJu58OM6OwfGCM05uJ-exyjWE2BE";
-	session_start();
-	$_SESSION["recaptcha"] = "v3";
-	// $_SESSION["recaptcha"] = "v2";
-
-	$root = realpath($_SERVER["DOCUMENT_ROOT"])."/";
-
-	require $root."php/vendor/autoload.php";
-
-
-	/**
-	 * Code to make absoulute paths (example: http://www.domain-name.com/assets/img/img_name.jpg);
-	 */
-	$path = (!empty($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'];
-	/**
-	 * Optimized code to work on local with virtualhosts or localhost or production server
-	 */
-	$path = (!empty($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'];
-
-	$app_name = "base-b4";
-	switch( $path ) {
-		case "http://localhost":
-			$path .= "/".$app_name."/";
-			break;
-
-		case "http://fabricadesoluciones.info":
-			$path .= "/".$app_name."/";
-			break;
-
-		default:
-			$path .= "/";
-			break;
-	}
-  // $path = $_SERVER['HTTP_HOST'] == 'localhost:8888' ? '/fabricadesoluciones.com/' : '';
-
-	function fileTime( $asset_path ) {
-		global $path;
-		$file = filemtime($asset_path);
-		$asset = $path.$asset_path."?".$file;
-
-		return $asset;
-	}
-?>
+<?php include( "php/header.lib.php" ); ?>
 <link rel="shortcut icon" href="http://placehold.it/32.png"/>
 <meta charset="UTF-8">
 <title> <?php echo $view_name; ?> | site_name </title>

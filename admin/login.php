@@ -20,7 +20,7 @@
 		<?php include("structure/navbar.php"); ?>
 	<?php } ?>
 
-	
+
 	<div class="container-fluid bg-white">
 		<div class="row">
 			<div class="jumbotron-container col-md-12">

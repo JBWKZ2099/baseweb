@@ -28,9 +28,9 @@
   function wblog() {
     $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
     $blog = explode('blog/', $actual_link);
-    
+
     /*
-     * cuando el tipo no se puede dividir por guiones (-) entonces se le 
+     * cuando el tipo no se puede dividir por guiones (-) entonces se le
      * concatena el guion para que pueda hacer la operación como si la url trajera
      * un guion (-)
     */
@@ -81,7 +81,33 @@
         explode("/", $_SERVER["REQUEST_URI"])[1]
       );
     }
-    
+
+    // dd( $array );
+
     return $array;
   }
+
+/*  function isFile() {
+    $actual_link = (isset($_SERVER["HTTPS"]) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+    $ider = explode("-", $actual_link);
+    if( array_key_exists(1,$ider) )
+      $some = $ider[1];
+    else
+      $some = "";
+
+    if($some != "") {
+      $req = explode("/", $_SERVER["REQUEST_URI"]);
+      $_GET["type"] = $req[2];
+
+      $array = array( "file"=>$_GET["type"] );
+    } else {
+      $array = array(
+        "no",
+        explode("/", $_SERVER["REQUEST_URI"])[1]
+      );
+    }
+
+    return $array;
+  }*/
 ?>

@@ -10,6 +10,9 @@
 	$now = time();
 	// echo $_SESSION["expire"];
 	// echo "\n".$now;
+	/* Make Session expires that check if redirection to login is right */
+	// $now = $_SESSION["expire"]+1;
+
 	if( $now > $_SESSION["expire"] ) {
 		session_destroy();
 		session_start();

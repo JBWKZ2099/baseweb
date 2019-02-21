@@ -3,7 +3,7 @@
 	// ini_set("display_errors", "On");
 	include("../php/db/conn.php");
 	include("../php/db/auth.php");
-	
+
 	if( authCheck() ) {
 ?>
 <!DOCTYPE html>
@@ -17,7 +17,7 @@
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<?php include("structure/navbar.php"); ?>
-	
+
 	<div class="content-wrapper">
 		<div class="contianer-fluid">
 			Bienvenido
