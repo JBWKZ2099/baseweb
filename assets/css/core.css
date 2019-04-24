@@ -224,7 +224,7 @@ CAROUSEL - CIRCLE INDICATORS
 	width: 8px;
 	height: 8px;
 	border-radius: 12px;
-	margin: 3px;
+	margin: 4px;
 	background-color: #FFF;
 	display: none;
 }
@@ -346,8 +346,12 @@ MEDIA
 	.h4-bigger { font-size: 1rem; }
 	.h5-bigger { font-size: .8rem; }
 	.h6-bigger { font-size: .7rem; }*/
+	h1, .h1,
+	h2, .h2,
+	h3, .h3,
+	h4, .h4,
 	h5, .h5,
-	h6, .h6 { font-size: 1rem; }
+	h6, .h6 { font-size: 1.25rem; }
 	.h1-bigger,
 	.h2-bigger,
 	.h3-bigger,

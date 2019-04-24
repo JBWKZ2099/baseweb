@@ -6,10 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <?php /* CSS Tags */ ?>
 <?php /*Bootstrap css minified*/ ?>
-<link rel="stylesheet" href="<?php echo fileTime("assets/css/bootstrap/bootstrap.min.css"); ?>">
-<?php /*Style Font Awesome*/ ?>
-<link rel="stylesheet" href="<?php echo fileTime("assets/css/fontawesome/all.min.css"); ?>">
-<link rel="stylesheet" href="<?php echo fileTime("assets/css/fontawesome/svg-with-js.min.css"); ?>">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <?php /*Style Core*/ ?>
 <link rel="stylesheet" href="<?php echo fileTime("assets/css/core.css"); ?>">
 <?php /*Style Custom*/ ?>
@@ -17,14 +14,14 @@
 
 <?php /* JS Tags */ ?>
 <?php /*jQuery js minified*/ ?>
-<script src="<?php echo fileTime("assets/js/jquery/jquery.min.js"); ?>"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <?php /*jQuery UI*/ ?>
-<script src="<?php echo fileTime("assets/js/jquery/jquery-ui.min.js"); ?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 <?php /*Bootstrap js minified*/ ?>
-<script src="<?php echo fileTime("assets/js/bootstrap/popper.min.js") ?>"></script>
-<script src="<?php echo fileTime("assets/js/bootstrap/bootstrap.min.js"); ?>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.j"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <?php /*Script Font Awesome*/ ?>
-<script src="<?php echo fileTime("assets/js/fontawesome/all.min.js") ?>"></script>
+<script src="https://use.fontawesome.com/releases/v5.8.1/js/all.j"></script>
 <?php /*Scroll reveal*/ ?>
 <script src="<?php echo fileTime("assets/js/scrollreveal/scrollreveal.min.js"); ?>"></script>
 <?php /*Scroll Magic*/ ?>
