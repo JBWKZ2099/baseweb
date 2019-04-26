@@ -1,5 +1,8 @@
 <?php
+	include("../header.lib.php");
 	header('Content-Type: text/html; charset=utf-8');
+
+	dd($env);
 
 	//SMTP needs accurate times, and the PHP time zone MUST be set
 	//This should be done in your php.ini, but this is how to do it if you don't have access to that
@@ -7,7 +10,6 @@
 	setlocale(LC_ALL, "es_ES.UTF-8");
 	ini_set("display_errors",0);
 
-	session_start();
 	$_SESSION["_errors"] = "<ul>";
 	$_errors = 0;
 
@@ -52,10 +54,10 @@
 
 	if( $_errors==0 ) {
 		// Global variables
-			$company = "Company Name";
-			$webmaster = "iramirez@fabricadesoluciones.com";
+			$company = $env->APP_NAME;
+			$webmaster = $env->MAIL_USER;
 			$wm_name = "Contacto Web - $company";
-			$wm_password = "iR4M1R3Z2017*";
+			$wm_password = $env->MAIL_PASSWORD;
 			$production = false;
 			$_debug = 0;
 		// Global variables
@@ -64,7 +66,7 @@
 		$phpmailer = false;
 
 		//web site secret key
-		$secret = "6LdZHooUAAAAAN4-5k86kiijoqVCfvbOokyOeeHN";
+		$secret = $env->GRECAPTCHA_SECRET;
 		//get verify response data
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -106,10 +108,6 @@
 					],
 				);
 			}
-
-			// Save data on database
-			include("../db/data.php");
-			include("../db/conn.php");
 
 			$mysqli = conectar_db();
 			selecciona_db($mysqli);

@@ -81,7 +81,7 @@
 						    grecaptcha.ready(function() {
 						      // do request for recaptcha token
 						      // response is promise with passed token
-						      grecaptcha.execute('<?php echo $rcpublic; ?>', {action: 'get_in_touch'}).then(function(token) {
+						      grecaptcha.execute('<?php echo $env->GRECAPTCHA_PUBLIC; ?>', {action: 'get_in_touch'}).then(function(token) {
 						          // add token to form
 						          $('form#contact-form').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
 						          $('form#contact-form').prepend('<input type="hidden" name="action" value="get_in_touch">');

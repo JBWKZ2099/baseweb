@@ -39,7 +39,10 @@
 		"DB_DATABASE" => "base",
 		"DB_USERNAME" => "root",
 		"DB_PASSWORD" => "root",
+		"MAIL_USER" => "ramirez@fabricadesoluciones.com",
+		"MAIL_PASSWORD" => "iR4M1R3Z2017*",
 		"GRECAPTCHA_VERSION" => "v3",
 		"GRECAPTCHA_PUBLIC" => "6LdZHooUAAAAAJu58OM6OwfGCM05uJ-exyjWE2BE",
+		"GRECAPTCHA_SECRET" => "6LdZHooUAAAAAN4-5k86kiijoqVCfvbOokyOeeHN",
 	)), FALSE);
 ?>
