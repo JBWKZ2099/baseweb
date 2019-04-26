@@ -39,3 +39,4 @@ error_log
 access_log
 uploads
 admin/uploads
+env.php
