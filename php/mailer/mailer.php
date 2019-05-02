@@ -242,7 +242,7 @@
 			$initial = utf8_encode( file_get_contents("html_files/admin.php") );
 			$initial1 = str_replace("%company%", $company, $initial);
 			$initial2 = str_replace("%name%", $_supplier_data->name, $initial1);
-			$initial3 = str_replace("%email%", $_supplier_data->email, $initial2);
+			$initial3 = str_replace("%email%", $_supplier_data->usr_mail, $initial2);
 			$initial4 = str_replace("%subject%", $_supplier_data->subject, $initial3);
 			$body_file = str_replace("%msg%", $_supplier_data->msg, $initial4);
 			$alt_body = "Se pusieron en contacto contigo.";
