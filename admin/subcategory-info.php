@@ -6,9 +6,9 @@
 	if( authCheck() && user()->permission==1 ) {
 		if( isset($_GET["id"]) ) {
 			$id = (int)$_GET["id"];
-			$table = "users";
+			$table = "subcategories";
 			if( !validateData( $id, $table ) )
-				header("Location: customers");
+				header("Location: subcategories");
 			else {
 				$mysqli = conectar_db();
 				selecciona_db($mysqli);
@@ -21,16 +21,17 @@
 <html lang="es">
 <head>
 	<?php
-		$title="Viendo cliente";
+		$current_pg = "Subcategoría";
+		$title="Viendo ".$current_pg;
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<?php
-		$active_menu = "customer_mn";
-		$collapse = "customer";
-		$active_opt = "customer-view";
+		$active_menu = "subcategories_mn";
+		$collapse = "subcategories";
+		$active_opt = "subcategories-view";
 		include("structure/navbar.php");
 	?>
 
@@ -42,7 +43,7 @@
 						<div class="card">
 							<div class="card-header bg-blue text-white">
 								<i class="fa fa-fw fa-info-circle"></i>
-								Viendo cliente
+								Viendo <?php echo $current_pg; ?>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
@@ -55,20 +56,8 @@
 												$html_resp .= "<td>".$row["id"]."</td> </tr>";
 												$html_resp .= "<tr> <th>Nombre</th>";
 												$html_resp .= "<td>".$row["name"]."</td> </tr>";
-												$html_resp .= "<tr> <th>Apellido Paterno</th>";
-												$html_resp .= "<td> ".$row["first_name"]." </td> </tr>";
-												$html_resp .= "<tr> <th>Apellido Materno</th>";
-												$html_resp .= "<td> ".$row["last_name"]." </td> </tr>";
-												$html_resp .= "<tr> <th>Nombre de usuario</th>";
-												$html_resp .= "<td> ".$row["username"]." </td> </tr>";
-												$html_resp .= "<tr> <th>E-Mail</th>";
-												$html_resp .= "<td> ".$row["email"]." </td> </tr>";
-												$html_resp .= "<tr> <th>Permiso</th>";
-												if( $row["permission"]==1 )
-													$permission = "Administrador";
-												else
-													$permission = "Cliente";
-												$html_resp .= "<td> ".$permission." </td> </tr>";
+												$html_resp .= "<tr> <th>Slug</th>";
+												$html_resp .= "<td> ".$row["slug_name"]." </td> </tr>";
 												echo $html_resp;
 											?>
 										</tody>

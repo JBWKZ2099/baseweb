@@ -13,6 +13,29 @@
 		mysqli_select_db($mysqli, $env->DB_DATABASE) or die ('No se pudo establecer la conexión con la Base de Datos, error: '.mysqli_error($mysqli));
 	}
 
+	function registro_nuevo($tabla, $datos, $columna){
+		$mysqli = conectar_db();
+		selecciona_db($mysqli);
+
+		$Consulta = "INSERT INTO $tabla VALUES (";
+		for ($i=0; $i < count($datos); $i++) { 
+			$Consulta = $Consulta.$datos[$i];
+			if ($i != count($datos)-1)
+				$Consulta.=",";
+		}
+		$Consulta.=")";
+		
+		$pConsulta = consulta_tb($mysqli, $Consulta);
+		session_start();
+		if (!$pConsulta) {
+			$_SESSION["error"] = "Ocurrió un error: ".mysqli_error($mysqli);
+		}
+		else{
+			$_SESSION["message"] = "Éxito al guardar.";
+		}
+		cerrar_db($mysqli);
+	}
+
 	function consulta_tb($mysqli, $Sql){
 			global $resultado;
 			$resultado = mysqli_query($mysqli, $Sql);

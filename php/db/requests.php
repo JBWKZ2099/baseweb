@@ -1,7 +1,7 @@
 <?php
 	require realpath($_SERVER["DOCUMENT_ROOT"])."/"."php/vendor/autoload.php";
   include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
-	include("auth.php");
+	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
 	$up_dir = "../../";
 
 
@@ -430,8 +430,7 @@
 				// var_dump($data); exit();
 				updateData($_POST["which"], $columns, $data, $tbl);
 				// exit();
-				header("Location: ../graficador/categories");
-
+				header("Location: ".$up_dir."admin/categories");
 				break;
 
 			case "create-category":
@@ -466,6 +465,94 @@
 
 			case "category-restore":
 				$tbl = "`categories`";
+				$columns = array(
+					0 => "$tbl.id",
+					1 => "$tbl.name",
+				);
+				$col_clean = array(
+					0 => "id",
+					1 => "name",
+				);
+				$sql_data = array(
+					0 => "$tbl.`id`, $tbl.`name` ",
+					1 => $tbl,
+					2 => " WHERE $tbl.`deleted_at` IS NOT NULL "
+				);
+				echo dataTable($_POST, $columns, $col_clean, $sql_data);
+				break;
+
+			case "subcategory":
+				$tbl = "`subcategories`";
+				$columns = array(
+					0 => "$tbl.id",
+					1 => "$tbl.name",
+				);
+				$col_clean = array(
+					0 => "id",
+					1 => "name",
+				);
+				$sql_data = array(
+					0 => "$tbl.`id`, $tbl.`name`",
+					1 => $tbl,
+					2 => " WHERE $tbl.`deleted_at` IS NULL "
+				);
+				echo dataTable($_POST, $columns, $col_clean, $sql_data);
+				break;
+
+			case "update-subcategory":
+				include('../slug.lib.php');
+				$slug_name = slugger($_POST["name"]);
+
+				$columns = array(
+					0 => "name",
+					1 => "slug_name",
+				);
+
+				$data = array(
+					0 => $_POST["name"],
+					1 => $slug_name,
+				);
+
+				$tbl = "subcategories";
+				// var_dump($data); exit();
+				updateData($_POST["which"], $columns, $data, $tbl);
+				// exit();
+				header("Location: ".$up_dir."admin/subcategories");
+
+				break;
+
+			case "create-subcategory":
+				include('../slug.lib.php');
+
+				$tbl = $_POST["table"];
+				$slug_name = slugger($_POST["name"]);
+
+				$columns = array(
+					0 => "id",
+					1 => "name",
+					2 => "slug_name",
+					3 => "created_at",
+					4 => "update_at",
+					5 => "deleted_at",
+				);
+				$data = array(
+					0 => 'NULL',
+					1 => "'".$_POST["name"]."'",
+					2 => "'".$slug_name."'",
+					3 => "'".setTimeStamp()."'",
+					4 => 'NULL',
+					5 => 'NULL',
+				);
+
+				// var_dump($data);
+				// exit();
+				registro_nuevo($tbl, $data, $columns);
+
+				header("Location: ".$up_dir."admin/subcategories");
+				break;
+
+			case "subcategory-restore":
+				$tbl = "`subcategories`";
 				$columns = array(
 					0 => "$tbl.id",
 					1 => "$tbl.name",

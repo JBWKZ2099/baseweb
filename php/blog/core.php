@@ -1,8 +1,4 @@
 <?php
-  $root = realpath($_SERVER["DOCUMENT_ROOT"])."/";
-  require($root."php/db/data.php");
-  require($root."php/db/conn.php");
-
   function blog_actual($mysqli, $tabla, $category, $type, $btype, $page, $search) {
     // '$page' es la página actual ($_GET["page"])
     // '$total' es el total de registros y se ocupa para poder calcular el número de resultados por página

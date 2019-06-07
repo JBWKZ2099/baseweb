@@ -1,7 +1,7 @@
 <?php
 	require realpath($_SERVER["DOCUMENT_ROOT"])."/"."php/vendor/autoload.php";
   include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
-	include("../php/db/auth.php");
+	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
 
 	if( authCheck() && user()->permission==1 ) {
 		if( isset($_GET["id"]) ) {
@@ -25,8 +25,8 @@
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
-	<script src="assets/js/datatables/jquery.js"></script>
-	<script src="assets/js/datatables/jquery.dataTables.js"></script>
+	<script src="<?php echo $abs_path."/"; ?>assets/js/datatables/jquery.js"></script>
+	<script src="<?php echo $abs_path."/"; ?>assets/js/datatables/jquery.dataTables.js"></script>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<?php

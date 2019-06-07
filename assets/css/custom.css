@@ -26,7 +26,10 @@ NAVBAR
 BLOG
 =============================================================================*/
 .blog-play-container { height: auto !important; }
-.bg-widget-cover.bg-mh { height: 500px; }
+.bg-widget-cover.bg-mh {
+	background-image: url("http://placehold.it/1920x500.png?text=1920x500.jpg");
+	height: 500px;
+}
 .bg-widget-cover {
 	background-position: center;
 	-webkit-background-size: cover;
