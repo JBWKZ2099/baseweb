@@ -34,8 +34,8 @@
 		"DB_DATABASE" => "base",
 		"DB_USERNAME" => "root",
 		"DB_PASSWORD" => "root",
-		"MAIL_USER" => "ramirez@fabricadesoluciones.com",
-		"MAIL_PASSWORD" => "iR4M1R3Z2017*",
+		"MAIL_USER" => "",
+		"MAIL_PASSWORD" => "",
 		"GRECAPTCHA_VERSION" => "v3", // Could be V2 too
 		"GRECAPTCHA_PUBLIC" => "",
 		"GRECAPTCHA_SECRET" => "",
