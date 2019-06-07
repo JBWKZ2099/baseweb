@@ -3,13 +3,14 @@
   include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
 	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
 
-	$word = "category";
+	$current_pg = "Subcategoría";
+	$word = "subcategory";
+	$table = "subcategories";
 	if( authCheck() && user()->permission==1 ) {
 		if( isset($_GET["id"]) ) {
 			$id = (int)$_GET["id"];
-			$table = "categories";
 			if( !validateData( $id, $table ) )
-				header("Location: categories");
+				header("Location: ".$table);
 			else {
 				$mysqli = conectar_db();
 				selecciona_db($mysqli);
@@ -29,15 +30,15 @@
 <html lang="es">
 <head>
 	<?php
-		$title="Editar Categoría";
+		$title="Editar ".$current_pg;
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
 	<script src="<?php echo $abs_path."/"; ?>assets/js/datatables/jquery.js"></script>
 	<script src="<?php echo $abs_path."/"; ?>assets/js/datatables/jquery.dataTables.js"></script>
-	<script src="//cdn.ckeditor.com/4.10.0/full/ckeditor.js"></script>
-	<script src="assets/js/validateFormEdit.js"></script>
-	<script src="assets/js/select-scripts.js"></script>
+	<script src="https://cdn.ckeditor.com/4.10.0/full/ckeditor.js"></script>
+	<script src="<?php echo $abs_path."/"; ?>assets/js/validateFormEdit.js"></script>
+	<script src="<?php echo $abs_path."/"; ?>assets/js/select-scripts.js"></script>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<?php
@@ -55,10 +56,10 @@
 						<div class="card">
 							<div class="card-header bg-blue text-white">
 								<i class="fa fa-fw fa-pencil-square-o"></i>
-								Editando Categoría
+								Editando <?php echo $current_pg; ?>
 							</div>
 							<div class="card-body">
-								<form action="<?php echo $abs_path."/"; ?>../php/db/requests.php" method="POST" enctype="multipart/form-data">
+								<form action="<?php echo $abs_path."/"; ?>../php/db/requests.php" method="POST">
 									<input type="hidden" name="request" value="update-<?php echo $word; ?>">
 									<input type="hidden" name="which" value="<?php echo $_GET["id"]; ?>">
 									<?php

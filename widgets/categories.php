@@ -4,7 +4,7 @@
 			$exccom = categories_list($mysqli);
 			$atm = blogs_list($mysqli,2);
 			$cap = blogs_list($mysqli,3);
-
+			dd( $exccom );
 			// var_dump($exccom);
 		?>
 		<ul class="nav nav-fill custom-dropdown">

@@ -41,62 +41,82 @@
       </ul>
     </li>
   */ ?>
-  <?php if( user()->permission==1 ) { ?>
+  <?php if( user()->permission==1 ) { $word_menu = "Blog"; ?>
     <li class="nav-item <?php if( $active_menu=="blog_mn" ) echo "active"; ?>" data-toggle="tooltip" data-placement="right" title="Usuarios">
       <a class="nav-link nav-link-collapse <?php if( $active_menu=="blog_mn" ) echo ""; else echo "collapsed"; ?>" data-toggle="collapse" href="#blogCollapse" data-parent="#exampleAccordion">
         <i class="fa fa-fw fa-rss-square"></i>
         <span class="nav-link-text">
-          Blogs</span>
+          <?php echo $word_menu; ?>s</span>
       </a>
       <ul class="sidenav-second-level collapse <?php if( $collapse=="blog" ) echo "show"; ?>" id="blogCollapse">
         <li <?php if( $active_opt=="blog-view" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>blogs">Lista de Blogs</a>
+          <a href="<?php echo $abs_path."/"; ?>blogs">Lista de <?php echo $word_menu; ?>s</a>
         </li>
         <li <?php if( $active_opt=="blog-create" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>blogs-create">Agregar Blog</a>
+          <a href="<?php echo $abs_path."/"; ?>blogs-create">Agregar <?php echo $word_menu; ?></a>
         </li>
         <li <?php if( $active_opt=="blog-deleted" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>blogs-deleted">Blogs Eliminados</a>
+          <a href="<?php echo $abs_path."/"; ?>blogs-deleted"><?php echo $word_menu; ?>s Eliminados</a>
         </li>
       </ul>
     </li>
   <?php } ?>
-  <?php if( user()->permission==1 ) { ?>
+  <?php if( user()->permission==1 ) { $word_menu = "Categoría"; ?>
     <li class="nav-item <?php if( $active_menu=="category_mn" ) echo "active"; ?>" data-toggle="tooltip" data-placement="right" title="categories">
       <a class="nav-link nav-link-collapse <?php if( $active_menu=="category_mn" ) echo ""; else echo "collapsed"; ?>" data-toggle="collapse" href="#categoryCollapse" data-parent="#exampleAccordion">
         <i class="fa fa-fw fa-file-text"></i>
         <span class="nav-link-text">
-          Blogs - Categorías</span>
+          Blogs - <?php echo $word_menu; ?>s</span>
       </a>
       <ul class="sidenav-second-level collapse <?php if( $collapse=="category" ) echo "show"; ?>" id="categoryCollapse">
         <li <?php if( $active_opt=="category-view" ) echo "class='active'"; ?>>
-          <a href="categories">Lista de Categorías</a>
+          <a href="<?php echo $abs_path."/"; ?>categories">Lista de <?php echo $word_menu; ?>s</a>
         </li>
         <li <?php if( $active_opt=="category-create" ) echo "class='active'"; ?>>
-          <a href="categories-create">Agregar Categoría</a>
+          <a href="<?php echo $abs_path."/"; ?>categories-create">Agregar <?php echo $word_menu; ?></a>
         </li>
         <li <?php if( $active_opt=="category-deleted" ) echo "class='active'"; ?>>
-          <a href="categories-deleted">Categorías Eliminadas</a>
+          <a href="<?php echo $abs_path."/"; ?>categories-deleted"><?php echo $word_menu; ?>s Eliminadas</a>
         </li>
       </ul>
     </li>
   <?php } ?>
-  <?php if( user()->permission==1 ) { ?>
+  <?php if( user()->permission==1 ) { $word_menu = "Subategoría"; ?>
+    <li class="nav-item <?php if( $active_menu=="subcategory_mn" ) echo "active"; ?>" data-toggle="tooltip" data-placement="right" title="subcategories">
+      <a class="nav-link nav-link-collapse <?php if( $active_menu=="subcategory_mn" ) echo ""; else echo "collapsed"; ?>" data-toggle="collapse" href="#subcategoryCollapse" data-parent="#exampleAccordion">
+        <i class="fa fa-fw fa-file-text"></i>
+        <span class="nav-link-text">
+          Blogs - <?php echo $word_menu ?>s</span>
+      </a>
+      <ul class="sidenav-second-level collapse <?php if( $collapse=="subcategory" ) echo "show"; ?>" id="subcategoryCollapse">
+        <li <?php if( $active_opt=="subcategory-view" ) echo "class='active'"; ?>>
+          <a href="<?php echo $abs_path."/"; ?>subcategories">Lista de <?php echo $word_menu ?>s</a>
+        </li>
+        <li <?php if( $active_opt=="subcategory-create" ) echo "class='active'"; ?>>
+          <a href="<?php echo $abs_path."/"; ?>subcategories-create">Agregar <?php echo $word_menu ?></a>
+        </li>
+        <li <?php if( $active_opt=="subcategory-deleted" ) echo "class='active'"; ?>>
+          <a href="<?php echo $abs_path."/"; ?>subcategories-deleted"><?php echo $word_menu ?>s Eliminadas</a>
+        </li>
+      </ul>
+    </li>
+  <?php } ?>
+  <?php if( user()->permission==1 ) { $word_menu = "Usuario"; ?>
     <li class="nav-item <?php if( $active_menu=="customer_mn" ) echo "active"; ?>" data-toggle="tooltip" data-placement="right" title="Usuarios">
       <a class="nav-link nav-link-collapse <?php if( $active_menu=="customer_mn" ) echo ""; else echo "collapsed"; ?>" data-toggle="collapse" href="#customerCollapse" data-parent="#exampleAccordion">
         <i class="fa fa-fw fa-user-circle"></i>
         <span class="nav-link-text">
-          Usuarios</span>
+          <?php echo $word_menu; ?>s</span>
       </a>
       <ul class="sidenav-second-level collapse <?php if( $collapse=="customer" ) echo "show"; ?>" id="customerCollapse">
         <li <?php if( $active_opt=="customer-view" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>customers">Lista de Usuarios</a>
+          <a href="<?php echo $abs_path."/"; ?>customers">Lista de <?php echo $word_menu; ?>s</a>
         </li>
         <li <?php if( $active_opt=="customer-create" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>customers-create">Agregar Usuario</a>
+          <a href="<?php echo $abs_path."/"; ?>customers-create">Agregar <?php echo $word_menu; ?></a>
         </li>
         <li <?php if( $active_opt=="customer-deleted" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>customers-deleted">Usuarios Eliminados</a>
+          <a href="<?php echo $abs_path."/"; ?>customers-deleted"><?php echo $word_menu; ?>s Eliminados</a>
         </li>
       </ul>
     </li>

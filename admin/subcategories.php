@@ -9,30 +9,26 @@
 <html lang="es">
 <head>
 	<?php
-		$title="Usuarios";
+		$current_pg = "Subcategorías";
+		$title="Blogs | ".$current_pg;
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
 	<script src="<?php echo $abs_path."/"; ?>assets/js/datatables/jquery.js"></script>
 	<script src="<?php echo $abs_path."/"; ?>assets/js/datatables/jquery.dataTables.js"></script>
 
-	<?php $restore=false; $dt_which="customer"; include("widgets/data-table-script.php"); ?>
+	<?php $restore=false; $dt_which="subcategory"; include("widgets/data-table-script.php"); ?>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<?php
 		$active_menu = $dt_which."_mn";
-		$collapse = $dt_which;
+		$collapse = $dt_which."";
 		$active_opt = $dt_which."-view";
 		include("structure/navbar.php");
 
-		$data_table_which = "Usuarios";
+		$data_table_which = $current_pg."s";
 		$table_head = array(
 			"Nombre",
-			"Apellido Paterno",
-			"Apellido Materno",
-			"Nombre de Usuario",
-			"E-Mail",
-			"Permisos",
 		);
 		include("widgets/data-table.php");
 	?>
@@ -43,9 +39,10 @@
 	<a class="scroll-to-top rounded" href="#page-top">
 		<i class="fa fa-angle-up"></i>
 	</a>
+	</a>
 	<?php
 		include("widgets/modal.php");
-		$table = "users"; $path = "customers";
+		$table = $path = "subcategories";
 		include("widgets/modal-delete.php");
 	?>
 </body>

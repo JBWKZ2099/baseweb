@@ -1,13 +1,10 @@
+<?php ini_set("display_errors", 0); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 	<?php
-		$view_name="Blog";
-		include("structure/head.php");
-
 		include('php/blog/core.php');
 		include('php/slug.lib.php');
-
 		date_default_timezone_set('America/Mexico_City');
 		$tabla = 'blogs';
 		$mysqli = conectar_db();
@@ -41,6 +38,7 @@
 		<meta name="keywords" content="<?php echo $ssblog[0]['meta_keywords'] ?>">
 		<meta name="description" content="<?php echo $ssblog[0]['meta'] ?>">
 	<?php } ?>
+	<?php $view_name="Blog"; include("structure/head.php"); ?>
 	<link rel="stylesheet" type="text/css" href="<?php echo $path; ?>assets/css/multilevel.css">
 </head>
 <body>

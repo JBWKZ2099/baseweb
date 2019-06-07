@@ -3,33 +3,18 @@
   include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
 	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
 
-	$word = "category";
+	$current_pg = "Subcategoría";
+	$word = "subcategory";
+	$table = "subcategories";
 	if( authCheck() && user()->permission==1 ) {
-		if( isset($_GET["id"]) ) {
-			$id = (int)$_GET["id"];
-			$table = "categories";
-			if( !validateData( $id, $table ) )
-				header("Location: categories");
-			else {
-				$mysqli = conectar_db();
-				selecciona_db($mysqli);
-				$sql = "SELECT * FROM $table WHERE id=$id";
-				$result = consulta_tb($mysqli,$sql);
-
-				$row = mysqli_fetch_array($result);
-
-				if( $row["deleted_at"]!=null ) {
-					$_SESSION["error"] = "La categoría con el ID seleccionado está eliminado.";
-					header("Location: categories-deleted");
-				}
-			}
-		}
+		$mysqli = conectar_db();
+		selecciona_db($mysqli);
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<?php
-		$title="Editar Categoría";
+		$title="Crear ".$current_pg;
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
@@ -43,7 +28,7 @@
 	<?php
 		$active_menu = $word."_mn";
 		$collapse = $word;
-		$active_opt = $word."-view";
+		$active_opt = $word."-create";
 		include("structure/navbar.php");
 	?>
 
@@ -55,17 +40,22 @@
 						<div class="card">
 							<div class="card-header bg-blue text-white">
 								<i class="fa fa-fw fa-pencil-square-o"></i>
-								Editando Categoría
+								Creando <?php echo $current_pg; ?>
 							</div>
 							<div class="card-body">
-								<form action="<?php echo $abs_path."/"; ?>../php/db/requests.php" method="POST" enctype="multipart/form-data">
-									<input type="hidden" name="request" value="update-<?php echo $word; ?>">
-									<input type="hidden" name="which" value="<?php echo $_GET["id"]; ?>">
+								<?php
+									include("../alerts/errors.php");
+									include("../alerts/success.php");
+								?>
+								<form action="<?php echo $abs_path."/"; ?>../php/db/requests.php" method="POST">
+									<input type="hidden" name="request" value="create-<?php echo $word; ?>">
+									<input type="hidden" name="table" value="<?php echo $table; ?>">
 									<?php
-										$edit = true;
-										include("forms/".$word."-form.php");
+										$row = mysqli_fetch_array($result);
+										$edit = false;
 									?>
-									<button type="submit" class="btn btn-success">Actualizar</button>
+									<?php include("forms/".$word."-form.php"); ?>
+									<button type="submit" class="btn btn-success">Registrar</button>
 								</form>
 							</div>
 						</div>

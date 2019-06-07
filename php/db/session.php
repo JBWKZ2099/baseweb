@@ -1,5 +1,4 @@
 <?php
-	// ini_set("display_errors","Off");
 	session_start();
 
 	if( !isset($_SESSION["auth"]) && !$_SESSION["auth"] ) {

@@ -1,7 +1,7 @@
 <?php
 	require realpath($_SERVER["DOCUMENT_ROOT"])."/"."php/vendor/autoload.php";
   include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
-	include("../php/db/auth.php");
+	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
 
 	if( !authCheck() ) {
 ?>

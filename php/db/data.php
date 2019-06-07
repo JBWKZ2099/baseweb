@@ -1,5 +1,5 @@
 <?php
-	include("../header.lib.php");
+	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/header.lib.php" );
 
 	define('SERVER',$env->DB_HOST);
 	define('DATABASE',$env->DB_DATABASE);
