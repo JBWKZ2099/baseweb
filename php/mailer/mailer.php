@@ -2,8 +2,6 @@
 	include("../header.lib.php");
 	header('Content-Type: text/html; charset=utf-8');
 
-	dd($env);
-
 	//SMTP needs accurate times, and the PHP time zone MUST be set
 	//This should be done in your php.ini, but this is how to do it if you don't have access to that
 	date_default_timezone_set("America/Mexico_City");
@@ -58,7 +56,7 @@
 			$webmaster = $env->MAIL_USER;
 			$wm_name = "Contacto Web - $company";
 			$wm_password = $env->MAIL_PASSWORD;
-			$production = false;
+			$production = $env->APP_ENV;
 			$_debug = 0;
 		// Global variables
 
