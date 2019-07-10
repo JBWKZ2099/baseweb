@@ -4,7 +4,7 @@
 	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
 
 	$word = "category";
-	if( authCheck() && user()->permission==1 ) {
+	if( Auth::check() && Auth::user()->permission==1 ) {
 		$mysqli = Connection::conectar_db();
 		Connection::selecciona_db($mysqli);
 ?>

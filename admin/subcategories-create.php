@@ -6,7 +6,7 @@
 	$current_pg = "Subcategoría";
 	$word = "subcategory";
 	$table = "subcategories";
-	if( authCheck() && user()->permission==1 ) {
+	if( Auth::check() && Auth::user()->permission==1 ) {
 		$mysqli = Connection::conectar_db();
 		Connection::selecciona_db($mysqli);
 ?>

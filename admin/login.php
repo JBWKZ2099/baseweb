@@ -3,7 +3,7 @@
   include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
 	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
 
-	if( !authCheck() ) {
+	if( !Auth::check() ) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,7 +16,7 @@
 </head>
 <body class="bg-dark" id="page-top">
 
-	<?php if( authCheck() ) { ?>
+	<?php if( Auth::check() ) { ?>
 		<?php include("structure/navbar.php"); ?>
 	<?php } ?>
 

@@ -5,7 +5,8 @@
     "autoload": {
     	"files": [
     		"vendor/operations/main.php",
-    		"vendor/operations/database.php"
+    		"vendor/operations/database.php",
+    		"vendor/operations/auth.php"
     	]
     }
 }

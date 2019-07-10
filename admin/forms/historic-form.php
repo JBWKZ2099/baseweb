@@ -6,7 +6,7 @@
 		<input id="pdf" type="file" class="form-control-file" name="pdf" <?php if( !isset($edit) ) echo 'required'; ?>>
 </div>
 <?php if( isset($row) ) { ?>
-		<?php if( $row["user"] == user()->id ) { ?>
+		<?php if( $row["user"] == Auth::user()->id ) { ?>
 				<input type="hidden" name="user" value="<?php echo $row["user"]; ?>">
 		<?php } else { ?>
 				<div class="form-group">

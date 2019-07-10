@@ -1,7 +1,7 @@
 <?php
 	require realpath($_SERVER["DOCUMENT_ROOT"])."/"."php/vendor/autoload.php";
   include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
-	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
+	// include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
 	$up_dir = "../../";
 
 
@@ -21,7 +21,7 @@
 			case "login":
 				$usr = $_POST["username"];
 				$pswd = $_POST["password"];
-				$validate = validateLogin( $usr, $pswd );
+				$validate = Auth::validateLogin( $usr, $pswd );
 
 				if( $validate ) {
 					Redirect::to($up_dir."admin/");
@@ -32,7 +32,7 @@
 				break;
 
 			case "logout":
-				logout();
+				Auth::logout();
 				break;
 
 			case "customer":
@@ -89,7 +89,7 @@
 					4 => $_POST["email"],
 				);
 				if( isset($password) )
-					$data[] = cryptBlowfish($password);
+					$data[] = Auth::cryptBlowfish($password);
 
 				$data[] = $_POST["permission"];
 
@@ -118,7 +118,7 @@
 					9 => "update_at",
 					10 => "deleted_at",
 				);
-				$password = cryptBlowfish($_POST["password"]);
+				$password = Auth::cryptBlowfish($_POST["password"]);
 				$data = array(
 					0 => 'NULL',
 					1 => "'".$_POST["name"]."'",

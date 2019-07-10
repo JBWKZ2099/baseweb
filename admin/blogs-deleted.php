@@ -3,7 +3,7 @@
   include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
 	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
 
-	if( authCheck() ) {
+	if( Auth::check() ) {
 ?>
 <!DOCTYPE html>
 <html lang="es">

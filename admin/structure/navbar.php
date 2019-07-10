@@ -19,7 +19,7 @@
         <a class="nav-link" href="#">
           <i class="fa fa-fw fa-user"></i>
           <?php
-            echo user()->name." ".user()->first_name;
+            echo Auth::user()->name." ".Auth::user()->first_name;
           ?>
         </a>
       </li>

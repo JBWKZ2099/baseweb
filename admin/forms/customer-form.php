@@ -20,7 +20,7 @@
 		<?php } ?>
 </div>
 <?php if( isset($row) ) { ?>
-		<?php if( $row["id"]==user()->id ) { ?>
+		<?php if( $row["id"]==Auth::user()->id ) { ?>
 			<input type="hidden" name="permission" value="<?php echo $row["permission"]; ?>">
 		<?php } else { ?>
 				<div class="form-group">
