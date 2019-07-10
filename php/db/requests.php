@@ -24,10 +24,10 @@
 				$validate = validateLogin( $usr, $pswd );
 
 				if( $validate ) {
-					header("Location: ".$up_dir."admin/");
+					Redirect::to($up_dir."admin/");
 				} else {
 					$_SESSION["error"] = "<ul><li>Usuario y/o contraseña incorrectos.</li></ul>";
-					header("Location: ".$up_dir."admin/login");
+					Redirect::to($up_dir."admin/login");
 				}
 				break;
 
@@ -61,7 +61,7 @@
 					1 => $tbl,
 					2 => "INNER JOIN $tbl2 ON $tbl.`permission`=$tbl2.`id` WHERE $tbl.`deleted_at` IS NULL AND `permission` != 1 "
 				);
-				echo dataTable($_POST, $columns, $col_clean, $sql_data);
+				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
 
 			case "update-customer":
@@ -94,12 +94,12 @@
 				$data[] = $_POST["permission"];
 
 				$columns[] = "updated_at";
-				$data[] = setTimeStamp();
+				$data[] = Times::setTimeStamp();
 				$tbl = "users";
 				// var_dump($data); exit();
-				updateData($_POST["which"], $columns, $data, $tbl);
+				DB::updateData($_POST["which"], $columns, $data, $tbl);
 				// exit();
-				header("Location: ".$up_dir."admin/customers");
+				Redirect::to($up_dir."admin/customers");
 
 				break;
 
@@ -128,15 +128,15 @@
 					5 => "'".$_POST["email"]."'",
 					6 => "'".$password."'",
 					7 => "'".$_POST["permission"]."'",
-					8 => "'".setTimeStamp()."'",
+					8 => "'".Times::setTimeStamp()."'",
 					9 => 'NULL',
 					10 => 'NULL',
 				);
 				// var_dump($data);
 				// exit();
 
-				registro_nuevo($tbl, $data, $columns);
-				header("Location: ".$up_dir."admin/customers");
+				DB::registro_nuevo($tbl, $data, $columns);
+				Redirect::to($up_dir."admin/customers");
 				break;
 
 			case "customer-restore":
@@ -165,7 +165,7 @@
 					1 => $tbl,
 					2 => "INNER JOIN $tbl2 ON $tbl.`permission`=$tbl2.`id` WHERE $tbl.`deleted_at` IS NOT NULL "
 				);
-				echo dataTable($_POST, $columns, $col_clean, $sql_data);
+				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
 
 			case "blog":
@@ -189,7 +189,7 @@
 					1 => $tbl,
 					2 => " WHERE $tbl.`deleted_at` IS NULL "
 				);
-				echo dataTable($_POST, $columns, $col_clean, $sql_data);
+				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
 
 			case "create-blog":
@@ -255,7 +255,7 @@
 						$datos[14] = "NULL";
 
 					$datos[15] = "'".str_replace('"', '\"', $_POST['body'])."'";
-					$datos[16] = "'".setTimeStamp()."'";
+					$datos[16] = "'".Times::setTimeStamp()."'";
 					$datos[17] = "NULL";
 					$datos[18] = "NULL";
 					$datos[19] = "'".$_POST['status']."'";
@@ -263,12 +263,12 @@
 				  // var_dump($columna);
 				  // var_dump($datos);
 				  // exit();
-					registro_nuevo($tabla, $datos, $columna);
+					DB::registro_nuevo($tabla, $datos, $columna);
 				} else {
 					session_start();
 					$_SESSION["error"] = "Ocurrió un error: No se pudo crear el blog.";
 				}
-				header("Location: ".$up_dir."admin/blogs");
+				Redirect::to($up_dir."admin/blogs");
 				break;
 
 			case "update-blog":
@@ -366,8 +366,8 @@
 				// var_dump($datos);
 				// exit();
 
-				updateData($id, $columna, $datos, $tabla);
-				header("Location: ".$up_dir."admin/blogs");
+				DB::updateData($id, $columna, $datos, $tabla);
+				Redirect::to($up_dir."admin/blogs");
 				break;
 
 			case "blog-restore":
@@ -391,7 +391,7 @@
 					1 => $tbl,
 					2 => " WHERE $tbl.`deleted_at` IS NOT NULL "
 				);
-				echo dataTable($_POST, $columns, $col_clean, $sql_data);
+				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
 
 			case "category":
@@ -409,7 +409,7 @@
 					1 => $tbl,
 					2 => " WHERE $tbl.`deleted_at` IS NULL "
 				);
-				echo dataTable($_POST, $columns, $col_clean, $sql_data);
+				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
 
 			case "update-category":
@@ -428,9 +428,9 @@
 
 				$tbl = "categories";
 				// var_dump($data); exit();
-				updateData($_POST["which"], $columns, $data, $tbl);
+				DB::updateData($_POST["which"], $columns, $data, $tbl);
 				// exit();
-				header("Location: ".$up_dir."admin/categories");
+				Redirect::to($up_dir."admin/categories");
 				break;
 
 			case "create-category":
@@ -451,16 +451,16 @@
 					0 => 'NULL',
 					1 => "'".$_POST["name"]."'",
 					2 => "'".$slug_name."'",
-					3 => "'".setTimeStamp()."'",
+					3 => "'".Times::setTimeStamp()."'",
 					4 => 'NULL',
 					5 => 'NULL',
 				);
 
 				// var_dump($data);
 				// exit();
-				registro_nuevo($tbl, $data, $columns);
+				DB::registro_nuevo($tbl, $data, $columns);
 
-				header("Location: ".$up_dir."admin/categories");
+				Redirect::to($up_dir."admin/categories");
 				break;
 
 			case "category-restore":
@@ -478,7 +478,7 @@
 					1 => $tbl,
 					2 => " WHERE $tbl.`deleted_at` IS NOT NULL "
 				);
-				echo dataTable($_POST, $columns, $col_clean, $sql_data);
+				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
 
 			case "subcategory":
@@ -496,7 +496,7 @@
 					1 => $tbl,
 					2 => " WHERE $tbl.`deleted_at` IS NULL "
 				);
-				echo dataTable($_POST, $columns, $col_clean, $sql_data);
+				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
 
 			case "update-subcategory":
@@ -515,9 +515,9 @@
 
 				$tbl = "subcategories";
 				// var_dump($data); exit();
-				updateData($_POST["which"], $columns, $data, $tbl);
+				DB::updateData($_POST["which"], $columns, $data, $tbl);
 				// exit();
-				header("Location: ".$up_dir."admin/subcategories");
+				Redirect::to($up_dir."admin/subcategories");
 
 				break;
 
@@ -539,16 +539,16 @@
 					0 => 'NULL',
 					1 => "'".$_POST["name"]."'",
 					2 => "'".$slug_name."'",
-					3 => "'".setTimeStamp()."'",
+					3 => "'".Times::setTimeStamp()."'",
 					4 => 'NULL',
 					5 => 'NULL',
 				);
 
 				// var_dump($data);
 				// exit();
-				registro_nuevo($tbl, $data, $columns);
+				DB::registro_nuevo($tbl, $data, $columns);
 
-				header("Location: ".$up_dir."admin/subcategories");
+				Redirect::to($up_dir."admin/subcategories");
 				break;
 
 			case "subcategory-restore":
@@ -566,7 +566,7 @@
 					1 => $tbl,
 					2 => " WHERE $tbl.`deleted_at` IS NOT NULL "
 				);
-				echo dataTable($_POST, $columns, $col_clean, $sql_data);
+				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
 
 			case "blog-entry":
@@ -602,7 +602,7 @@
 						$datos[2] = "'".$email."'";
 						$datos[3] = "'".$name."'";
 						$datos[4] = "'".$comment."'";
-						$datos[5] = "'".setTimeStamp()."'";
+						$datos[5] = "'".Times::setTimeStamp()."'";
 
 						$columna[0] = "id";
 						$columna[1] = "id_blog";
@@ -611,13 +611,13 @@
 						$columna[4] = "comment";
 						$columna[5] = "created_at";
 
-						registro_nuevo($tbl, $datos, $columna);
+						DB::registro_nuevo($tbl, $datos, $columna);
 
 						$_SESSION["message"] = "Gracias por tu comentario.";
-						header("Location: $header");
+						Redirect::to($header);
 					} else {
 						$_SESSION["error"] = $errors;
-						header("Location: $header");
+						Redirect::to($header);
 					}
 				}
 				break;
@@ -627,8 +627,8 @@
 				$tbl = $_POST["table"];
 				$path = $_POST["path"];
 
-				deleteRecord($id, $tbl);
-				header("Location: ".$up_dir."admin/".$path);
+				DB::deleteRecord($id, $tbl);
+				Redirect::to($up_dir."admin/".$path);
 				break;
 
 			case "restore":
@@ -636,8 +636,8 @@
 				$tbl = $_POST["table"];
 				$path = $_POST["path"];
 
-				restoreRecord($id, $tbl);
-				header("Location: ".$up_dir."admin/".$path);
+				DB::restoreRecord($id, $tbl);
+				Redirect::to($up_dir."admin/".$path);
 				break;
 
 			default:

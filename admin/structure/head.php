@@ -1,6 +1,4 @@
 <?php
-	ini_set('display_errors', 'Off');
-
 	$root = realpath($_SERVER["DOCUMENT_ROOT"])."/";
 	require $root."php/vendor/autoload.php";
 

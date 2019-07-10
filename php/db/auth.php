@@ -6,8 +6,8 @@
 	// echo $pswd_encrypted = cryptBlowfish("$pswd_ed");
 
 	function validateLogin($usr, $pswd) {
-		$mysqli = conectar_db();
-		selecciona_db( $mysqli );
+		$mysqli = Connection::conectar_db();
+		Connection::selecciona_db( $mysqli );
 
 		$sql = "SELECT * FROM users WHERE username = '$usr' AND deleted_at IS NULL";
 		$result = mysqli_query( $mysqli, $sql );
@@ -40,8 +40,8 @@
 	}
 
 	function user() {
-		$mysqli = conectar_db();
-		selecciona_db( $mysqli );
+		$mysqli = Connection::conectar_db();
+		Connection::selecciona_db( $mysqli );
 		$usr = $_SESSION["usr"];
 		$sql = "SELECT * FROM users WHERE username = '$usr'";
 

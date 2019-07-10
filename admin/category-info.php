@@ -7,13 +7,13 @@
 		if( isset($_GET["id"]) ) {
 			$id = (int)$_GET["id"];
 			$table = "categories";
-			if( !validateData( $id, $table ) )
-				header("Location: categories");
+			if( !DB::validateData( $id, $table ) )
+				Redirect::to("categories");
 			else {
-				$mysqli = conectar_db();
-				selecciona_db($mysqli);
+				$mysqli = Connection::conectar_db();
+				Connection::selecciona_db($mysqli);
 				$sql = "SELECT * FROM $table WHERE id=$id";
-				$result = consulta_tb($mysqli,$sql);
+				$result = DB::consulta_tb($mysqli,$sql);
 			}
 		}
 ?>
@@ -81,6 +81,6 @@
 </html>
 <?php
 	} else {
-		header("Location: login");
+		Redirect::to("login");
 	}
 ?>

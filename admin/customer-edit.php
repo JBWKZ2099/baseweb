@@ -7,13 +7,13 @@
 		if( isset($_GET["id"]) ) {
 			$id = (int)$_GET["id"];
 			$table = "users";
-			if( !validateData( $id, $table ) )
-				header("Location: customers");
+			if( !DB::validateData( $id, $table ) )
+				Redirect::to("customers");
 			else {
-				$mysqli = conectar_db();
-				selecciona_db($mysqli);
+				$mysqli = Connection::conectar_db();
+				Connection::selecciona_db($mysqli);
 				$sql = "SELECT * FROM $table WHERE id=$id";
-				$result = consulta_tb($mysqli,$sql);
+				$result = DB::consulta_tb($mysqli,$sql);
 			}
 		}
 ?>
@@ -53,7 +53,7 @@
 									<?php
 										$row = mysqli_fetch_array($result);
 										$sql = null; $sql = "SELECT * FROM permissions";
-										$u_result = consulta_tb($mysqli,$sql);
+										$u_result = DB::consulta_tb($mysqli,$sql);
 										$edit = true;
 									?>
 									<?php include("forms/customer-form.php"); ?>
@@ -78,6 +78,6 @@
 </html>
 <?php
 	} else {
-		header("Location: login");
+		Redirect::to("login");
 	}
 ?>

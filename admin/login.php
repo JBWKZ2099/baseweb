@@ -73,5 +73,5 @@
 </body>
 </html>
 <?php
-	} else header("Location: index");
+	} else Redirect::to("index");
 ?>

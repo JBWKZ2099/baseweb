@@ -4,8 +4,11 @@
 			$exccom = categories_list($mysqli);
 			$atm = blogs_list($mysqli,2);
 			$cap = blogs_list($mysqli,3);
-			dd( $exccom );
+			// dd( $exccom );
 			// var_dump($exccom);
+
+			$categories = categories_list($mysqli);
+			dd( $categories );
 		?>
 		<ul class="nav nav-fill custom-dropdown">
 		  <li class="nav-item dropdown">

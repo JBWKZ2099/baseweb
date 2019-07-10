@@ -4,8 +4,8 @@
 	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
 
 	if( authCheck() && user()->permission==1 ) {
-		$mysqli = conectar_db();
-		selecciona_db($mysqli);
+		$mysqli = Connection::conectar_db();
+		Connection::selecciona_db($mysqli);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -47,7 +47,7 @@
 									<?php
 										$row = mysqli_fetch_array($result);
 										$sql = null; $sql = "SELECT * FROM permissions";
-										$u_result = consulta_tb($mysqli,$sql);
+										$u_result = DB::consulta_tb($mysqli,$sql);
 									?>
 									<?php include("forms/customer-form.php"); ?>
 									<button type="submit" class="btn btn-success">Registrar</button>
@@ -71,6 +71,6 @@
 </html>
 <?php
 	} else {
-		header("Location: login");
+		Redirect::to("login");
 	}
 ?>

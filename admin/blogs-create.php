@@ -5,8 +5,8 @@
 
 	$word = "blog";
 	if( authCheck() && user()->permission==1 ) {
-		$mysqli = conectar_db();
-		selecciona_db($mysqli);
+		$mysqli = Connection::conectar_db();
+		Connection::selecciona_db($mysqli);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -75,6 +75,6 @@
 </html>
 <?php
 	} else {
-		header("Location: login");
+		Redirect::to("login");
 	}
 ?>

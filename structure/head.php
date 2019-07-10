@@ -8,9 +8,9 @@
 <?php /*Bootstrap css minified*/ ?>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <?php /*Style Core*/ ?>
-<link rel="stylesheet" href="<?php echo fileTime("assets/css/core.css"); ?>">
+<link rel="stylesheet" href="<?php Times::fileTime("assets/css/core.css"); ?>">
 <?php /*Style Custom*/ ?>
-<link rel="stylesheet" href="<?php echo fileTime("assets/css/custom.css"); ?>">
+<link rel="stylesheet" href="<?php Times::fileTime("assets/css/custom.css"); ?>">
 
 <?php /* JS Tags */ ?>
 <?php /*jQuery js minified*/ ?>
@@ -23,17 +23,17 @@
 <?php /*Script Font Awesome*/ ?>
 <script src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"></script>
 <?php /*Scroll reveal*/ ?>
-<script src="<?php echo fileTime("assets/js/scrollreveal/scrollreveal.min.js"); ?>"></script>
+<script src="<?php Times::fileTime("assets/js/scrollreveal/scrollreveal.min.js"); ?>"></script>
 <?php /*Scroll Magic*/ ?>
-<script src="<?php echo fileTime("assets/js/scrollmagic/TweenMax.min.js"); ?>"></script>
-<script src="<?php echo fileTime("assets/js/scrollmagic/ScrollMagic.min.js"); ?>"></script>
-<script src="<?php echo fileTime("assets/js/scrollmagic/animation.gsap.js"); ?>"></script>
-<script src="<?php echo fileTime("assets/js/scrollmagic/debug.addIndicators.js"); ?>"></script>
+<script src="<?php Times::fileTime("assets/js/scrollmagic/TweenMax.min.js"); ?>"></script>
+<script src="<?php Times::fileTime("assets/js/scrollmagic/ScrollMagic.min.js"); ?>"></script>
+<script src="<?php Times::fileTime("assets/js/scrollmagic/animation.gsap.js"); ?>"></script>
+<script src="<?php Times::fileTime("assets/js/scrollmagic/debug.addIndicators.js"); ?>"></script>
 <?php /*Script Scrollify*/ ?>
-<script src="<?php echo fileTime("assets/js/scrollify/jquery.scrollify.min.js"); ?>"></script>
+<script src="<?php Times::fileTime("assets/js/scrollify/jquery.scrollify.min.js"); ?>"></script>
 <?php /*Script custom*/ ?>
-<script src="<?php echo fileTime("assets/js/script.js"); ?>"></script>
-<script src="<?php echo fileTime("assets/js/img-to-svg.js"); ?>"></script>
+<script src="<?php Times::fileTime("assets/js/script.js"); ?>"></script>
+<script src="<?php Times::fileTime("assets/js/img-to-svg.js"); ?>"></script>
 <?php /*reCaptcha*/ ?>
 <?php if( $_SESSION["recaptcha"]=="v3" ) { ?>
 <script src='https://www.google.com/recaptcha/api.js?render=<?php echo $env->GRECAPTCHA_PUBLIC; ?>'></script>

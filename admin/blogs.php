@@ -50,6 +50,6 @@
 </html>
 <?php
 	} else {
-		header("Location: login");
+		Redirect::to("login");
 	}
 ?>

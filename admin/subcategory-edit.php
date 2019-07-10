@@ -9,19 +9,19 @@
 	if( authCheck() && user()->permission==1 ) {
 		if( isset($_GET["id"]) ) {
 			$id = (int)$_GET["id"];
-			if( !validateData( $id, $table ) )
-				header("Location: ".$table);
+			if( !DB::validateData( $id, $table ) )
+				Redirect::to($table);
 			else {
-				$mysqli = conectar_db();
-				selecciona_db($mysqli);
+				$mysqli = Connection::conectar_db();
+				Connection::selecciona_db($mysqli);
 				$sql = "SELECT * FROM $table WHERE id=$id";
-				$result = consulta_tb($mysqli,$sql);
+				$result = DB::consulta_tb($mysqli,$sql);
 
 				$row = mysqli_fetch_array($result);
 
 				if( $row["deleted_at"]!=null ) {
 					$_SESSION["error"] = "La categoría con el ID seleccionado está eliminado.";
-					header("Location: categories-deleted");
+					Redirect::to("categories-deleted");
 				}
 			}
 		}
@@ -88,6 +88,6 @@
 </html>
 <?php
 	} else {
-		header("Location: login");
+		Redirect::to("login");
 	}
 ?>

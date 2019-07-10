@@ -7,13 +7,13 @@
 		if( isset($_GET["id"]) ) {
 			$id = (int)$_GET["id"];
 			$table = "subcategories";
-			if( !validateData( $id, $table ) )
-				header("Location: subcategories");
+			if( !DB::validateData( $id, $table ) )
+				Redirect::to("subcategories");
 			else {
-				$mysqli = conectar_db();
-				selecciona_db($mysqli);
+				$mysqli = Connection::conectar_db();
+				Connection::selecciona_db($mysqli);
 				$sql = "SELECT * FROM $table WHERE id=$id";
-				$result = consulta_tb($mysqli,$sql);
+				$result = DB::consulta_tb($mysqli,$sql);
 			}
 		}
 ?>
@@ -57,7 +57,7 @@
 												$html_resp .= "<tr> <th>Nombre</th>";
 												$html_resp .= "<td>".$row["name"]."</td> </tr>";
 												$html_resp .= "<tr> <th>Slug</th>";
-												$html_resp .= "<td> ".$row["slug_name"]." </td> </tr>";
+												$html_resp .= "<td> ".$row["slug"]." </td> </tr>";
 												echo $html_resp;
 											?>
 										</tody>
@@ -82,6 +82,6 @@
 </html>
 <?php
 	} else {
-		header("Location: login");
+		Redirect::to("login");
 	}
 ?>

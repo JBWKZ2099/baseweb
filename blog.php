@@ -10,8 +10,8 @@
 
 		date_default_timezone_set('America/Mexico_City');
 		$tabla = 'blogs';
-		$mysqli = conectar_db();
-		selecciona_db($mysqli);
+		$mysqli = Connection::conectar_db();
+		Connection::selecciona_db($mysqli);
 		mysqli_query ($mysqli,"SET NAMES 'UTF8';");
 
 		if( isset($_GET["page"]) )

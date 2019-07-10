@@ -8,19 +8,19 @@
 		if( isset($_GET["id"]) ) {
 			$id = (int)$_GET["id"];
 			$table = $word."s";
-			if( !validateData( $id, $table ) )
-				header("Location: ".$word."s");
+			if( !DB::validateData( $id, $table ) )
+				Redirect::to($word."s");
 			else {
-				$mysqli = conectar_db();
-				selecciona_db($mysqli);
+				$mysqli = Connection::conectar_db();
+				Connection::selecciona_db($mysqli);
 				$sql = "SELECT * FROM $table WHERE id=$id";
-				$result = consulta_tb($mysqli,$sql);
+				$result = DB::consulta_tb($mysqli,$sql);
 
 				$row = mysqli_fetch_array($result);
 
 				if( $row["deleted_at"]!=null ) {
 					$_SESSION["error"] = "El blog con el ID seleccionado está eliminado.";
-					header("Location: blogs-deleted");
+					Redirect::to("blogs-deleted");
 				}
 			}
 		}
@@ -87,6 +87,6 @@
 </html>
 <?php
 	} else {
-		header("Location: login");
+		Redirect::to("login");
 	}
 ?>
