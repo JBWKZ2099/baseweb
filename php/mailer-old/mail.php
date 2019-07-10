@@ -1,10 +1,10 @@
 <?php
 	header('Content-Type: text/html; charset=utf-8');
-	
+
 	/*Ya no muestra warnings y facilita el json parsing*/
 	ini_set("display_errors", 0);
 
-	session_start();
+	if(session_status()==="") session_start();
 	$_SESSION["_errors"] = "<ul>";
 	$_errors = 0;
 
@@ -65,7 +65,7 @@
 			$webmaster = "contacto@nombre_dominio.com";
 		else
 			$webmaster = "iramirez@fabricadesoluciones.com";
-		
+
 		$body_msg_webmaster = "
 			Recientemente $name se puso en contacto.
 			<p></p>

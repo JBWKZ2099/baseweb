@@ -32,7 +32,7 @@
 
 			$pConsulta = DB::consulta_tb($mysqli, $Consulta);
 
-			session_start();
+			if(session_status()==="") session_start();
 			if (!$pConsulta) {
 				$_SESSION["error"] = "Ocurrió un error: ".mysqli_error($mysqli);
 			}
@@ -62,7 +62,7 @@
 			if( mysqli_num_rows($result)>0 )
 				return true;
 			else {
-				session_start();
+				if(session_status()==="") session_start();
 				$_SESSION["error"] = "No hay datos con el id seleccionado.";
 				return false;
 			}
@@ -74,7 +74,7 @@
 			$deleted_at = setTimeStamp();
 			$sql = "UPDATE $table SET deleted_at='$deleted_at' WHERE id=$id";
 			mysqli_query($mysqli, $sql);
-			session_start();
+			if(session_status()==="") session_start();
 			$_SESSION["message"] = "El registro se eliminó correctamente";
 			mysqli_close($mysqli);
 		}
@@ -85,7 +85,7 @@
 			$deleted_at = setTimeStamp();
 			$sql = "UPDATE $table SET deleted_at=NULL WHERE id=$id";
 			mysqli_query($mysqli, $sql);
-			session_start();
+			if(session_status()==="") session_start();
 			$_SESSION["message"] = "El registro se restauró correctamente";
 			mysqli_close($mysqli);
 		}
@@ -106,7 +106,7 @@
 			// var_dump($sql);
 			// exit();
 
-			session_start();
+			if(session_status()==="") session_start();
 			if( mysqli_query( $mysqli, $sql ) )
 				$_SESSION["message"] = "Los datos se actualizaron correctamente.";
 			else

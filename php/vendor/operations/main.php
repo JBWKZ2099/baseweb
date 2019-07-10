@@ -65,7 +65,7 @@
 				$ret_arr[1] = true;
 			} else {
 				$arr = array("status" => "error_ext");
-				session_start();
+				if(session_status()==="") session_start();
 				$_SESSION["error"] = "La extensión del archivo subido no es correcta, debe ser ".$validate_ext;
 				$ret_arr[0] = null;
 				$ret_arr[1] = false;

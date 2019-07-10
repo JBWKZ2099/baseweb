@@ -17,7 +17,7 @@
 		selecciona_db($mysqli);
 
 		$Consulta = "INSERT INTO $tabla VALUES (";
-			for ($i=0; $i < count($datos); $i++) { 
+			for ($i=0; $i < count($datos); $i++) {
 				$Consulta = $Consulta.$datos[$i];
 				if ($i != count($datos)-1)
 					$Consulta.=",";
@@ -25,7 +25,7 @@
 			$Consulta.=")";
 
 		$pConsulta = consulta_tb($mysqli, $Consulta);
-		session_start();
+		if(session_status()==="") session_start();
 		if (!$pConsulta) {
 			$_SESSION["error"] = "Ocurrió un error: ".mysqli_error($mysqli);
 		}
@@ -56,7 +56,7 @@
 		if( mysqli_num_rows($result)>0 )
 			return true;
 		else {
-			session_start();
+			if(session_status()==="") session_start();
 			$_SESSION["error"] = "No hay datos con el id seleccionado.";
 			return false;
 		}
@@ -68,7 +68,7 @@
 		$deleted_at = setTimeStamp();
 		$sql = "UPDATE $table SET deleted_at='$deleted_at' WHERE id=$id";
 		mysqli_query($mysqli, $sql);
-		session_start();
+		if(session_status()==="") session_start();
 		$_SESSION["message"] = "El registro se eliminó correctamente";
 		mysqli_close($mysqli);
 	}
@@ -79,7 +79,7 @@
 		$deleted_at = setTimeStamp();
 		$sql = "UPDATE $table SET deleted_at=NULL WHERE id=$id";
 		mysqli_query($mysqli, $sql);
-		session_start();
+		if(session_status()==="") session_start();
 		$_SESSION["message"] = "El registro se restauró correctamente";
 		mysqli_close($mysqli);
 	}
@@ -87,7 +87,7 @@
 	function dataTable($post, $columns, $col_clean, $sql_data) {
 		$mysqli = conectar_db();
 		selecciona_db($mysqli);
-		// storing  request (ie, get/post) global array to a variable  
+		// storing  request (ie, get/post) global array to a variable
 		$requestData= $post;
 
 		// getting total number records without any search
@@ -115,9 +115,9 @@
 			$sql.=")";
 		}
 		$query=mysqli_query($mysqli, $sql);
-		$totalFiltered = mysqli_num_rows($query); // when there is a search parameter then we have to modify total number filtered rows as per search result. 
+		$totalFiltered = mysqli_num_rows($query); // when there is a search parameter then we have to modify total number filtered rows as per search result.
 		$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]." ".$requestData['order'][0]['dir']."  LIMIT ".$requestData['start'].", ".$requestData['length'];
-		/* $requestData['order'][0]['column'] contains colmun index, $requestData['order'][0]['dir'] contains order such as asc/desc  */	
+		/* $requestData['order'][0]['column'] contains colmun index, $requestData['order'][0]['dir'] contains order such as asc/desc  */
 		$query=mysqli_query($mysqli, $sql);
 
 		$data = array();
@@ -129,7 +129,7 @@
 			$data[] = $nestedData;
 		}
 		$json_data = array(
-			"draw" => intval( $requestData['draw'] ),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw. 
+			"draw" => intval( $requestData['draw'] ),   // for every request/draw by clientside , they send a number as a parameter, when they recieve a response/data they first check the draw number, so we are sending same number in draw.
 			"recordsTotal" => intval( $totalData ),  // total number of records
 			"recordsFiltered" => intval( $totalFiltered ), // total number of records after searching, if there is no searching then totalFiltered = totalData
 			"data" => $data   // total data array
@@ -153,8 +153,8 @@
 		$sql .= ", updated_at='$updated_at' WHERE id=$id";
 		// var_dump($sql);
 		// exit();
-		
-		session_start();
+
+		if(session_status()==="") session_start();
 		if( mysqli_query( $mysqli, $sql ) )
 			$_SESSION["message"] = "Los datos se actualizaron correctamente.";
 		else
@@ -162,13 +162,13 @@
 	}
 
 	function uploadPDF($files){
-		$upload_path = "../graficador/uploads/pdf/";				
+		$upload_path = "../graficador/uploads/pdf/";
 		$info = pathinfo( $_FILES["pdf"]["name"] ); // Get file info
 		$ext = $info["extension"]; // Get extension
 		$validate_ext = "pdf";
 
 		$ret_arr = array();
-		
+
 		if( $ext==$validate_ext ) {
 			$fname = $info["filename"]; // Get file name without extension
 			$rand = date("Y_m_d_Gis"); // Generate rand string (date)
@@ -179,7 +179,7 @@
 			$ret_arr[1] = true;
 		} else {
 			$arr = array("status" => "error_ext");
-			session_start();
+			if(session_status()==="") session_start();
 			$_SESSION["error"] = "La extensión del archivo subido no es correcta, debe ser ".$validate_ext;
 			$ret_arr[0] = null;
 			$ret_arr[1] = false;

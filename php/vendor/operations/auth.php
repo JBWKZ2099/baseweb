@@ -1,5 +1,5 @@
 <?php
-	// session_start();
+	// if(session_status()==="") session_start();
 	// logout();
 	// unset( $_SESSION );
 	// $pswd_ed = "abc123";

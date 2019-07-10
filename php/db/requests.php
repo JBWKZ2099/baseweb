@@ -265,7 +265,7 @@
 				  // exit();
 					DB::registro_nuevo($tabla, $datos, $columna);
 				} else {
-					session_start();
+					if(session_status()==="") session_start();
 					$_SESSION["error"] = "Ocurrió un error: No se pudo crear el blog.";
 				}
 				Redirect::to($up_dir."admin/blogs");
@@ -580,7 +580,7 @@
 
 				if( isset( $email ) && isset( $name ) && isset( $comment ) ) {
 					$errors = 0;
-					session_start();
+					if(session_status()==="") session_start();
 					$errors = "<ul>";
 					if( empty($email) ) {
 						$errors .= "<li>El campo 'E-MAIL' es requerido.</li>";

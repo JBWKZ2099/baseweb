@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	if(session_status()==="") session_start();
 	if( !isset($_SESSION['_success']) ) {
 		// echo "<script> window.location.href = 'contacto.php' </script>";
 		header("Location: index");

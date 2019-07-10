@@ -14,10 +14,12 @@
 		Connection::selecciona_db($mysqli);
 		mysqli_query ($mysqli,"SET NAMES 'UTF8';");
 
+		$page = 1;
+
 		if( isset($_GET["page"]) )
 			$page = $_GET["page"];
-		else
-			$page = 1;
+
+		// dd( wblog() );
 
 		if(wblog() == "no") {
 			if( isset($_GET["search"]) && !empty($_GET["search"]) ) // If user searchs something
@@ -25,7 +27,8 @@
 			else
 				$search = null;
 
-			$blog = blog_actual($mysqli, $tabla, null, null, null, $page, $search); $blogroot = "false";
+			$blog = blog_actual($mysqli, $tabla, null, null, null, $page, $search);
+			$blogroot = "false";
 		} else {
 			$blogroot = "true";
 			$ssblog = blog_ver($mysqli, $tabla, wblog()['idblog'], 1);
@@ -45,7 +48,7 @@
 </head>
 <body>
 	<?php $active="blog"; include("structure/navbar.php"); ?>
-	<?php if($blogroot == 'true') { ?>
+	<?php dd($blogroot); if($blogroot == 'true') { ?>
 		<?php if(isset($blog[0]['name']) || isset($ssblog[0]['name'])) { ?>
 			<?php $bg_color="bg-black"; $blog = true; ?>
 			<section class="container-fluid">
@@ -93,7 +96,7 @@
 		<?php } else { ?>
 			<?php if( isset($catblog) && !empty($catblog) && $show_catblog>0 ) { ?>
 				<?php
-				// var_dump($catblog[0]["type"]);
+					// dd($catblog[0]["type"]);
 					if( isset($catblog[0]["type"]) && !empty($catblog[0]["type"]) ) {
 						$type = $catblog[0]["type"];
 						$val = $catblog[0]["category"];
@@ -297,7 +300,7 @@
 					array_pop($blog); /*Delete last array element*/
 					$blogs = $blog;
 
-					if( $_GET["page"]<=$blog[0]["pages"] ) { ?>
+					if( isset($_GET["page"]) && !empty($_GET["page"]) && $_GET["page"]<=$blog[0]["pages"] ) { ?>
 						<?php if( isset($blogs) && !empty($blogs) ) { ?>
 							<div id="blogs-container" class="col-md-12">
 								<div class="row align-items-center">
@@ -407,7 +410,7 @@
 					</div>
 				<?php } ?>
 			</div>
-			<?php if( $blog["pages"]!=null ) { ?>
+			<?php if( isset($blog["pages"]) && !empty($blog["pages"]) && $blog["pages"]!=null ) { ?>
 				<div id="section-paginate" class="col-md-12 mt-3 mt-md-5">
 				  <ul class="pagination pagination-black justify-content-center">
 				    <li class="page-item"><a class="page-link" href="<?php if($page>1) echo "blog?page=".($_GET["page"]-1); else echo "#"; ?>">Anterior</a></li>

@@ -8,7 +8,7 @@
 			// var_dump($exccom);
 
 			$categories = categories_list($mysqli);
-			dd( $categories );
+			// dd( $categories );
 		?>
 		<ul class="nav nav-fill custom-dropdown">
 		  <li class="nav-item dropdown">

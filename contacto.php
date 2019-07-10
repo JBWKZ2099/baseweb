@@ -45,7 +45,7 @@
 <body>
 	<?php $active="contact"; include(/*$dir.*/"structure/navbar.php"); ?>
 	<?php /*ALERTAS DE ERROR O ÉXITO*/ ?>
-	<?php session_start(); include("alerts/alerts.php"); ?>
+	<?php if(session_status()==="") session_start(); include("alerts/alerts.php"); ?>
 
 	<section class="bg-default-02 pt-60 pb-60">
 		<div class="container-custom">

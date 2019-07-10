@@ -1,5 +1,5 @@
 <?php
-	session_start();
+	if(session_status()==="") session_start();
 
 	if( !isset($_SESSION["auth"]) && !$_SESSION["auth"] ) {
 		header("Location: ../admin/login");
@@ -14,7 +14,7 @@
 
 	if( $now > $_SESSION["expire"] ) {
 		session_destroy();
-		session_start();
+		if(session_status()==="") session_start();
 		$_SESSION["error"] = "La sesión expiró, por favor inicia sesión de nuevo.";
 		header("Location: ../admin/login");
 		exit;
