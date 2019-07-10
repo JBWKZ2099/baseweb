@@ -170,5 +170,7 @@
 		}
 	}
 
+	// Ejectar el siguiente comando para generar las lineas necesarias en composer
+	// $ composer dump
 	// Fuente: https://vegibit.com/composer-autoloading-tutorial/
 ?>
