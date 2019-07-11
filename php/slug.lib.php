@@ -48,7 +48,7 @@
       dd("do stuff");
     } else {
       // dd("blog root");
-      return "root";
+      return 1;
     }
   }
 
