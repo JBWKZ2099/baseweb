@@ -1,10 +1,10 @@
 <?php
 	class Times {
-		public function test() {
+		public static function test() {
 			echo "HOLA";
 		}
 
-		public function fileTime( $asset_path ) {
+		public static function fileTime( $asset_path ) {
 		  include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
 		  $path = $env->APP_URL;
 		  $has_http = strpos($asset_path, "http");
@@ -19,7 +19,7 @@
 		  echo $asset;
 		}
 
-		public function setTimeStamp() {
+		public static function setTimeStamp() {
 			date_default_timezone_set("UTC");
 			date_default_timezone_set("America/Mexico_City");
 			return date("Y-m-d H:i:s");
@@ -28,7 +28,7 @@
 
 
 	class Redirect {
-		public function to($location=null) {
+		public static function to($location=null) {
 			if($location){
 				if(is_numeric($location)){
 					switch ($location) {
@@ -41,13 +41,13 @@
 
 				}//fin if
 				header('Location: ' . $location);
-				exit();
+				// exit();
 			}//fin if
 		}
 	}
 
 	class Files {
-		public function uploadPDF($files){
+		public static function uploadPDF($files){
 			$upload_path = "../graficador/uploads/pdf/";
 			$info = pathinfo( $_FILES["pdf"]["name"] ); // Get file info
 			$ext = $info["extension"]; // Get extension

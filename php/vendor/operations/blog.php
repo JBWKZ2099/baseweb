@@ -1,8 +1,8 @@
 <?php
 	class Blog {
-		public function test() { echo "HOLA"; }
+		public static function test() { echo "HOLA"; }
 
-	  public function slugger($text) {
+	  public static function slugger($text) {
 	    // replace non letter or digits by -
 	    $text = preg_replace('~[^\pL\d]+~u', '-', $text);
 
@@ -28,7 +28,7 @@
 	    return $text;
 	  }
 
-	  public function blogUrl() {
+	  public static function blogUrl() {
 	    $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	    $blog = explode('blog/', $actual_link);
 	    $url = "";
@@ -55,7 +55,7 @@
 	    }
 	  }
 
-	  public function all() {
+	  public static function all() {
 	  	$mysqli = Connection::conectar_db();
 	  	Connection::selecciona_db($mysqli);
 	  	mysqli_query ($mysqli,"SET NAMES 'UTF8';");
@@ -121,7 +121,7 @@
 	  	return $blogs;
 	  }
 
-	  public function selectedBlog($category=null,$subcategory=null,$product=null) {
+	  public static function selectedBlog($category=null,$subcategory=null,$product=null) {
 	  	// var_dump($category);
 	  	// var_dump($subcategory);
 	  	// var_dump($product);
@@ -192,7 +192,7 @@
 	  	return $blogs;
 	  }
 
-	  // public function wblog() {
+	  // public static function wblog() {
 	  //   $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 	  //   $blog = explode('blog/', $actual_link);
 
@@ -234,7 +234,7 @@
 	  //   } else return "no";
 	  // }
 
-	  public function isFile() {
+	  public static function isFile() {
 	    $actual_link = (isset($_SERVER["HTTPS"]) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 	    $ider = explode("-", $actual_link);
@@ -260,7 +260,7 @@
 	    return $array;
 	  }
 
-	/*  public function isFile() {
+	/*  public static function isFile() {
 	    $actual_link = (isset($_SERVER["HTTPS"]) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
 
 	    $ider = explode("-", $actual_link);
@@ -284,7 +284,7 @@
 	    return $array;
 	  }*/
 
-	  public function blog_actual($mysqli, $tabla, $category, $type, $btype, $page, $search) {
+	  public static function blog_actual($mysqli, $tabla, $category, $type, $btype, $page, $search) {
 	    // '$page' es la página actual ($_GET["page"])
 	    // '$total' es el total de registros y se ocupa para poder calcular el número de resultados por página
 	    // '$total_pages' guarda la cantidad total de páginas
@@ -393,7 +393,7 @@
 	    mysqli_close($mysqli);
 	  }
 
-	  public function categories_list($mysqli) {
+	  public static function categories_list($mysqli) {
 	    $sql = "SELECT * FROM categories ";
 
 	    $query = mysqli_query($mysqli,$sql);
@@ -409,7 +409,7 @@
 	    mysqli_close($mysqli);
 	    }
 
-	  public function blogs_from_cat($mysqli,$category) {
+	  public static function blogs_from_cat($mysqli,$category) {
 	    $sql = "SELECT * FROM blogs WHERE category = $category";
 
 	    $query = mysqli_query($mysqli,$sql);
@@ -424,7 +424,7 @@
 	    mysqli_close($mysqli);
 	  }
 
-	  public function blogs_list($mysqli, $type){
+	  public static function blogs_list($mysqli, $type){
 	    $sql = "SELECT * FROM blogs WHERE status = '1' AND type = '".$type."' ORDER BY created_at DESC ";
 
 	    $query = mysqli_query($mysqli,$sql);
@@ -463,7 +463,7 @@
 	    mysqli_close($mysqli);
 	  }
 
-	  public function blog_ver($mysqli, $tabla, $id, $type){
+	  public static function blog_ver($mysqli, $tabla, $id, $type){
 	    if( $id = explode("?", $id) )
 	      $id = $id[0];
 
@@ -607,7 +607,7 @@
 	    mysqli_close($mysqli);
 	  }
 
-	  public function blog_at($mysqli, $tabla, $types, $noid){
+	  public static function blog_at($mysqli, $tabla, $types, $noid){
 	    if($types == "Diseño de Software") $types = '1';
 	    if($types == "Marketing Digital") $types = '2';
 	    if($types == "Diseño Gráfico Digital") $types = '3';
@@ -644,7 +644,7 @@
 	    mysqli_close($mysqli);
 	  }
 
-	  public function getComments($mysqli,$id_blog) {
+	  public static function getComments($mysqli,$id_blog) {
 	    $sql = "SELECT * FROM blog_comments WHERE id_blog=$id_blog";
 	    $res = mysqli_query($mysqli,$sql);
 	    $count = mysqli_num_rows($res);

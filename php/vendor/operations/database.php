@@ -1,6 +1,6 @@
 <?php
 	class Connection {
-		public function conectar_db() {
+		public static function conectar_db() {
 			include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
 
 			$mysqli = mysqli_connect($env->DB_HOST, $env->DB_USERNAME, $env->DB_PASSWORD) 	or die ('No se pudo establecer la conexión al servidor.');
@@ -9,16 +9,16 @@
 			return $mysqli;
 		}
 
-		public function selecciona_db($mysqli) {
+		public static function selecciona_db($mysqli) {
 			include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
 			mysqli_select_db($mysqli, $env->DB_DATABASE) or die ('No se pudo establecer la conexión con la Base de Datos, error: '.mysqli_error($mysqli));
 		}
 
-		public function cerrar_db($mysqli) { mysqli_close($mysqli); }
+		public static function cerrar_db($mysqli) { mysqli_close($mysqli); }
 	}
 
 	class DB {
-		public function registro_nuevo($tabla, $datos, $columna){
+		public static function registro_nuevo($tabla, $datos, $columna){
 			$mysqli = Connection::conectar_db();
 			Connection::selecciona_db($mysqli);
 
@@ -42,7 +42,7 @@
 			Connection::cerrar_db($mysqli);
 		}
 
-		public function consulta_tb($mysqli, $Sql){
+		public static function consulta_tb($mysqli, $Sql){
 				global $resultado;
 				$resultado = mysqli_query($mysqli, $Sql);
 				if($resultado <> NULL){
@@ -53,7 +53,7 @@
 				mysqli_close($mysqli);
 		}
 
-		public function validateData($id, $table) {
+		public static function validateData($id, $table) {
 			$mysqli = Connection::conectar_db();
 			Connection::selecciona_db($mysqli);
 			$sql = "SELECT * FROM $table WHERE id=$id";
@@ -68,7 +68,7 @@
 			}
 		}
 
-		public function deleteRecord($id, $table) {
+		public static function deleteRecord($id, $table) {
 			$mysqli = Connection::conectar_db();
 			Connection::selecciona_db($mysqli);
 			$deleted_at = setTimeStamp();
@@ -79,7 +79,7 @@
 			mysqli_close($mysqli);
 		}
 
-		public function restoreRecord($id, $table) {
+		public static function restoreRecord($id, $table) {
 			$mysqli = Connection::conectar_db();
 			Connection::selecciona_db($mysqli);
 			$deleted_at = setTimeStamp();
@@ -90,7 +90,7 @@
 			mysqli_close($mysqli);
 		}
 
-		public function updateData($id, $columns, $datas, $table) {
+		public static function updateData($id, $columns, $datas, $table) {
 			$mysqli = Connection::conectar_db();
 			Connection::selecciona_db($mysqli);
 
@@ -115,7 +115,7 @@
 	}
 
 	class DataTables {
-		public function dataTable($post, $columns, $col_clean, $sql_data) {
+		public static function dataTable($post, $columns, $col_clean, $sql_data) {
 			$mysqli = Connection::conectar_db();
 			Connection::selecciona_db($mysqli);
 			// storing  request (ie, get/post) global array to a variable

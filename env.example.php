@@ -1,5 +1,5 @@
 <?php
-	if(session_status()==="") session_start();
+	session_start();
 	ini_set("display_errors",0);
 	/**
 	 * Code to make absoulute paths (example: http://www.domain-name.com/assets/img/img_name.jpg);

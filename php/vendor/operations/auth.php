@@ -2,13 +2,15 @@
 	// if(session_status()==="") session_start();
 	// logout();
 	// unset( $_SESSION );
-	// $pswd_ed = "abc123";
-	// echo $pswd_encrypted = cryptBlowfish("$pswd_ed");
+	// $pswd_ed = "asdasd";
+	// echo $pswd_encrypted = Auth::cryptBlowfish("$pswd_ed");
+	// exit();
 
 	class Auth {
-		public function validateLogin($usr, $pswd) {
+		public static function validateLogin($usr, $pswd) {
 			$mysqli = Connection::conectar_db();
 			Connection::selecciona_db( $mysqli );
+
 
 			$sql = "SELECT * FROM users WHERE username = '$usr' AND deleted_at IS NULL";
 			$result = mysqli_query( $mysqli, $sql );
@@ -24,7 +26,7 @@
 			}
 		}
 
-		public function loginAfterReg($username) {
+		public static function loginAfterReg($username) {
 			$_SESSION["auth"] = true;
 			$_SESSION["usr"] = $username;
 			$_SESSION["start"] = time();
@@ -32,12 +34,12 @@
 			/* Si se desea modificar el tiempo de la sesión, también hay que modificar el archivo /php/db/session.php */
 		}
 
-		public function check() {
+		public static function check() {
 			if( isset($_SESSION["auth"]) ) return true;
 			else return false;
 		}
 
-		public function user() {
+		public static function user() {
 			$mysqli = Connection::conectar_db();
 			Connection::selecciona_db( $mysqli );
 			$usr = $_SESSION["usr"];
@@ -50,7 +52,7 @@
 			return $response;
 		}
 
-		public function logout() {
+		public static function logout() {
 			/*Vaciar sesión*/
 			$_SESSION = array();
 			/*Destruir Sesión*/
@@ -59,12 +61,12 @@
 			Redirect::to("../../admin/");
 		}
 
-		public function checkPass($pswd, $db_pswd) {
+		public static function checkPass($pswd, $db_pswd) {
 			if( crypt($pswd, $db_pswd) == $db_pswd ) return true;
 			else return false;
 		}
 
-		public function cryptBlowfish($psswd, $dig=7) {
+		public static function cryptBlowfish($psswd, $dig=7) {
 			$set_salt = "./1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 			$salt = sprintf('$2a$%02d$', $dig);
 
