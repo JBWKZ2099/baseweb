@@ -2,7 +2,7 @@
 	$root = realpath($_SERVER["DOCUMENT_ROOT"])."/";
 	require $root."php/vendor/autoload.php";
 
-	$company_name = "Brand";
+	$company_name = $env->APP_NAME;
 	/**
 	 * Code to make absoulute paths (example: http://www.domain-name.com/assets/img/img_name.jpg);
 	 */
@@ -12,7 +12,7 @@
 	 */
 	$abs_path = (!empty($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'];
 
-	$app_name = "base-b4";
+	$app_name = "base";
 
 	switch( $abs_path ) {
 		case "http://localhost":
@@ -24,7 +24,7 @@
 			break;
 
 		default:
-			$abs_path .= "/admin";
+			$abs_path .= "/";
 			break;
 	}
   // $path = $_SERVER['HTTP_HOST'] == 'localhost:8888' ? '/fabricadesoluciones.com/' : '';

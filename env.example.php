@@ -31,9 +31,9 @@
 		"DB_CONNECTION" => "mysql",
 		"DB_HOST" => "127.0.0.1",
 		"DB_CHARSET" => "utf8",
-		"DB_DATABASE" => "base",
+		"DB_DATABASE" => "consanhidb",
 		"DB_USERNAME" => "root",
-		"DB_PASSWORD" => "root",
+		"DB_PASSWORD" => "",
 		"MAIL_USER" => "",
 		"MAIL_PASSWORD" => "",
 		"GRECAPTCHA_VERSION" => "v3", // Could be V2 too

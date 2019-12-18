@@ -71,7 +71,7 @@
 		public static function deleteRecord($id, $table) {
 			$mysqli = Connection::conectar_db();
 			Connection::selecciona_db($mysqli);
-			$deleted_at = setTimeStamp();
+			$deleted_at = Times::setTimeStamp();
 			$sql = "UPDATE $table SET deleted_at='$deleted_at' WHERE id=$id";
 			mysqli_query($mysqli, $sql);
 			if(session_status()==="") session_start();
@@ -82,7 +82,7 @@
 		public static function restoreRecord($id, $table) {
 			$mysqli = Connection::conectar_db();
 			Connection::selecciona_db($mysqli);
-			$deleted_at = setTimeStamp();
+			$deleted_at = Times::setTimeStamp();
 			$sql = "UPDATE $table SET deleted_at=NULL WHERE id=$id";
 			mysqli_query($mysqli, $sql);
 			if(session_status()==="") session_start();
@@ -101,7 +101,7 @@
 					$sql .= ", ";
 			}
 			$sql = rtrim($sql,", ");
-			$updated_at = setTimeStamp();
+			$updated_at = Times::setTimeStamp();
 			$sql .= ", updated_at='$updated_at' WHERE id=$id";
 			// var_dump($sql);
 			// exit();

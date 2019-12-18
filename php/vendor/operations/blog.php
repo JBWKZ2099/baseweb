@@ -91,6 +91,7 @@
 	  	";
 	  	$res = DB::consulta_tb($mysqli,$query);
 	  	$blogs = [];
+			// dd( $query );
 
 	  	while( $row = mysqli_fetch_array($res) ) {
 	  		$blogs[] = [

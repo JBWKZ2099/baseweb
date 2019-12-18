@@ -12,10 +12,10 @@
         </li>
         <?php if( Auth::user()->permission==1 ) { ?>
           <li <?php if( $active_opt=="charts-create" ) echo "class='active'"; ?>>
-            <a href="<?php echo $abs_path."/"; ?>charts-create">Crear / Actualizar</a>
+            <a href="<?php echo $abs_path."admin/"; ?>charts-create">Crear / Actualizar</a>
           </li>
           <li <?php if( $active_opt=="charts-update" ) echo "class='active'"; ?>>
-            <a href="<?php echo $abs_path."/"; ?>charts-update">Actualizar títulos</a>
+            <a href="<?php echo $abs_path."admin/"; ?>charts-update">Actualizar títulos</a>
           </li>
         <?php } ?>
       </ul>
@@ -28,14 +28,14 @@
       </a>
       <ul class="sidenav-second-level collapse <?php if( $collapse=="historic" ) echo "show"; ?>" id="historyCollapse">
         <li <?php if( $active_opt=="historic-view" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>historics">Lista de Históricos</a>
+          <a href="<?php echo $abs_path."admin/"; ?>historics">Lista de Históricos</a>
         </li>
         <?php if( Auth::user()->permission==1 ) { ?>
           <li <?php if( $active_opt=="historic-create" ) echo "class='active'"; ?>>
-            <a href="<?php echo $abs_path."/"; ?>historics-create">Agregar Histórico</a>
+            <a href="<?php echo $abs_path."admin/"; ?>historics-create">Agregar Histórico</a>
           </li>
           <li <?php if( $active_opt=="historic-deleted" ) echo "class='active'"; ?>>
-            <a href="<?php echo $abs_path."/"; ?>historics-deleted">Históricos Eliminados</a>
+            <a href="<?php echo $abs_path."admin/"; ?>historics-deleted">Históricos Eliminados</a>
           </li>
         <?php } ?>
       </ul>
@@ -50,13 +50,13 @@
       </a>
       <ul class="sidenav-second-level collapse <?php if( $collapse=="blog" ) echo "show"; ?>" id="blogCollapse">
         <li <?php if( $active_opt=="blog-view" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>blogs">Lista de <?php echo $word_menu; ?>s</a>
+          <a href="<?php echo $abs_path."admin/"; ?>blogs">Lista de <?php echo $word_menu; ?>s</a>
         </li>
         <li <?php if( $active_opt=="blog-create" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>blogs-create">Agregar <?php echo $word_menu; ?></a>
+          <a href="<?php echo $abs_path."admin/"; ?>blogs-create">Agregar <?php echo $word_menu; ?></a>
         </li>
         <li <?php if( $active_opt=="blog-deleted" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>blogs-deleted"><?php echo $word_menu; ?>s Eliminados</a>
+          <a href="<?php echo $abs_path."admin/"; ?>blogs-deleted"><?php echo $word_menu; ?>s Eliminados</a>
         </li>
       </ul>
     </li>
@@ -70,13 +70,13 @@
       </a>
       <ul class="sidenav-second-level collapse <?php if( $collapse=="category" ) echo "show"; ?>" id="categoryCollapse">
         <li <?php if( $active_opt=="category-view" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>categories">Lista de <?php echo $word_menu; ?>s</a>
+          <a href="<?php echo $abs_path."admin/"; ?>categories">Lista de <?php echo $word_menu; ?>s</a>
         </li>
         <li <?php if( $active_opt=="category-create" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>categories-create">Agregar <?php echo $word_menu; ?></a>
+          <a href="<?php echo $abs_path."admin/"; ?>categories-create">Agregar <?php echo $word_menu; ?></a>
         </li>
         <li <?php if( $active_opt=="category-deleted" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>categories-deleted"><?php echo $word_menu; ?>s Eliminadas</a>
+          <a href="<?php echo $abs_path."admin/"; ?>categories-deleted"><?php echo $word_menu; ?>s Eliminadas</a>
         </li>
       </ul>
     </li>
@@ -90,13 +90,13 @@
       </a>
       <ul class="sidenav-second-level collapse <?php if( $collapse=="subcategory" ) echo "show"; ?>" id="subcategoryCollapse">
         <li <?php if( $active_opt=="subcategory-view" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>subcategories">Lista de <?php echo $word_menu ?>s</a>
+          <a href="<?php echo $abs_path."admin/"; ?>subcategories">Lista de <?php echo $word_menu ?>s</a>
         </li>
         <li <?php if( $active_opt=="subcategory-create" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>subcategories-create">Agregar <?php echo $word_menu ?></a>
+          <a href="<?php echo $abs_path."admin/"; ?>subcategories-create">Agregar <?php echo $word_menu ?></a>
         </li>
         <li <?php if( $active_opt=="subcategory-deleted" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>subcategories-deleted"><?php echo $word_menu ?>s Eliminadas</a>
+          <a href="<?php echo $abs_path."admin/"; ?>subcategories-deleted"><?php echo $word_menu ?>s Eliminadas</a>
         </li>
       </ul>
     </li>
@@ -110,13 +110,13 @@
       </a>
       <ul class="sidenav-second-level collapse <?php if( $collapse=="customer" ) echo "show"; ?>" id="customerCollapse">
         <li <?php if( $active_opt=="customer-view" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>customers">Lista de <?php echo $word_menu; ?>s</a>
+          <a href="<?php echo $abs_path."admin/"; ?>customers">Lista de <?php echo $word_menu; ?>s</a>
         </li>
         <li <?php if( $active_opt=="customer-create" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>customers-create">Agregar <?php echo $word_menu; ?></a>
+          <a href="<?php echo $abs_path."admin/"; ?>customers-create">Agregar <?php echo $word_menu; ?></a>
         </li>
         <li <?php if( $active_opt=="customer-deleted" ) echo "class='active'"; ?>>
-          <a href="<?php echo $abs_path."/"; ?>customers-deleted"><?php echo $word_menu; ?>s Eliminados</a>
+          <a href="<?php echo $abs_path."admin/"; ?>customers-deleted"><?php echo $word_menu; ?>s Eliminados</a>
         </li>
       </ul>
     </li>

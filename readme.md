@@ -82,3 +82,17 @@ access_log
 uploads
 admin/uploads
 ```
+
+#Nota importante
+Si se sube el proyecto a un server compartido, es decir que si la ruta del proyecto queda algo así:
+http://nombredominio.com/baseweb
+
+Entonces los archivos que hay que modificar son las siguientes:
+```
+/php/header.lib.php
+/php/db/requests.php
+/admin/structure/head.php
+/php/vendor/operations/database.php
+```
+
+Lo que hay que agregar es el nombre de la carpeta del proyecto, en este caso sería "baseweb".

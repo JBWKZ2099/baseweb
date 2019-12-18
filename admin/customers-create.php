@@ -15,8 +15,8 @@
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
-	<script src="<?php echo $abs_path."/"; ?>assets/js/datatables/jquery.js"></script>
-	<script src="<?php echo $abs_path."/"; ?>assets/js/datatables/jquery.dataTables.js"></script>
+	<script src="<?php echo $abs_path."admin/"; ?>assets/js/datatables/jquery.js"></script>
+	<script src="<?php echo $abs_path."admin/"; ?>assets/js/datatables/jquery.dataTables.js"></script>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<?php

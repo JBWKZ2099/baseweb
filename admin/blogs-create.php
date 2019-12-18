@@ -16,8 +16,8 @@
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
-	<script src="<?php echo $abs_path."/"; ?>assets/js/datatables/jquery.js"></script>
-	<script src="<?php echo $abs_path."/"; ?>assets/js/datatables/jquery.dataTables.js"></script>
+	<script src="<?php echo $abs_path."admin/"; ?>assets/js/datatables/jquery.js"></script>
+	<script src="<?php echo $abs_path."admin/"; ?>assets/js/datatables/jquery.dataTables.js"></script>
 	<script src="//cdn.ckeditor.com/4.10.0/full/ckeditor.js"></script>
 	<script src="assets/js/validateFormEdit.js"></script>
 	<script src="assets/js/select-scripts.js"></script>

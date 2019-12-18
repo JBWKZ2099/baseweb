@@ -14,6 +14,8 @@
 		Connection::selecciona_db($mysqli);
 		mysqli_query ($mysqli,"SET NAMES 'UTF8';");
 
+		$res = DB::consulta_tb($mysqli,"SELECT * FROM $tabla");
+
 		$root = Blog::blogUrl();
 		// dd( $root );
 
