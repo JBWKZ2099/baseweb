@@ -1,7 +1,7 @@
 <?php
-	require realpath($_SERVER["DOCUMENT_ROOT"])."/"."php/vendor/autoload.php";
-  include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
-	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
+	session_start(); require $_SESSION["path"]["autoload"];
+  include( $_SESSION["path"]["env"] );
+	include( $_SESSION["path"]["auth"] );
 
 	if( !Auth::check() ) {
 ?>
@@ -34,7 +34,7 @@
 							</div>
 							<div class="card-body">
 								<?php include("../alerts/errors.php"); ?>
-								<form id="needs-validation" action="../php/db/requests.php" method="POST" autocomplete="off" novalidate>
+								<form id="needs-validation" action="<?php echo $env->APP_URL ?>php/db/requests.php" method="POST" autocomplete="off" novalidate>
 									<input type="hidden" name="request" value="login">
 									<div class="form-group">
 										<label for="username">Usuario</label>

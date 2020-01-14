@@ -1,7 +1,8 @@
 <?php
 	class Connection {
 		public static function conectar_db() {
-			include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
+			session_start();
+			include( $_SESSION["path"]["env"] );
 
 			$mysqli = mysqli_connect($env->DB_HOST, $env->DB_USERNAME, $env->DB_PASSWORD) 	or die ('No se pudo establecer la conexión al servidor.');
 			mysqli_query($mysqli, 'SET NAMES "utf8"');
@@ -10,7 +11,8 @@
 		}
 
 		public static function selecciona_db($mysqli) {
-			include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
+			session_start();
+			include( $_SESSION["path"]["env"] );
 			mysqli_select_db($mysqli, $env->DB_DATABASE) or die ('No se pudo establecer la conexión con la Base de Datos, error: '.mysqli_error($mysqli));
 		}
 
@@ -30,9 +32,10 @@
 			}
 			$Consulta.=")";
 
+			// dd( $Consulta );
 			$pConsulta = DB::consulta_tb($mysqli, $Consulta);
 
-			if(session_status()==="") session_start();
+			session_start();
 			if (!$pConsulta) {
 				$_SESSION["error"] = "Ocurrió un error: ".mysqli_error($mysqli);
 			}
@@ -62,7 +65,7 @@
 			if( mysqli_num_rows($result)>0 )
 				return true;
 			else {
-				if(session_status()==="") session_start();
+				session_start();
 				$_SESSION["error"] = "No hay datos con el id seleccionado.";
 				return false;
 			}
@@ -74,7 +77,7 @@
 			$deleted_at = Times::setTimeStamp();
 			$sql = "UPDATE $table SET deleted_at='$deleted_at' WHERE id=$id";
 			mysqli_query($mysqli, $sql);
-			if(session_status()==="") session_start();
+			session_start();
 			$_SESSION["message"] = "El registro se eliminó correctamente";
 			mysqli_close($mysqli);
 		}
@@ -85,7 +88,7 @@
 			$deleted_at = Times::setTimeStamp();
 			$sql = "UPDATE $table SET deleted_at=NULL WHERE id=$id";
 			mysqli_query($mysqli, $sql);
-			if(session_status()==="") session_start();
+			session_start();
 			$_SESSION["message"] = "El registro se restauró correctamente";
 			mysqli_close($mysqli);
 		}
@@ -106,7 +109,7 @@
 			// var_dump($sql);
 			// exit();
 
-			if(session_status()==="") session_start();
+			session_start();
 			if( mysqli_query( $mysqli, $sql ) )
 				$_SESSION["message"] = "Los datos se actualizaron correctamente.";
 			else
@@ -149,6 +152,7 @@
 			$totalFiltered = mysqli_num_rows($query); // when there is a search parameter then we have to modify total number filtered rows as per search result.
 			$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]." ".$requestData['order'][0]['dir']."  LIMIT ".$requestData['start'].", ".$requestData['length'];
 			/* $requestData['order'][0]['column'] contains colmun index, $requestData['order'][0]['dir'] contains order such as asc/desc  */
+			// dd( $sql );
 			$query=mysqli_query($mysqli, $sql);
 
 			$data = array();

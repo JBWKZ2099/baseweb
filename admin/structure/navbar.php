@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-  <a class="navbar-brand text-center" href="<?php echo $abs_path; ?>">
+  <a class="navbar-brand text-center" href="<?php echo $env->APP_URL_ADMIN; ?>">
     <img class="admin-logo" src="http://placehold.it/200x50.svg?text=BrandLogo" alt="LogoAdmin">
   </a>
   <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +16,7 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="<?php echo $env->APP_URL_ADMIN."customer-edit?id=".Auth::user()->id; ?>">
           <i class="fa fa-fw fa-user"></i>
           <?php
             echo Auth::user()->name." ".Auth::user()->first_name;

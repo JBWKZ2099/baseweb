@@ -1,7 +1,9 @@
 <?php
-	require realpath($_SERVER["DOCUMENT_ROOT"])."/"."php/vendor/autoload.php";
-  include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
-	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
+	session_start(); require $_SESSION["path"]["autoload"];
+  include( $_SESSION["path"]["env"] );
+	include( $_SESSION["path"]["auth"] );
+
+	// dd( $env );
 
 	if( Auth::check() ) {
 ?>

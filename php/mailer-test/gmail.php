@@ -6,7 +6,7 @@
 //SMTP needs accurate times, and the PHP time zone MUST be set
 //This should be done in your php.ini, but this is how to do it if you don't have access to that
 date_default_timezone_set('Etc/UTC');
-ini_set("display_errors",1);
+ini_set("display_errors",$_SESSION["d_errors"]);1);
 
 require 'PHPMailerAutoload.php';
 

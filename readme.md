@@ -7,7 +7,12 @@ You can use this base to develop your website using the most up-to-date CDNs:
 - [Font Awesome (JS)](https://fontawesome.com/)
 
 ## Changelog
-### v1.0.5 [WIP]
+### v2.0
+	- DB functions and some many others are classes now.
+	- Blog is now working with this structure.
+	- env.php implemented (Don't forget to copy env.example.php to .env to make this project works).
+	- All features included on v1.0.5 are already on this version.
+### v1.0.5
 	- core.css added - file which includes all core classes, (margin, padding, carousel-indicators), to see more please review /assets/css/core.css file.
 	- Clases h2-bigger, h3-bigger, h4-bigger, h5-bigger, h6-bigger added.
 	- Styles for h5 and h6 added to core.css
@@ -90,9 +95,6 @@ http://nombredominio.com/baseweb
 Entonces los archivos que hay que modificar son las siguientes:
 ```
 /php/header.lib.php
-/php/db/requests.php
-/admin/structure/head.php
-/php/vendor/operations/database.php
 ```
 
 Lo que hay que agregar es el nombre de la carpeta del proyecto, en este caso sería "baseweb".

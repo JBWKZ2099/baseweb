@@ -1,42 +1,10 @@
-<?php
-	$root = realpath($_SERVER["DOCUMENT_ROOT"])."/";
-	require $root."php/vendor/autoload.php";
-
-	$company_name = $env->APP_NAME;
-	/**
-	 * Code to make absoulute paths (example: http://www.domain-name.com/assets/img/img_name.jpg);
-	 */
-	$abs_path = (!empty($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'];
-	/**
-	 * Optimized code to work on local with virtualhosts or localhost or production server
-	 */
-	$abs_path = (!empty($_SERVER['HTTPS']) ? 'https' : 'http').'://'.$_SERVER['HTTP_HOST'];
-
-	$app_name = "base";
-
-	switch( $abs_path ) {
-		case "http://localhost":
-			$abs_path .= "/".$app_name."/";
-			break;
-
-		case "http://fabricadesoluciones.info":
-			$abs_path .= "/".$app_name."/";
-			break;
-
-		default:
-			$abs_path .= "/";
-			break;
-	}
-  // $path = $_SERVER['HTTP_HOST'] == 'localhost:8888' ? '/fabricadesoluciones.com/' : '';
-
-  // Times::fileTime("assets/css/sb-admin.css"); exit();
-?>
+<?php include( "../php/header.lib.php" ); ?>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
-<title> <?php echo $title." | ".$company_name; ?> </title>
+<title> <?php echo $title." | ".$env->APP_NAME; ?> </title>
 <!-- Bootstrap core CSS-->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" crossorigin="anonymous">
 <!-- Page level plugin CSS-->
@@ -53,7 +21,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 <!-- Page level plugin JavaScript-->
-<script src="<?php Times::fileTime("admin/vendor/chart.js/Chart.min.js") ?>"></script>
+<script src="<?php Times::fileTime("vendor/chart.js/Chart.min.js") ?>"></script>
 <!-- <script src="vendor/datatables/dataTables.bootstrap4.js"></script> -->
 <!-- Custom scripts for all pages-->
 <script src="<?php Times::fileTime("admin/assets/js/sb-admin.min.js") ?>"></script>
@@ -68,9 +36,9 @@
 </script>
 
 <?php
-	$query = $_SERVER['PHP_SELF'];
-	$path = pathinfo( $query );
-	$current = str_replace(".php", "", $path['basename']);
+	// $query = $_SERVER['PHP_SELF'];
+	// $env->APP_URL = pathinfo( $query );
+	$current = str_replace(".php", "", $env->APP_URL['basename']);
 
 	if( $current!="login" )
 		include("../php/db/session.php");

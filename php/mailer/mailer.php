@@ -6,7 +6,7 @@
 	//This should be done in your php.ini, but this is how to do it if you don't have access to that
 	date_default_timezone_set("America/Mexico_City");
 	setlocale(LC_ALL, "es_ES.UTF-8");
-	ini_set("display_errors",0);
+	ini_set("display_errors",$_SESSION["d_errors"]);
 
 	$_SESSION["_errors"] = "<ul>";
 	$_errors = 0;

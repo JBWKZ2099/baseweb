@@ -2,7 +2,7 @@
 	header('Content-Type: text/html; charset=utf-8');
 
 	/*Ya no muestra warnings y facilita el json parsing*/
-	ini_set("display_errors", 0);
+	ini_set("display_errors",$_SESSION["d_errors"]); 0);
 
 	if(session_status()==="") session_start();
 	$_SESSION["_errors"] = "<ul>";

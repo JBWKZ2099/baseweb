@@ -12,10 +12,10 @@
         ¿Está seguro que deseas eliminar este registro?
       </div>
       <div class="modal-footer">
-      	<form id="delete-form" action="../php/db/requests.php" method="POST">
+      	<form id="delete-form" action="<?php echo $env->APP_URL ?>php/db/requests.php" method="POST">
       		<input type="hidden" name="request" value="delete">
       		<input type="hidden" name="table" value="<?php echo $table; ?>">
-      		<input type="hidden" name="path" value="<?php echo $path; ?>">
+      		<input type="hidden" name="path" value="<?php echo $env->APP_URL_ADMIN.$_pth; ?>">
       		<input type="hidden" name="id" value="">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
 	        <button type="submit" class="btn btn-danger">Eliminar</button>

@@ -1,12 +1,15 @@
 <?php
-	require realpath($_SERVER["DOCUMENT_ROOT"])."/"."php/vendor/autoload.php";
-  include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
-	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
+	session_start(); require $_SESSION["path"]["autoload"];
+  include( $_SESSION["path"]["env"] );
+	include( $_SESSION["path"]["auth"] );
 
 	$word = "blog";
 	if( Auth::check() && Auth::user()->permission==1 ) {
 		$mysqli = Connection::conectar_db();
 		Connection::selecciona_db($mysqli);
+
+		$sql = "SELECT * FROM categories";
+		$result = DB::consulta_tb($mysqli, $sql);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -16,8 +19,8 @@
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
-	<script src="<?php echo $abs_path."admin/"; ?>assets/js/datatables/jquery.js"></script>
-	<script src="<?php echo $abs_path."admin/"; ?>assets/js/datatables/jquery.dataTables.js"></script>
+	<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.js"></script>
+	<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.dataTables.js"></script>
 	<script src="//cdn.ckeditor.com/4.10.0/full/ckeditor.js"></script>
 	<script src="assets/js/validateFormEdit.js"></script>
 	<script src="assets/js/select-scripts.js"></script>
@@ -45,7 +48,7 @@
 									include("../alerts/errors.php");
 									include("../alerts/success.php");
 								?>
-								<form action="<?php echo $abs_path."/"; ?>../php/db/requests.php" method="POST" enctype="multipart/form-data">
+								<form action="<?php echo $env->APP_URL ?>php/db/requests.php" method="POST" enctype="multipart/form-data">
 									<input type="hidden" name="request" value="create-<?php echo $word; ?>">
 									<input type="hidden" name="table" value="users">
 									<?php

@@ -12,10 +12,10 @@
         ¿Está seguro que deseas restaurar este registro?
       </div>
       <div class="modal-footer">
-        <form id="restore-form" action="../php/db/requests.php" method="POST">
+        <form id="restore-form" action="<?php echo $env->APP_URL ?>php/db/requests.php" method="POST">
           <input type="hidden" name="request" value="restore">
           <input type="hidden" name="table" value="<?php echo $table; ?>">
-          <input type="hidden" name="path" value="<?php echo $path; ?>">
+          <input type="hidden" name="path" value="<?php echo $env->APP_URL_ADMIN.$_pth; ?>">
           <input type="hidden" name="id" value="">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
           <button type="submit" class="btn btn-warning">Restaurar</button>

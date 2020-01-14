@@ -646,7 +646,7 @@
 	  }
 
 	  public static function getComments($mysqli,$id_blog) {
-	    $sql = "SELECT * FROM blog_comments WHERE id_blog=$id_blog";
+	    $sql = "SELECT * FROM blog_comments WHERE id_blog=$id_blog ORDER BY created_at DESC";
 	    $res = mysqli_query($mysqli,$sql);
 	    $count = mysqli_num_rows($res);
 

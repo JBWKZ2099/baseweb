@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	ini_set("display_errors",0);
+	ini_set("display_errors",$_SESSION["d_errors"]);
 	/**
 	 * Code to make absoulute paths (example: http://www.domain-name.com/assets/img/img_name.jpg);
 	 */

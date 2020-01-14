@@ -1,7 +1,7 @@
 <?php
-	require realpath($_SERVER["DOCUMENT_ROOT"])."/"."php/vendor/autoload.php";
-  include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
-	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
+	session_start(); require $_SESSION["path"]["autoload"];
+  include( $_SESSION["path"]["env"] );
+	include( $_SESSION["path"]["auth"] );
 
 	if( Auth::check() && Auth::user()->permission==1 ) {
 ?>
@@ -13,8 +13,8 @@
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
-	<script src="<?php echo $abs_path."admin/"; ?>assets/js/datatables/jquery.js"></script>
-	<script src="<?php echo $abs_path."admin/"; ?>assets/js/datatables/jquery.dataTables.js"></script>
+	<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.js"></script>
+	<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.dataTables.js"></script>
 
 	<?php $dt_restore=true; $dt_which="subcategory"; include("widgets/data-table-script.php"); ?>
 </head>
@@ -40,7 +40,7 @@
 	</a>
 	<?php
 		include("widgets/modal.php");
-		$table = $path = "subcategories";
+		$table = $_pth = "subcategories";
 		include("widgets/modal-restore.php");
 	?>
 </body>

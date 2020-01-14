@@ -1,7 +1,7 @@
 <?php
-	require realpath($_SERVER["DOCUMENT_ROOT"])."/"."php/vendor/autoload.php";
-  include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
-	include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
+	session_start(); require $_SESSION["path"]["autoload"];
+  include( $_SESSION["path"]["env"] );
+	include( $_SESSION["path"]["auth"] );
 
 	if( Auth::check() && Auth::user()->permission==1 ) {
 		if( isset($_GET["id"]) ) {
@@ -25,8 +25,8 @@
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
-	<script src="<?php echo $abs_path."admin/"; ?>assets/js/datatables/jquery.js"></script>
-	<script src="<?php echo $abs_path."admin/"; ?>assets/js/datatables/jquery.dataTables.js"></script>
+	<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.js"></script>
+	<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.dataTables.js"></script>
 </head>
 <body class="fixed-nav sticky-footer bg-dark" id="page-top">
 	<?php
@@ -47,7 +47,7 @@
 								Editando cliente
 							</div>
 							<div class="card-body">
-								<form action="../php/db/requests.php" method="POST">
+								<form action="<?php echo $env->APP_URL ?>php/db/requests.php" method="POST">
 									<input type="hidden" name="request" value="update-customer">
 									<input type="hidden" name="which" value="<?php echo $_GET["id"]; ?>">
 									<?php

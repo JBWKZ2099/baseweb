@@ -1,6 +1,8 @@
 <?php
-	require realpath($_SERVER["DOCUMENT_ROOT"])."/"."php/vendor/autoload.php";
-  include( realpath($_SERVER["DOCUMENT_ROOT"])."/"."env.php" );
+	session_start();
+	ini_set("display_errors",$_SESSION["d_errors"]);
+	require $_SESSION["path"]["autoload"];
+	include( $_SESSION["path"]["env"] );
 	// include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
 	$up_dir = "../../";
 
@@ -59,7 +61,7 @@
 				$sql_data = array(
 					0 => "$tbl.`id`, $tbl.`name`, $tbl.`first_name`, $tbl.`last_name`, $tbl.`username`, $tbl.`email`, $tbl.`permission`, $tbl2.`name` AS 'permission' ",
 					1 => $tbl,
-					2 => "INNER JOIN $tbl2 ON $tbl.`permission`=$tbl2.`id` WHERE $tbl.`deleted_at` IS NULL AND `permission` != 1 "
+					2 => "INNER JOIN $tbl2 ON $tbl.`permission`=$tbl2.`id` WHERE $tbl.`deleted_at` IS NULL "
 				);
 				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
@@ -208,61 +210,60 @@
 
 					$slug = slugger($_POST['name']);
 
-					$columna[0] = "id";
-					$columna[1] = "name";
-					$columna[2] = "subname";
-					$columna[3] = "author";
-					$columna[4] = "type";
-					$columna[5] = "category";
-					$columna[6] = "subcategory";
-					$columna[7] = "slug";
-					$columna[8] = "meta";
-					$columna[9] = "meta_keywords";
-					$columna[10] = "img";
-					$columna[11] = "img_alt";
-					$columna[12] = "cover";
-					$columna[13] = "cover_alt";
-					$columna[14] = "video";
-					$columna[15] = "body";
-					$columna[16] = "created_at";
-					$columna[17] = "edited_at";
-					$columna[18] = "deleted_at";
-					$columna[19] = "status";
+					$columna[] = "id";
+					$columna[] = "name";
+					$columna[] = "subname";
+					$columna[] = "author";
+					$columna[] = "type";
+					$columna[] = "category";
+					$columna[] = "subcategory";
+					$columna[] = "meta";
+					$columna[] = "meta_keywords";
+					$columna[] = "img";
+					$columna[] = "img_alt";
+					$columna[] = "cover";
+					$columna[] = "cover_alt";
+					$columna[] = "body";
+					$columna[] = "video";
+					$columna[] = "status";
+					$columna[] = "slug";
+					$columna[] = "created_at";
+					$columna[] = "edited_at";
+					$columna[] = "deleted_at";
 
 					if( $_POST['type']==2 || $_POST['type']==3 )
 						$category = NULL;
 					else
 						$category = $_POST['category'];
 
-					$datos[0] = "NULL";
-					$datos[1] = "'".$_POST['name']."'";
-					$datos[2] = "'NULL'";
-					$datos[3] = "'".$_POST['author']."'";
-					$datos[4] = "'".$_POST['type']."'";
-					$datos[5] = "'".$category."'";
-					$datos[6] = "'".$_POST['subcategory']."'";
-					$datos[7] = "'".$slug."'";
-					$datos[8] = "'".$_POST['meta']."'";
-					$datos[9] = "'".$_POST['meta_keywords']."'";
-					$datos[10] = "'".$name."'";
-					$datos[11] = "'".$_POST['img_alt']."'";
-					$datos[12] = "'".$cover_name."'";
-					$datos[13] = "'".$_POST['cover_alt']."'";
+					$datos[] = "NULL";
+					$datos[] = "'".$_POST['name']."'";
+					$datos[] = "'NULL'";
+					$datos[] = "'".$_POST['author']."'";
+					$datos[] = "'".$_POST['type']."'";
+					$datos[] = "'".$category."'";
+					$datos[] = "'".$_POST['subcategory']."'";
+					$datos[] = "'".$_POST['meta']."'";
+					$datos[] = "'".$_POST['meta_keywords']."'";
+					$datos[] = "'".$name."'";
+					$datos[] = "'".$_POST['img_alt']."'";
+					$datos[] = "'".$cover_name."'";
+					$datos[] = "'".$_POST['cover_alt']."'";
+					$datos[] = "'".str_replace('"', '\"', $_POST['body'])."'";
 
 					if( isset($_POST["is_video"]) && $_POST["is_video"]=="1" )
-						$datos[14] = "'".$_POST["url_video"]."'";
+						$datos[] = "'".$_POST["url_video"]."'";
 					else
-						$datos[14] = "NULL";
+						$datos[] = "NULL";
 
-					$datos[15] = "'".str_replace('"', '\"', $_POST['body'])."'";
-					$datos[16] = "'".Times::setTimeStamp()."'";
-					$datos[17] = "NULL";
-					$datos[18] = "NULL";
-					$datos[19] = "'".$_POST['status']."'";
-					// echo $_POST["is_video"];
-				  // var_dump($columna);
-				  // var_dump($datos);
-				  // exit();
+					$datos[] = "'".$_POST['status']."'";
+					$datos[] = "'".$slug."'";
+					$datos[] = "'".Times::setTimeStamp()."'";
+					$datos[] = "NULL";
+					$datos[] = "NULL";
+
+					// dd($_POST["is_video"]);
+					// dd( $columna, $datos );
 					DB::registro_nuevo($tabla, $datos, $columna);
 				} else {
 					if(session_status()==="") session_start();
@@ -301,64 +302,64 @@
 				else
 					$category = $_POST['category'];
 
-				$columna[0] = "name";
-				$columna[1] = "subname";
-				$columna[2] = "author";
-				$columna[3] = "type";
-				$columna[4] = "category";
-				$columna[5] = "subcategory";
-				$columna[6] = "slug";
-				$columna[7] = "meta";
-				$columna[8] = "meta_keywords";
-				$columna[9] = "video";
-				$columna[10] = "body";
-				$columna[11] = "status";
+				$columna[] = "name";
+				$columna[] = "subname";
+				$columna[] = "author";
+				$columna[] = "type";
+				$columna[] = "category";
+				$columna[] = "subcategory";
+				$columna[] = "meta";
+				$columna[] = "meta_keywords";
 				$filled01 = false;
 				if($name_real != '') {
-					$columna[12] = "img";
-					$columna[13] = "img_alt";
+					$columna[] = "img";
+					$columna[] = "img_alt";
 					$filled01 = true;
 				}
 				if($name_real02 != '' && $filled01) {
-					$columna[14] = "cover";
-					$columna[15] = "cover_alt";
+					$columna[] = "cover";
+					$columna[] = "cover_alt";
 				} else {
 					if( $name_real02 ) {
-						$columna[12] = "cover";
-						$columna[13] = "cover_alt";
+						$columna[] = "cover";
+						$columna[] = "cover_alt";
 					}
 				}
+				$columna[] = "body";
+				$columna[] = "video";
+				$columna[] = "status";
+				$columna[] = "slug_name";
 
-				$datos[0] = $_POST['name'];
-				$datos[1] = "NULL";
-				$datos[2] = $_POST['author'];
-				$datos[3] = $_POST['type'];
-				$datos[4] = $category;
-				$datos[5] = $_POST['subcategory'];
-				$datos[6] = $slug;
-				$datos[7] = $_POST['meta'];
-				$datos[8] = $_POST['meta_keywords'];
+				$datos[] = $_POST['name'];
+				$datos[] = "NULL";
+				$datos[] = $_POST['author'];
+				$datos[] = $_POST['type'];
+				$datos[] = $category;
+				$datos[] = $_POST['subcategory'];
+				$datos[] = $_POST['meta'];
+				$datos[] = $_POST['meta_keywords'];
 				if( isset($_POST["is_video"]) && $_POST["is_video"]=="1" )
 					$id_video = $_POST["url_video"];
 				else
 					$id_video = NULL;
 
-				$datos[9] = $id_video;
-				$datos[10] = str_replace('"', '\"', $_POST['body']);
-				$datos[11] = $_POST['status'];
+				$datos[] = str_replace('"', '\"', $_POST['body']);
+				$datos[] = $id_video;
+				$datos[] = $_POST['status'];
+				$datos[] = $slug;
 				$filled = false;
 				if($name_real != '') {
-					$datos[12] = $name;
-					$datos[13] = $_POST["img_alt"];
+					$datos[] = $name;
+					$datos[] = $_POST["img_alt"];
 					$filled = true;
 				}
 				if($name_real02 != '' && $filled) {
-					$datos[14] = $name02;
-					$datos[15] = $_POST["cover_alt"];
+					$datos[] = $name02;
+					$datos[] = $_POST["cover_alt"];
 				} else {
 					if( $name_real02 ) {
-						$datos[12] = $name02;
-						$datos[13] = $_POST["cover_alt"];
+						$datos[] = $name02;
+						$datos[] = $_POST["cover_alt"];
 					}
 				}
 
@@ -597,19 +598,24 @@
 					$errors .= "</ul>";
 
 					if( $errors==0 ) {
-						$datos[0] = "NULL";
-						$datos[1] = "'".$id_blog."'";
-						$datos[2] = "'".$email."'";
-						$datos[3] = "'".$name."'";
-						$datos[4] = "'".$comment."'";
-						$datos[5] = "'".Times::setTimeStamp()."'";
+						$datos[] = "NULL";
+						$datos[] = "'".$id_blog."'";
+						$datos[] = "'".$email."'";
+						$datos[] = "'".$name."'";
+						$datos[] = "'".$comment."'";
+						$datos[] = "'".Times::setTimeStamp()."'";
+						$datos[] = "NULL";
+						$datos[] = "NULL";
 
-						$columna[0] = "id";
-						$columna[1] = "id_blog";
-						$columna[2] = "email";
-						$columna[3] = "name";
-						$columna[4] = "comment";
-						$columna[5] = "created_at";
+						$columna[] = "id";
+						$columna[] = "id_blog";
+						$columna[] = "email";
+						$columna[] = "name";
+						$columna[] = "comment";
+						$columna[] = "created_at";
+						$columna[] = "updated_at";
+						$columna[] = "deleted_at";
+
 
 						DB::registro_nuevo($tbl, $datos, $columna);
 
@@ -627,8 +633,9 @@
 				$tbl = $_POST["table"];
 				$path = $_POST["path"];
 
+				// dd( $path );
 				DB::deleteRecord($id, $tbl);
-				Redirect::to($up_dir."admin/".$path);
+				Redirect::to($path);
 				break;
 
 			case "restore":
@@ -636,8 +643,9 @@
 				$tbl = $_POST["table"];
 				$path = $_POST["path"];
 
+				// dd( $path );
 				DB::restoreRecord($id, $tbl);
-				Redirect::to($up_dir."admin/".$path);
+				Redirect::to($path);
 				break;
 
 			default:
