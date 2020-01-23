@@ -36,9 +36,9 @@
 </script>
 
 <?php
-	// $query = $_SERVER['PHP_SELF'];
-	// $env->APP_URL = pathinfo( $query );
-	$current = str_replace(".php", "", $env->APP_URL['basename']);
+	$query = $_SERVER['PHP_SELF'];
+	$path = pathinfo( $query );
+	$current = str_replace(".php", "", $path['basename']);
 
 	if( $current!="login" )
 		include("../php/db/session.php");

@@ -1,7 +1,5 @@
 <?php
-	session_start(); require $_SESSION["path"]["autoload"];
-  include( $_SESSION["path"]["env"] );
-	include( $_SESSION["path"]["auth"] );
+	include("../php/admin.head.php");
 
 	if( Auth::check() ) {
 ?>
