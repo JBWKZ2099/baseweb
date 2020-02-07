@@ -6,7 +6,7 @@
 //SMTP needs accurate times, and the PHP time zone MUST be set
 //This should be done in your php.ini, but this is how to do it if you don't have access to that
 date_default_timezone_set('Etc/UTC');
-ini_set("display_errors",$_SESSION["d_errors"]);1);
+ini_set("display_errors",1);
 
 require 'PHPMailerAutoload.php';
 
@@ -32,10 +32,10 @@ $mail->Host = 'smtp.gmail.com';
 // if your network does not support SMTP over IPv6
 
 //Set the SMTP port number - 587 for authenticated TLS, a.k.a. RFC4409 SMTP submission
-$mail->Port = 587;
+$mail->Port = 465;
 
 //Set the encryption system to use - ssl (deprecated) or tls
-$mail->SMTPSecure = 'tls';
+$mail->SMTPSecure = 'ssl';
 
 //Whether to use SMTP authentication
 $mail->SMTPAuth = true;
