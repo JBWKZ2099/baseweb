@@ -11,56 +11,65 @@
 			"menu" => array(
 				array(
 					"active" => "about-view",
-					"link" => "acerca-de-nosotros",
+					# "link" => "acerca-de-nosotros",
+					"link" => "#",
 					"word" => "Acerca de nosotros",
 				),
 				array(
 					"active" => "our-sectors",
-					"link" => "nuestros-sectores",
+					# "link" => "nuestros-sectores",
+					"link" => "#",
 					"word" => "Nuestros Sectores",
 				),
 			)
 		),
-		array("active" => "services", "link" => "servicios", "word" => "Servicios", "submenu"=>true,
+		array("active" => "services", "link" => "#", "word" => "Servicios", "submenu"=>true,
 			"menu" => array(
 				array(
 					"active" => "distribution",
-					"link" => "distribucion",
+					#"link" => "distribucion",
+					"link" => "#",
 					"word" => "Distribución",
 				),
 				array(
 					"active" => "storage",
-					"link" => "almacenaje",
+					#"link" => "almacenaje",
+					"link" => "#",
 					"word" => "Almacenaje",
 				),
 				array(
 					"active" => "logistics",
-					"link" => "logistica",
+					#"link" => "logistica",
+					"link" => "#",
 					"word" => "Logística",
 				),
 				array(
 					"active" => "maquila",
-					"link" => "maquila-y-nom",
+					#"link" => "maquila-y-nom",
+					"link" => "#",
 					"word" => "Maquila y nom",
 				),
 				array(
 					"active" => "fiscal",
-					"link" => "fiscal",
+					#"link" => "fiscal",
+					"link" => "#",
 					"word" => "Fiscal",
 				),
 				array(
 					"active" => "crosswalk",
-					"link" => "cruce-de-anden",
+					#"link" => "cruce-de-anden",
+					"link" => "#",
 					"word" => "Cruce de anden",
 				),
 				array(
 					"active" => "reverse-logistic",
-					"link" => "logistica-inversa",
+					#"link" => "logistica-inversa",
+					"link" => "#",
 					"word" => "Logística inversa",
 				),
 			)
 		),
-		array("active" => "meetus", "link" => "conocenos", "word" => "Conócenos", "submenu"=>false, "menu" => array()),
+		array("active" => "meetus", "link" => "#", "word" => "Conócenos", "submenu"=>false, "menu" => array()),
 	)), FALSE);
 ?>
 
@@ -69,7 +78,7 @@
 		<a class="navbar-brand" href="<?php echo $path; ?>">
 			<!-- <img src="holder.js/200x50.svg?random=yes&text=200x50 SVG" alt="Brand" class="img-fluid"> -->
 			<?php /* <img src="<?php Times::fileTime("assets/img/logo_onest.svg") ?>" alt="logo_onest" class="img-fluid"> */ ?>
-			<img src="<?php Times::fileTime("http://placehold.it/150x60.svg?text=150x60.svg") ?>" alt="logo_onest" class="img-fluid">
+			<img src="<?php Times::fileTime("assets/img/onest_logo_menu.svg") ?>" alt="onest_logo_menu.svg" class="img-fluid nb-logo">
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>

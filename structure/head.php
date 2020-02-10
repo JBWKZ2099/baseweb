@@ -1,5 +1,5 @@
 <?php include( "php/header.lib.php" ); ?>
-<link rel="shortcut icon" href="http://placehold.it/32.png"/>
+<link rel="shortcut icon" href="<?php Times::fileTime("assets/img/favicon.ico") ?>"/>
 <meta charset="UTF-8">
 <title> <?php echo $env->APP_NAME; ?> | <?php echo $view_name; ?> </title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">

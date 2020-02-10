@@ -4,7 +4,7 @@
 	<?php
 		$view_name="Inicio";
 		include(/*$dir.*/"structure/head.php");
-		$asset = "assets/img/folder_name/"; // Path where are storaged media files (img, video, etc)
+		$asset = "assets/img/home/"; // Path where are storaged media files (img, video, etc)
 
 		// if(session_status()==="") session_start();
 		// logout();
@@ -21,8 +21,8 @@
 			<div class="col-md-12 px-0">
 				<div id="home-carousel" class="carousel slide full-carousel" data-ride="carousel" data-interval="0">
 				  <div class="carousel-inner">
-				    <div class="carousel-item active" style="background-image: url('<?php Times::fileTime("http://placehold.it/1920x1080.png?text=1920x1080.png") ?>')">
-							<img class="img-fluid d-block m-auto banner-logo" src="<?php Times::fileTime("http://placehold.it/400x250.png/fff/000/?text=400x250.png") ?>" alt="banner_logo_onest">
+				    <div class="carousel-item active" style="background-image: url('<?php Times::fileTime("assets/img/home/banner.jpg") ?>')">
+							<?php /* <img class="img-fluid d-block m-auto banner-logo" src="<?php Times::fileTime("http://placehold.it/400x250.png/fff/000/?text=400x250.png") ?>" alt="banner_logo_onest"> */ ?>
 				    </div>
 				  </div>
 				</div>
@@ -67,12 +67,12 @@
 					<div class="col-md-12">
 						<h3 class="h1 text-center text-blue-hard zi-2 appear-left"><strong>DISTRIBUCIÓN</strong></h3>
 						<div class="appear-bottom home-img-margin home-img-margin">
-							<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/400x350.png?text=400x350.jpg"); ?>" alt="distribucion">
+							<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."distribucion_2.jpg"); ?>" alt="distribucion">
 						</div>
 
 						<div class="appear-top p-relative zi-3">
 							<a class="btn btn-animated btn-blue-transp btn-circle btn-br fa-spin-custom" href="#"><span class="btn-text">
-								<img src="<?php Times::fileTime("http://placehold.it/50x40.svg?text=50x40.svg"); ?>" alt="distribucion_ver_mas">
+								<img class="btn-ico svg" src="<?php Times::fileTime($asset."icono-distribucion.svg"); ?>" alt="distribucion_ver_mas">
 								<p class="pt-2">VER MÁS...</p>
 							</span></a>
 						</div>
@@ -85,12 +85,12 @@
 				<div class="subsec-separator"></div>
 				<h3 class="h1 text-center text-blue-hard zi-2 appear-right"><strong>ALMACENAJE</strong></h3>
 				<div class="appear-bottom home-img-margin">
-					<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/300x400.png?text=300x400.jpg"); ?>" alt="almacenaje">
+					<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."almacenaje_2.jpg"); ?>" alt="almacenaje">
 				</div>
 
 				<div class="appear-top p-relative zi-3">
 					<a class="btn btn-animated btn-blue-transp btn-circle btn-bl fa-spin-custom" href="#"><span class="btn-text">
-						<img src="<?php Times::fileTime("http://placehold.it/50x40.svg?text=50x40.svg"); ?>" alt="almacenaje_ver_mas">
+						<img class="btn-ico svg" src="<?php Times::fileTime($asset."icono-almacenaje.svg"); ?>" alt="almacenaje_ver_mas">
 						<p class="pt-2">VER MÁS...</p>
 					</span></a>
 				</div>
@@ -105,12 +105,12 @@
 					<div class="col-md-12">
 						<h3 class="h1 text-center text-blue-hard zi-2 appear-left"><strong>ECOMMERCE</strong></h3>
 						<div class="appear-bottom home-img-margin">
-							<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/400x350.png?text=400x350.jpg"); ?>" alt="ecommerce">
+							<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."ecommerce_2.jpg"); ?>" alt="ecommerce">
 						</div>
 
 						<div class="appear-top p-relative zi-3">
 							<a class="btn btn-animated btn-blue-transp btn-circle btn-br fa-spin-custom" href="#"><span class="btn-text">
-								<img src="<?php Times::fileTime("http://placehold.it/50x40.svg?text=50x40.svg"); ?>" alt="ecommerce_ver_mas">
+								<img class="btn-ico svg" src="<?php Times::fileTime($asset."icono-ecomm.svg"); ?>" alt="ecommerce_ver_mas">
 								<p class="pt-2">VER MÁS...</p>
 							</span></a>
 						</div>
@@ -123,12 +123,12 @@
 				<div class="subsec-separator"></div>
 				<h3 class="h1 text-center text-blue-hard zi-2 appear-right"><strong>ALMACENAJE FISCAL</strong></h3>
 				<div class="appear-bottom home-img-margin">
-					<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/300x320.png?text=300x320.jpg"); ?>" alt="almacenaje_fiscal">
+					<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."almacenaje_fiscal.jpg"); ?>" alt="almacenaje_fiscal">
 				</div>
 
 				<div class="appear-top p-relative zi-3">
 					<a class="btn btn-animated btn-blue-transp btn-circle btn-bl fa-spin-custom" href="#"><span class="btn-text">
-						<img src="<?php Times::fileTime("http://placehold.it/50x40.svg?text=50x40.svg"); ?>" alt="almacenaje_fiscal_ver_mas">
+						<img class="btn-ico svg" src="<?php Times::fileTime($asset."icono-almfiscal.svg"); ?>" alt="almacenaje_fiscal_ver_mas">
 						<p class="pt-2">VER MÁS...</p>
 					</span></a>
 				</div>
@@ -143,12 +143,12 @@
 					<div class="col-md-12">
 						<h3 class="h1 text-center text-blue-hard zi-2 appear-left"><strong>OPERACIÓN IN HOUSE</strong></h3>
 						<div class="appear-bottom home-img-margin">
-							<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/400x350.png?text=400x350.jpg"); ?>" alt="operacion_in_house">
+							<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."operacion_inhouse_2.jpg"); ?>" alt="operacion_in_house">
 						</div>
 
 						<div class="appear-top p-relative zi-3">
 							<a class="btn btn-animated btn-blue-transp btn-circle btn-br fa-spin-custom" href="#"><span class="btn-text">
-								<img src="<?php Times::fileTime("http://placehold.it/50x40.svg?text=50x40.svg"); ?>" alt="operacion_in_house_ver_mas">
+								<img class="btn-ico svg" src="<?php Times::fileTime($asset."icono-operacioninhouse.svg"); ?>" alt="operacion_in_house_ver_mas">
 								<p class="pt-2">VER MÁS...</p>
 							</span></a>
 						</div>
@@ -161,12 +161,12 @@
 				<div class="subsec-separator"></div>
 				<h3 class="h1 text-center text-blue-hard zi-2 appear-right"><strong>MAQUILAS</strong></h3>
 				<div class="appear-bottom home-img-margin">
-					<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/400x350.png?text=400x350.jpg"); ?>" alt="maquilas">
+					<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."maquila_2.jpg"); ?>" alt="maquilas">
 				</div>
 
 				<div class="appear-top p-relative zi-3">
 					<a class="btn btn-animated btn-blue-transp btn-circle btn-bl fa-spin-custom" href="#"><span class="btn-text">
-						<img src="<?php Times::fileTime("http://placehold.it/50x40.svg?text=50x40.svg"); ?>" alt="maquilas_ver_mas">
+						<img class="btn-ico svg" src="<?php Times::fileTime($asset."icono-maquilas.svg"); ?>" alt="maquilas_ver_mas">
 						<p class="pt-2">VER MÁS...</p>
 					</span></a>
 				</div>
@@ -185,27 +185,27 @@
 					</div>
 
 					<div class="col-6 col-md-3 text-center px-3 px-md-5 mb-3 mb-md-0">
-						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/150x50.png?text=150x50.png"); ?>" alt="">
+						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."numeros1.png"); ?>" alt="numeros1.png">
 						<h3 class="h1 text-white"><strong class="animated-number">1004</strong></h3>
-						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/150x50.png?text=150x50.png"); ?>" alt="">
+						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."numeros2.png"); ?>" alt="numeros2.png">
 					</div>
 
 					<div class="col-6 col-md-3 text-center px-3 px-md-5 mb-3 mb-md-0">
-						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/150x50.png?text=150x50.png"); ?>" alt="">
+						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."numeros1.png"); ?>" alt="numeros1.png">
 						<h3 class="h1 text-white"><strong class="animated-number">1004</strong></h3>
-						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/150x50.png?text=150x50.png"); ?>" alt="">
+						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."numeros2.png"); ?>" alt="numeros2.png">
 					</div>
 
 					<div class="col-6 col-md-3 text-center px-3 px-md-5 mb-3 mb-md-0">
-						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/150x50.png?text=150x50.png"); ?>" alt="">
+						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."numeros1.png"); ?>" alt="numeros1.png">
 						<h3 class="h1 text-white"><strong class="animated-number">1004</strong></h3>
-						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/150x50.png?text=150x50.png"); ?>" alt="">
+						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."numeros2.png"); ?>" alt="numeros2.png">
 					</div>
 
 					<div class="col-6 col-md-3 text-center px-3 px-md-5 mb-3 mb-md-0">
-						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/150x50.png?text=150x50.png"); ?>" alt="">
+						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."numeros1.png"); ?>" alt="numeros1.png">
 						<h3 class="h1 text-white"><strong class="animated-number">1004</strong></h3>
-						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/150x50.png?text=150x50.png"); ?>" alt="">
+						<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."numeros2.png"); ?>" alt="numeros2.png">
 					</div>
 				</div>
 			</div>
@@ -224,18 +224,12 @@
 				    <li data-target="#footer-carousel" data-slide-to="0" class="active">
 				    	<div class="inner-circle"></div>
 				    </li>
-				    <li data-target="#footer-carousel" data-slide-to="1">
-				    	<div class="inner-circle"></div>
-				    </li>
-				    <li data-target="#footer-carousel" data-slide-to="2">
-				    	<div class="inner-circle"></div>
-				    </li>
 				  </ol>
 				  <div class="carousel-inner">
 				    <div class="carousel-item active">
 				      <div class="row align-items-center">
 				      	<div class="col-md-8 pr-0">
-									<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/800x600.png?text=800x600.jpg") ?>" alt="sector_fashion">
+									<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."nuestros_sectores_fashion.jpg") ?>" alt="sector_fashion">
 									<h3 class="sr-only">Fashion</h3>
 				      	</div>
 								<div class="col-md-4 text-justify">
@@ -258,7 +252,7 @@
 			</div>
 
 			<div class="col-md-6 mb-3 mb-md-0">
-				<img class="img-fluid d-block m-auto" src="<?php Times::fileTime("http://placehold.it/500x350.png?text=500x350.png"); ?>" alt="formulario_de_contacto">
+				<img class="img-fluid d-block m-auto" src="<?php Times::fileTime($asset."contactanos.png"); ?>" alt="formulario_de_contacto">
 			</div>
 			<div class="col-md-6 text-center">
 				<h3 class="h1 text-blue-hard mb-3"><strong>¡CONTÁCTANOS!</strong></h3>
@@ -269,8 +263,56 @@
 		</div>
 	</section>
 
-	<img class="img-fluid parallax-rack static d-none d-md-block" src="<?php Times::fileTime("http://placehold.it/400x450.png/777/fff/?text=400x450.png"); ?>" alt="ONEST_rack">
+
+	<div class="rail-container">
+		<div class="rail"></div>
+		<div class="rail-dot rd1"></div>
+		<div class="rail-dot rd2"></div>
+		<div class="rail-dot rd3"></div>
+		<div class="rail-dot rd4"></div>
+		<div class="rail-dot rd5"></div>
+		<div class="rail-dot rd6"></div>
+		<div class="rail-dot rd7"></div>
+		<div class="rail-dot rd8"></div>
+		<div class="rail-dot rd9"></div>
+		<div class="rail-dot rd10"></div>
+		<div class="rail-dot rd11"></div>
+		<div class="rail-dot rd12"></div>
+		<div class="rail-dot rd13"></div>
+		<div class="rail-dot rd14"></div>
+		<div class="rail-dot rd15"></div>
+		<div class="rail-dot rd16"></div>
+		<div class="rail-dot rd17"></div>
+		<div class="rail-dot rd18"></div>
+		<div class="rail-dot rd19"></div>
+		<div class="rail-dot rd20"></div>
+		<div class="rail-dot rd21"></div>
+		<div class="rail-dot rd22"></div>
+		<div class="rail-dot rd23"></div>
+		<div class="rail-dot rd24"></div>
+		<div class="rail-dot rd25"></div>
+		<div class="rail-dot rd26"></div>
+		<div class="rail-dot rd27"></div>
+		<div class="rail-dot rd28"></div>
+		<div class="rail-dot rd29"></div>
+		<div class="rail-dot rd30"></div>
+		<div class="rail-dot rd31"></div>
+		<div class="rail-dot rd32"></div>
+		<div class="rail-dot rd33"></div>
+		<div class="rail-dot rd34"></div>
+		<div class="rail-dot rd35"></div>
+		<div class="rail-dot rd36"></div>
+		<div class="rail-dot rd37"></div>
+		<div class="rail-dot rd38"></div>
+		<div class="rail-dot rd39"></div>
+		<div class="rail-dot rd40"></div>
+	</div>
+	<img class="img-fluid parallax-rack static d-none d-md-block" src="<?php Times::fileTime($asset."rack.png"); ?>" alt="ONEST_rack">
 
 	<?php include(/*$dir.*/"structure/footer.php"); ?>
+	<script type="text/javascript">
+		$(".rail-container").css("height", "--rc-height: "+$("body").height()+"px");
+		console.log($("body").height())
+	</script>
 </body>
 </html>

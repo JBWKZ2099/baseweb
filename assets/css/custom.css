@@ -1,3 +1,7 @@
+@font-face{ font-family: AkzidenzGroteskBold; src: url(fonts/AkzidenzGrotesk-Bold.otf); }
+@font-face{ font-family: AkzidenzGroteskLight; src: url(fonts/AkzidenzGrotesk-Light.otf); }
+@font-face{ font-family: AkzidenzGroteskLightExtended; src: url(fonts/AkzidenzGrotesk-LightExtended.otf); }
+@font-face{ font-family: AkzidenzGroteskLightSC; src: url(fonts/AkzidenzGrotesk-LightSC.otf); }
 :root {
 	--color-blue-hard: #003d92;
 	--color-dark-gray: #5b5b5d;
@@ -6,7 +10,10 @@
 /*=============================================================================
 GENERAL
 =============================================================================*/
-body { color: var(--color-dark-gray); overflow-x: hidden; }
+body { color: var(--color-dark-gray); overflow-x: hidden; position: relative; font-family: AkzidenzGroteskLightExtended; }
+.h1, .h1-bigger { font-family: AkzidenzGroteskBold; }
+footer, .AkzidenzGroteskLight { font-family: AkzidenzGroteskLight; }
+html { overflow-x: hidden; }
 *::-moz-selection { background: var(--color-blue-hard); color: #FFF; text-shadow: none; }
 *::selection { background: var(--color-blue-hard); color: #FFF; text-shadow: none; }
 .bg-default { background-color: #eee; border: 1px solid #ddd; }
@@ -120,6 +127,7 @@ THANKS PAGE
 NAVBAR
 =============================================================================*/
 .navbar {
+	font-family: AkzidenzGroteskLightSC;
 	margin-bottom: 0;
 	border: none;
 	border-radius: 0;
@@ -156,6 +164,7 @@ NAVBAR
 .navbar-light .navbar-nav .nav-item.right-separator:nth-child(4),
 .navbar-light .navbar-nav .nav-item.right-separator:nth-child(5),
 .navbar-light .navbar-nav .nav-item.right-separator:nth-child(6) { border:unset; }
+.nb-logo { width: 150px; }
 /*=============================================================================
 HOME
 =============================================================================*/
@@ -181,6 +190,77 @@ HOME
 	bottom: -30px;
 	margin-bottom: 0;
 }
+.rail-container {
+	width: 100%;
+	height: 4000px;
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	left: 0;
+}
+.rail {
+	position: absolute;
+	width: 3px;
+	background-color: #ccc;
+	height: 4000px;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+.rail-dot {
+	width: 10px;
+	height: 10px;
+	left: 50%;
+	border-radius: 100%;
+	background-color: #ccc;
+	position: absolute;
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+}
+.rd1 { top: 100px; }
+.rd2 { top: 200px; }
+.rd3 { top: 300px; }
+.rd4 { top: 400px; }
+.rd5 { top: 500px; }
+.rd6 { top: 600px; }
+.rd7 { top: 700px; }
+.rd8 { top: 800px; }
+.rd9 { top: 900px; }
+.rd10 { top: 1000px; }
+.rd11 { top: 1100px; }
+.rd12 { top: 1200px; }
+.rd13 { top: 1300px; }
+.rd14 { top: 1400px; }
+.rd15 { top: 1500px; }
+.rd16 { top: 1600px; }
+.rd17 { top: 1700px; }
+.rd18 { top: 1800px; }
+.rd19 { top: 1900px; }
+.rd20 { top: 2000px; }
+.rd21 { top: 2100px; }
+.rd22 { top: 2200px; }
+.rd23 { top: 2300px; }
+.rd24 { top: 2400px; }
+.rd25 { top: 2500px; }
+.rd26 { top: 2600px; }
+.rd27 { top: 2700px; }
+.rd28 { top: 2800px; }
+.rd29 { top: 2900px; }
+.rd30 { top: 3000px; }
+.rd31 { top: 3100px; }
+.rd32 { top: 3200px; }
+.rd33 { top: 3300px; }
+.rd34 { top: 3400px; }
+.rd35 { top: 3500px; }
+.rd36 { top: 3600px; }
+.rd37 { top: 3700px; }
+.rd38 { top: 3800px; }
+.rd39 { top: 3900px; }
+.rd40 { top: 4000px; }
+.btn-ico { width: 50px; }
+.btn-circle:hover .btn-ico * { fill: #FFF }
 /*=============================================================================
 FOOTER
 =============================================================================*/

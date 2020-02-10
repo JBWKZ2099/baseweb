@@ -4,12 +4,16 @@
 			<div class="col-md-10">
 				<div class="row align-items-center">
 					<div class="col-md-2 mb-3 mb-md-0">
-						<img class="img-fluid d-block m-auto logo-banner" src="<?php Times::fileTime("assets/img/logo-onest-banner.svg") ?>" alt="FooterLogo">
+						<div class="row justify-content-center">
+							<div class="col-6 col-md-12">
+								<img class="img-fluid d-block m-auto logo-banner" src="<?php Times::fileTime("assets/img/logo-onest-banner.svg") ?>" alt="FooterLogo">
+							</div>
+						</div>
 					</div>
 
 					<div class="col-md-7 mb-3 mb-md-0">
 						<div class="row">
-							<div class="col-md-3">
+							<div class="col-md-3 mb-3 mb-md-0">
 								<p class="text-white mb-3 h5">NOSOTROS</p>
 
 								<p class="text-white">
@@ -44,7 +48,7 @@
 								</p>
 							</div>
 
-							<div class="col-md-3">
+							<div class="col-md-3 mb-3 mb-md-0">
 								<p class="text-white mb-3 h5">SERVICIOS</p>
 
 								<p class="text-white">
@@ -67,7 +71,7 @@
 								</p>
 							</div>
 
-							<div class="col-md-3">
+							<div class="col-md-3 mb-3 mb-md-0">
 								<p class="text-white mb-3 h5">CLIENTES</p>
 
 								<p class="text-white">
@@ -163,7 +167,7 @@
 	</div>
 </footer>
 <div class="bg-white p-3 text-center bg-white zi-2">
-	<p class="text-blue-hard"><a class="text-blue-hard" href="<?php echo $path; ?>">www.onestlogistics.com</a></p>
+	<p class="text-blue-hard AkzidenzGroteskLight"><a class="text-blue-hard" href="<?php echo $path; ?>">www.onestlogistics.com</a></p>
 </div>
 
 
@@ -178,7 +182,7 @@
 <?php /*Script Font Awesome*/ ?>
 <script src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"></script>
 <?php /*Scroll reveal*/ ?>
-<script src="<?php Times::fileTime("assets/js/scrollreveal/scrollreveal.min.js"); ?>"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
 <?php /*Scroll Magic*/ ?>
 <script src="<?php Times::fileTime("assets/js/scrollmagic/TweenMax.min.js"); ?>"></script>
 <script src="<?php Times::fileTime("assets/js/scrollmagic/ScrollMagic.min.js"); ?>"></script>

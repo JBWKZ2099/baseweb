@@ -77,7 +77,7 @@ $(document).ready(function() {
 
 
 	window.sr = ScrollReveal({
-		reset: true,
+		// reset: true,
 		delay: 500,
 		distance: '60px',
 		duration: 900,
