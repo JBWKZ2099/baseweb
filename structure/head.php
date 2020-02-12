@@ -1,9 +1,9 @@
 <?php include( "php/header.lib.php" ); ?>
-<link rel="shortcut icon" href="http://placehold.it/32.png"/>
+<link rel="shortcut icon" href="<?php Times::fileTime("assets/img/favicon.ico") ?>"/>
 <meta charset="UTF-8">
 <title> <?php echo $env->APP_NAME; ?> | <?php echo $view_name; ?> </title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <?php /* CSS Tags */ ?>
 <?php /*Bootstrap css minified*/ ?>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">

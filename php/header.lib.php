@@ -12,4 +12,7 @@
   include( $_SESSION["path"]["env"] );
 
   $_SESSION["recaptcha"] = $env->GRECAPTCHA_VERSION;
+
+
+  include($realpath."/php/lang/es.php");
 ?>

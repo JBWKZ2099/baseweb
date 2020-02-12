@@ -20,7 +20,7 @@
 <?php /*Script Font Awesome*/ ?>
 <script src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"></script>
 <?php /*Scroll reveal*/ ?>
-<script src="<?php Times::fileTime("assets/js/scrollreveal/scrollreveal.min.js"); ?>"></script>
+<script src="https://unpkg.com/scrollreveal"></script>
 <?php /*Scroll Magic*/ ?>
 <script src="<?php Times::fileTime("assets/js/scrollmagic/TweenMax.min.js"); ?>"></script>
 <script src="<?php Times::fileTime("assets/js/scrollmagic/ScrollMagic.min.js"); ?>"></script>

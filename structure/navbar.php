@@ -15,28 +15,52 @@
 	)), FALSE);
 ?>
 
-<nav class="navbar navbar-expand-md navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-0">
 	<div class="container nb-container m-auto">
 		<a class="navbar-brand" href="<?php echo $path; ?>">
 			<!-- <img src="holder.js/200x50.svg?random=yes&text=200x50 SVG" alt="Brand" class="img-fluid"> -->
-			<img src="#" alt="Brand" class="img-fluid">
+			<?php /* <img src="<?php Times::fileTime("assets/img/logo_onest.svg") ?>" alt="logo_onest" class="img-fluid"> */ ?>
+			<img src="<?php Times::fileTime("assets/img/onest_logo_menu.svg") ?>" alt="onest_logo_menu.svg" class="img-fluid nb-logo">
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav mr-auto">
+			<ul class="navbar-nav ml-auto">
 				<?php foreach($items as $item) { ?>
-					<li class='nav-item<?php act($item->active, $active); ?>'>
-						<a class='nav-link text-center' href='<?php echo $path.$item->link; ?>' <?php if( isset($item->data_target) && !empty($item->data_target) ) echo "data-target='".$item->data_target."'"; ?>><?php echo $item->word ?></a>
+					<li class='nav-item<?php act($item->active, $active); if( $item->submenu ) echo " dropdown text-center"; ?> right-separator'>
+						<?php if( !$item->submenu ) { ?>
+							<a class='nav-link text-center' href='<?php echo $path.$item->link; ?>' <?php if( isset($item->data_target) && !empty($item->data_target) ) echo "data-target='".$item->data_target."'"; ?>><?php echo $item->word ?></a>
+						<?php } else { ?>
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								<?php echo $item->word ?>
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+								<?php foreach($item->menu as $imnu) { ?>
+									<a class="dropdown-item text-center" href="#"><?php echo $imnu->word; ?></a>
+								<?php } ?>
+							</div>
+						<?php } ?>
 					</li>
 				<?php } ?>
+
+				<li class="nav-item">
+					<form class="form-inline my-2 my-lg-0 ml-auto p-relative">
+						<input class="form-control mr-sm-2 nb-input w-100" type="text" placeholder="Buscar" aria-label="Buscar">
+						<i class="fa fa-search fa-fw text-blue-hard nb-search"></i>
+					</form>
+	      </li>
+
+				<li class="nav-item dropdown text-center">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						ES
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="#">EN</a>
+					</div>
+				</li>
 			</ul>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-			</form>
 		</div>
 	</div>
 </nav>
