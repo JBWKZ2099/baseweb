@@ -137,6 +137,45 @@ HOVER EFFECT (LIKE WORDPRESS) ON IMAGES
 	}
 }
 /*=============================================================================
+Z INDEX y BORDERS
+=============================================================================*/
+.zi-2 { position: relative; z-index: 2; }
+.zi-3 { z-index: 3; }
+.zi-4 { z-index: 4; }
+.zi-5 { z-index: 5; }
+.border-r { border-right: 1px solid transparent; }
+.border-l { border-left: 1px solid transparent; }
+.border-b { border-bottom: 1px solid transparent; }
+.border-t { border-top: 1px solid transparent; }
+/*=============================================================================
+BTN ANIMATIONS
+=============================================================================*/
+.btn-animated span.btn-text { position: relative; pointer-events: none; }
+.btn-animated {
+	border: unset;
+	position: relative;
+	overflow: hidden;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	display: inline-block;
+}
+.btn-animated:hover::before { --size: 400px; text-decoration: none; }
+.btn-animated::before {
+	--size: 0;
+	content: '';
+	position: absolute;
+	left: var(--x);
+	top: var(--y);
+	width: var(--size);
+	height: var(--size);
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	-webkit-transform-origin: center;
+	transform-origin: center;
+	transition: width .2s ease, height .2s ease;
+}
+/*=============================================================================
 GALLERY
 =============================================================================*/
 .gallery-control {

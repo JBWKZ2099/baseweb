@@ -15,12 +15,11 @@
 	)), FALSE);
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-0">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container nb-container m-auto">
 		<a class="navbar-brand" href="<?php echo $path; ?>">
 			<!-- <img src="holder.js/200x50.svg?random=yes&text=200x50 SVG" alt="Brand" class="img-fluid"> -->
-			<?php /* <img src="<?php Times::fileTime("assets/img/logo_onest.svg") ?>" alt="logo_onest" class="img-fluid"> */ ?>
-			<img src="<?php Times::fileTime("assets/img/onest_logo_menu.svg") ?>" alt="onest_logo_menu.svg" class="img-fluid nb-logo">
+			<img src="<?php Times::fileTime("http://palcehold.it/200x50.svg?text=200x50.svg") ?>" alt="logo" class="img-fluid nb-logo">
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -48,7 +47,6 @@
 				<li class="nav-item">
 					<form class="form-inline my-2 my-lg-0 ml-auto p-relative">
 						<input class="form-control mr-sm-2 nb-input w-100" type="text" placeholder="Buscar" aria-label="Buscar">
-						<i class="fa fa-search fa-fw text-blue-hard nb-search"></i>
 					</form>
 	      </li>
 
