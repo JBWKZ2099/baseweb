@@ -3,7 +3,7 @@
   include( $_SESSION["path"]["env"] );
 	include( $_SESSION["path"]["auth"] );
 
-	if( Auth::check() && Auth::user()->permission==1 ) {
+	if( Auth::check() && Auth::user()->permission_admin==1 && Auth::user()->permission_users_r==1 ) {
 		if( isset($_GET["id"]) ) {
 			$id = (int)$_GET["id"];
 			$table = "users";

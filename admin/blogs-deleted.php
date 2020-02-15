@@ -1,7 +1,7 @@
 <?php
 	include("../php/admin.head.php");
 
-	if( Auth::check() ) {
+	if( Auth::check() && Auth::user()->permission_admin==1 && Auth::user()->permission_blogs_d==1 ) {
 ?>
 <!DOCTYPE html>
 <html lang="es">

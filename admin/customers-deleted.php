@@ -1,7 +1,7 @@
 <?php
 	include("../php/admin.head.php");
 
-	if( Auth::check() ) {
+	if( Auth::check() && Auth::user()->permission_admin==1 && Auth::user()->permission_users_d==1 ) {
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -25,12 +25,10 @@
 
 		$data_table_which = "Usuarios";
 		$table_head = array(
-			"Nombre",
-			"Apellido Paterno",
-			"Apellido Materno",
+			"Nombre(s)",
+			"Apellido(s)",
 			"Nombre de Usuario",
 			"E-Mail",
-			"Permisos",
 		);
 		include("widgets/data-table.php");
 	?>

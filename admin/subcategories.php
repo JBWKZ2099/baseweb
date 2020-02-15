@@ -1,7 +1,7 @@
 <?php
 	include("../php/admin.head.php");
 
-	if( Auth::check() && Auth::user()->permission==1 ) {
+	if( Auth::check() && Auth::user()->permission_admin==1 && Auth::user()->permission_subcategories_r==1 ) {
 ?>
 <!DOCTYPE html>
 <html lang="es">

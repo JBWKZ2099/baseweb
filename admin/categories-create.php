@@ -2,7 +2,7 @@
 	include("../php/admin.head.php");
 
 	$word = "category";
-	if( Auth::check() && Auth::user()->permission==1 ) {
+	if( Auth::check() && Auth::user()->permission_admin==1 && Auth::user()->permission_categories_c==1 ) {
 		$mysqli = Connection::conectar_db();
 		Connection::selecciona_db($mysqli);
 ?>

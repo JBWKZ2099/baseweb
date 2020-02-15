@@ -106,8 +106,7 @@
 			$sql = rtrim($sql,", ");
 			$updated_at = Times::setTimeStamp();
 			$sql .= ", updated_at='$updated_at' WHERE id=$id";
-			// var_dump($sql);
-			// exit();
+			// dd( $sql );
 
 			session_start();
 			if( mysqli_query( $mysqli, $sql ) )

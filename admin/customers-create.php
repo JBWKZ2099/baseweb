@@ -1,7 +1,7 @@
 <?php
 	include("../php/admin.head.php");
 
-	if( Auth::check() && Auth::user()->permission==1 ) {
+	if( Auth::check() && Auth::user()->permission_admin==1 && Auth::user()->permission_users_c==1 ) {
 		$mysqli = Connection::conectar_db();
 		Connection::selecciona_db($mysqli);
 ?>
@@ -35,11 +35,15 @@
 								Creando cliente
 							</div>
 							<div class="card-body">
-								<?php
-									include("../alerts/errors.php");
-									include("../alerts/success.php");
-								?>
-								<form action="<?php echo $env->APP_URL ?>php/db/requests.php" method="POST">
+
+								<!-- alert row -->
+								<div id="my-alert" class="alert alert-dismissible" role="alert" style="display:none;">
+									<button id="dismiss-my-alert" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+									<span id="alert-text"></span>
+								</div>
+								<!-- alert row -->
+
+								<form id="users-form" action="<?php echo $env->APP_URL ?>php/db/requests.php" method="POST">
 									<input type="hidden" name="request" value="create-customer">
 									<input type="hidden" name="table" value="users">
 									<?php
@@ -65,6 +69,7 @@
 		<i class="fa fa-angle-up"></i>
 	</a>
 	<?php include("widgets/modal.php"); ?>
+	<script src="<?php echo $abs_path."assets/js/users-form.js"; ?>"></script>
 </body>
 </html>
 <?php

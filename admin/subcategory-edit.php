@@ -4,7 +4,7 @@
 	$current_pg = "Subcategoría";
 	$word = "subcategory";
 	$table = "subcategories";
-	if( Auth::check() && Auth::user()->permission==1 ) {
+	if( Auth::check() && Auth::user()->permission_admin==1 && Auth::user()->permission_subcategories_u==1 ) {
 		if( isset($_GET["id"]) ) {
 			$id = (int)$_GET["id"];
 			if( !DB::validateData( $id, $table ) )

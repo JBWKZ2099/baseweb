@@ -39,29 +39,26 @@
 
 			case "customer":
 				$tbl = "`users`";
-				$tbl2 = "`permissions`";
 				$columns = array(
-					0 => "$tbl.id",
-					1 => "$tbl.name",
-					2 => "$tbl.first_name",
-					3 => "$tbl.last_name",
-					4 => "$tbl.username",
-					5 => "$tbl.email",
-					6 => "$tbl.permission",
+					"$tbl.id",
+					"$tbl.name",
+					"$tbl.last_name",
+					"$tbl.username",
+					"$tbl.email",
+					"$tbl.permissions",
 				);
 				$col_clean = array(
-					0 => "id",
-					1 => "name",
-					2 => "first_name",
-					3 => "last_name",
-					4 => "username",
-					5 => "email",
-					6 => "permission",
+					"id",
+					"name",
+					"last_name",
+					"username",
+					"email",
+					"permissions",
 				);
 				$sql_data = array(
-					0 => "$tbl.`id`, $tbl.`name`, $tbl.`first_name`, $tbl.`last_name`, $tbl.`username`, $tbl.`email`, $tbl.`permission`, $tbl2.`name` AS 'permission' ",
-					1 => $tbl,
-					2 => "INNER JOIN $tbl2 ON $tbl.`permission`=$tbl2.`id` WHERE $tbl.`deleted_at` IS NULL "
+					"$tbl.`id`, $tbl.`name`, $tbl.`last_name`, $tbl.`username`, $tbl.`email` ",
+					$tbl,
+					"WHERE $tbl.`deleted_at` IS NULL "
 				);
 				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
@@ -71,34 +68,69 @@
 				if( isset($_POST["password"]) && !empty($_POST["password"]) )
 					$password = $_POST["password"];
 
+				/* Llenamos array para saber si viene 1 o 0 */
+					$permissions = array(
+						"permission_users",
+						"permission_blogs",
+						"permission_categories",
+						"permission_subcategories",
+					);
+					$perms = array();
+
+					foreach( $permissions as $p ) {
+						$perms[$p."_c"] = ( $_POST[$p."_c"]=="on" ) ? 1 : 0;
+						$perms[$p."_r"] = ( $_POST[$p."_r"]=="on" ) ? 1 : 0;
+						$perms[$p."_u"] = ( $_POST[$p."_u"]=="on" ) ? 1 : 0;
+						$perms[$p."_d"] = ( $_POST[$p."_d"]=="on" ) ? 1 : 0;
+					}
+				/* Llenamos array para saber si viene 1 o 0 */
+
+				/* Armamos array para hacer implode de permisos */
+					$_perms = "{";
+
+					/* Seteamos las variables para superadmin y admin */
+					$_perms .= "\"permission_superadmin\":".(($_POST["permission_superadmin"]=="on") ? 1 : 0).",";
+					$_perms .= "\"permission_admin\":".(($_POST["permission_admin"]=="on") ? 1 : 0).",";
+					/* Seteamos las variables para superadmin y admin */
+					foreach( $perms as $key => $prm ) {
+						$_perms .= "\"$key\":".$prm.",";
+					}
+					$_perms = substr($_perms, 0, -1)."}";
+
+
+					// Assign permissions
+						if( $_POST["permission_superadmin"]=="on" )
+							$_perms = '{"permission_superadmin":1,"permission_admin":1,"permission_users_c":1,"permission_users_r":1,"permission_users_u":1,"permission_users_d":1,"permission_blogs_c":1,"permission_blogs_r":1,"permission_blogs_u":1,"permission_blogs_d":1,"permission_categories_c":1,"permission_categories_r":1,"permission_categories_u":1,"permission_categories_d":1,"permission_subcategories_c":1,"permission_subcategories_r":1,"permission_subcategories_u":1,"permission_subcategories_d":1}';
+					// /. Assign permissions
+				/* Armamos array para hacer implode de permisos */
+
+
+				// dd( json_decode($_perms, true)["permission_users_c"] );
+				// dd( $_perms );
+
 				$columns = array(
-					0 => "name",
-					1 => "first_name",
-					2 => "last_name",
-					3 => "username",
-					4 => "email",
+					"name",
+					"last_name",
+					"username",
+					"email",
 				);
 				if( isset($password) )
 					$columns[] = "password";
 
-				$columns[] = "permission";
+				$columns[] = "permissions";
 
 				$data = array(
-					0 => $_POST["name"],
-					1 => $_POST["first_name"],
-					2 => $_POST["last_name"],
-					3 => $_POST["username"],
-					4 => $_POST["email"],
+					$_POST["name"],
+					$_POST["last_name"],
+					$_POST["username"],
+					$_POST["email"],
 				);
 				if( isset($password) )
 					$data[] = Auth::cryptBlowfish($password);
 
-				$data[] = $_POST["permission"];
-
-				$columns[] = "updated_at";
-				$data[] = Times::setTimeStamp();
+				$data[] = $_perms;
 				$tbl = "users";
-				// var_dump($data); exit();
+				// dd( $data );
 				DB::updateData($_POST["which"], $columns, $data, $tbl);
 				// exit();
 				Redirect::to($up_dir."admin/customers");
@@ -107,35 +139,73 @@
 
 			case "create-customer":
 				$tbl = $_POST["table"];
+
+				/* Llenamos array para saber si viene 1 o 0 */
+					$permissions = array(
+						"permission_users",
+						"permission_blogs",
+						"permission_categories",
+						"permission_subcategories",
+					);
+					$perms = array();
+
+					foreach( $permissions as $p ) {
+						$perms[$p."_c"] = ( $_POST[$p."_c"]=="on" ) ? 1 : 0;
+						$perms[$p."_r"] = ( $_POST[$p."_r"]=="on" ) ? 1 : 0;
+						$perms[$p."_u"] = ( $_POST[$p."_u"]=="on" ) ? 1 : 0;
+						$perms[$p."_d"] = ( $_POST[$p."_d"]=="on" ) ? 1 : 0;
+					}
+				/* Llenamos array para saber si viene 1 o 0 */
+
+				/* Armamos array para hacer implode de permisos */
+					$_perms = "{";
+
+					/* Seteamos las variables para superadmin y admin */
+					$_perms .= "\"permission_superadmin\":".(($_POST["permission_superadmin"]=="on") ? 1 : 0).",";
+					$_perms .= "\"permission_admin\":".(($_POST["permission_admin"]=="on") ? 1 : 0).",";
+					/* Seteamos las variables para superadmin y admin */
+					foreach( $perms as $key => $prm ) {
+						$_perms .= "\"$key\":".$prm.",";
+					}
+					$_perms = substr($_perms, 0, -1)."}";
+
+
+					// Assign permissions
+						if( $_POST["permission_superadmin"]=="on" )
+							$_perms = '{"permission_superadmin":1,"permission_admin":1,"permission_users_c":1,"permission_users_r":1,"permission_users_u":1,"permission_users_d":1,"permission_blogs_c":1,"permission_blogs_r":1,"permission_blogs_u":1,"permission_blogs_d":1,"permission_categories_c":1,"permission_categories_r":1,"permission_categories_u":1,"permission_categories_d":1,"permission_subcategories_c":1,"permission_subcategories_r":1,"permission_subcategories_u":1,"permission_subcategories_d":1}';
+					// /. Assign permissions
+				/* Armamos array para hacer implode de permisos */
+
+
+				// dd( json_decode($_perms, true)["permission_users_c"] );
+				// dd( $_perms );
+
 				$columns = array(
-					0 => "id",
-					1 => "name",
-					2 => "first_name",
-					3 => "last_name",
-					4 => "username",
-					5 => "email",
-					6 => "password",
-					7 => "permission",
-					8 => "created_at",
-					9 => "update_at",
-					10 => "deleted_at",
+					"id",
+					"name",
+					"last_name",
+					"username",
+					"email",
+					"password",
+					"permissions",
+					"created_at",
+					"update_at",
+					"deleted_at",
 				);
 				$password = Auth::cryptBlowfish($_POST["password"]);
 				$data = array(
-					0 => 'NULL',
-					1 => "'".$_POST["name"]."'",
-					2 => "'".$_POST["first_name"]."'",
-					3 => "'".$_POST["last_name"]."'",
-					4 => "'".$_POST["username"]."'",
-					5 => "'".$_POST["email"]."'",
-					6 => "'".$password."'",
-					7 => "'".$_POST["permission"]."'",
-					8 => "'".Times::setTimeStamp()."'",
-					9 => 'NULL',
-					10 => 'NULL',
+					'NULL',
+					"'".$_POST["name"]."'",
+					"'".$_POST["last_name"]."'",
+					"'".$_POST["username"]."'",
+					"'".$_POST["email"]."'",
+					"'".$password."'",
+					"'".$_perms."'",
+					"'".Times::setTimeStamp()."'",
+					'NULL',
+					'NULL',
 				);
-				// var_dump($data);
-				// exit();
+				// dd($data);
 
 				DB::registro_nuevo($tbl, $data, $columns);
 				Redirect::to($up_dir."admin/customers");
@@ -145,27 +215,25 @@
 				$tbl = "`users`";
 				$tbl2 = "`permissions`";
 				$columns = array(
-					0 => "$tbl.id",
-					1 => "$tbl.name",
-					2 => "$tbl.first_name",
-					3 => "$tbl.last_name",
-					4 => "$tbl.username",
-					5 => "$tbl.email",
-					6 => "$tbl.permission",
+					"$tbl.id",
+					"$tbl.name",
+					"$tbl.last_name",
+					"$tbl.username",
+					"$tbl.email",
+					"$tbl.permission",
 				);
 				$col_clean = array(
-					0 => "id",
-					1 => "name",
-					2 => "first_name",
-					3 => "last_name",
-					4 => "username",
-					5 => "email",
-					6 => "permission",
+					"id",
+					"name",
+					"last_name",
+					"username",
+					"email",
+					"permission",
 				);
 				$sql_data = array(
-					0 => "$tbl.`id`, $tbl.`name`, $tbl.`first_name`, $tbl.`last_name`, $tbl.`username`, $tbl.`email`, $tbl.`permission`, $tbl2.`name` AS 'permission' ",
-					1 => $tbl,
-					2 => "INNER JOIN $tbl2 ON $tbl.`permission`=$tbl2.`id` WHERE $tbl.`deleted_at` IS NOT NULL "
+					"$tbl.`id`, $tbl.`name`, $tbl.`last_name`, $tbl.`username`, $tbl.`email` ",
+					$tbl,
+					"WHERE $tbl.`deleted_at` IS NOT NULL "
 				);
 				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
@@ -173,23 +241,23 @@
 			case "blog":
 				$tbl = "`blogs`";
 				$columns = array(
-					0 => "$tbl.id",
-					1 => "$tbl.name",
-					2 => "$tbl.author",
-					3 => "$tbl.created_at",
-					4 => "$tbl.updated_at",
+					"$tbl.id",
+					"$tbl.name",
+					"$tbl.author",
+					"$tbl.created_at",
+					"$tbl.updated_at",
 				);
 				$col_clean = array(
-					0 => "id",
-					1 => "name",
-					2 => "author",
-					3 => "created_at",
-					4 => "updated_at",
+					"id",
+					"name",
+					"author",
+					"created_at",
+					"updated_at",
 				);
 				$sql_data = array(
-					0 => "$tbl.`id`, $tbl.`name`, $tbl.`author`, $tbl.`created_at`, $tbl.`updated_at` ",
-					1 => $tbl,
-					2 => " WHERE $tbl.`deleted_at` IS NULL "
+					"$tbl.`id`, $tbl.`name`, $tbl.`author`, $tbl.`created_at`, $tbl.`updated_at` ",
+					$tbl,
+					" WHERE $tbl.`deleted_at` IS NULL "
 				);
 				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
@@ -374,23 +442,23 @@
 			case "blog-restore":
 				$tbl = "`blogs`";
 				$columns = array(
-					0 => "$tbl.id",
-					1 => "$tbl.name",
-					2 => "$tbl.author",
-					3 => "$tbl.created_at",
-					4 => "$tbl.updated_at",
+					"$tbl.id",
+					"$tbl.name",
+					"$tbl.author",
+					"$tbl.created_at",
+					"$tbl.updated_at",
 				);
 				$col_clean = array(
-					0 => "id",
-					1 => "name",
-					2 => "author",
-					3 => "created_at",
-					4 => "updated_at",
+					"id",
+					"name",
+					"author",
+					"created_at",
+					"updated_at",
 				);
 				$sql_data = array(
-					0 => "$tbl.`id`, $tbl.`name`, $tbl.`author`, $tbl.`created_at`, $tbl.`updated_at` ",
-					1 => $tbl,
-					2 => " WHERE $tbl.`deleted_at` IS NOT NULL "
+					"$tbl.`id`, $tbl.`name`, $tbl.`author`, $tbl.`created_at`, $tbl.`updated_at` ",
+					$tbl,
+					" WHERE $tbl.`deleted_at` IS NOT NULL "
 				);
 				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
@@ -398,17 +466,17 @@
 			case "category":
 				$tbl = "`categories`";
 				$columns = array(
-					0 => "$tbl.id",
-					1 => "$tbl.name",
+					"$tbl.id",
+					"$tbl.name",
 				);
 				$col_clean = array(
-					0 => "id",
-					1 => "name",
+					"id",
+					"name",
 				);
 				$sql_data = array(
-					0 => "$tbl.`id`, $tbl.`name`",
-					1 => $tbl,
-					2 => " WHERE $tbl.`deleted_at` IS NULL "
+					"$tbl.`id`, $tbl.`name`",
+					$tbl,
+					" WHERE $tbl.`deleted_at` IS NULL "
 				);
 				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
@@ -418,13 +486,13 @@
 				$slug_name = slugger($_POST["name"]);
 
 				$columns = array(
-					0 => "name",
-					1 => "slug_name",
+					"name",
+					"slug_name",
 				);
 
 				$data = array(
-					0 => $_POST["name"],
-					1 => $slug_name,
+					$_POST["name"],
+					$slug_name,
 				);
 
 				$tbl = "categories";
@@ -441,20 +509,20 @@
 				$slug_name = slugger($_POST["name"]);
 
 				$columns = array(
-					0 => "id",
-					1 => "name",
-					2 => "slug_name",
-					3 => "created_at",
-					4 => "update_at",
-					5 => "deleted_at",
+					"id",
+					"name",
+					"slug_name",
+					"created_at",
+					"update_at",
+					"deleted_at",
 				);
 				$data = array(
-					0 => 'NULL',
-					1 => "'".$_POST["name"]."'",
-					2 => "'".$slug_name."'",
-					3 => "'".Times::setTimeStamp()."'",
-					4 => 'NULL',
-					5 => 'NULL',
+					'NULL',
+					"'".$_POST["name"]."'",
+					"'".$slug_name."'",
+					"'".Times::setTimeStamp()."'",
+					'NULL',
+					'NULL',
 				);
 
 				// var_dump($data);
@@ -467,17 +535,17 @@
 			case "category-restore":
 				$tbl = "`categories`";
 				$columns = array(
-					0 => "$tbl.id",
-					1 => "$tbl.name",
+					"$tbl.id",
+					"$tbl.name",
 				);
 				$col_clean = array(
-					0 => "id",
-					1 => "name",
+					"id",
+					"name",
 				);
 				$sql_data = array(
-					0 => "$tbl.`id`, $tbl.`name` ",
-					1 => $tbl,
-					2 => " WHERE $tbl.`deleted_at` IS NOT NULL "
+					"$tbl.`id`, $tbl.`name` ",
+					$tbl,
+					" WHERE $tbl.`deleted_at` IS NOT NULL "
 				);
 				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
@@ -485,17 +553,17 @@
 			case "subcategory":
 				$tbl = "`subcategories`";
 				$columns = array(
-					0 => "$tbl.id",
-					1 => "$tbl.name",
+					"$tbl.id",
+					"$tbl.name",
 				);
 				$col_clean = array(
-					0 => "id",
-					1 => "name",
+					"id",
+					"name",
 				);
 				$sql_data = array(
-					0 => "$tbl.`id`, $tbl.`name`",
-					1 => $tbl,
-					2 => " WHERE $tbl.`deleted_at` IS NULL "
+					"$tbl.`id`, $tbl.`name`",
+					$tbl,
+					" WHERE $tbl.`deleted_at` IS NULL "
 				);
 				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
@@ -505,13 +573,13 @@
 				$slug_name = slugger($_POST["name"]);
 
 				$columns = array(
-					0 => "name",
-					1 => "slug_name",
+					"name",
+					"slug_name",
 				);
 
 				$data = array(
-					0 => $_POST["name"],
-					1 => $slug_name,
+					$_POST["name"],
+					$slug_name,
 				);
 
 				$tbl = "subcategories";
@@ -529,20 +597,20 @@
 				$slug_name = slugger($_POST["name"]);
 
 				$columns = array(
-					0 => "id",
-					1 => "name",
-					2 => "slug_name",
-					3 => "created_at",
-					4 => "update_at",
-					5 => "deleted_at",
+					"id",
+					"name",
+					"slug_name",
+					"created_at",
+					"update_at",
+					"deleted_at",
 				);
 				$data = array(
-					0 => 'NULL',
-					1 => "'".$_POST["name"]."'",
-					2 => "'".$slug_name."'",
-					3 => "'".Times::setTimeStamp()."'",
-					4 => 'NULL',
-					5 => 'NULL',
+					'NULL',
+					"'".$_POST["name"]."'",
+					"'".$slug_name."'",
+					"'".Times::setTimeStamp()."'",
+					'NULL',
+					'NULL',
 				);
 
 				// var_dump($data);
@@ -555,17 +623,17 @@
 			case "subcategory-restore":
 				$tbl = "`subcategories`";
 				$columns = array(
-					0 => "$tbl.id",
-					1 => "$tbl.name",
+					"$tbl.id",
+					"$tbl.name",
 				);
 				$col_clean = array(
-					0 => "id",
-					1 => "name",
+					"id",
+					"name",
 				);
 				$sql_data = array(
-					0 => "$tbl.`id`, $tbl.`name` ",
-					1 => $tbl,
-					2 => " WHERE $tbl.`deleted_at` IS NOT NULL "
+					"$tbl.`id`, $tbl.`name` ",
+					$tbl,
+					" WHERE $tbl.`deleted_at` IS NOT NULL "
 				);
 				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;

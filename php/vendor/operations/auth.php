@@ -46,9 +46,12 @@
 			$sql = "SELECT * FROM users WHERE username = '$usr'";
 
 			$result = mysqli_query(  $mysqli, $sql );
+			$usr_res = mysqli_fetch_array($result, MYSQLI_ASSOC);
+			$usr_obj[] = json_decode( $usr_res["permissions"] );
+			$usr_obj[] = json_decode( json_encode($usr_res), false );
 
-			$response = json_decode(json_encode( mysqli_fetch_array($result, MYSQLI_ASSOC) ), FALSE);
-			// $response = mysqli_fetch_array($result, MYSQLI_ASSOC);
+			/* unimos array de objectos para que tenga permisos y los demás campos de usuarios */
+			$response = (object) array_merge( (array)$usr_obj[0], (array)$usr_obj[1] );
 			return $response;
 		}
 

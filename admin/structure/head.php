@@ -12,8 +12,10 @@
 <!-- Custom styles for this template-->
 <link href="<?php Times::fileTime("admin/assets/css/sb-admin.css"); ?>" rel="stylesheet">
 <link href="<?php Times::fileTime("admin/assets/css/admin.css"); ?>" rel="stylesheet">
+<?php /*
 <link href="<?php Times::fileTime("../assets/css/core.css"); ?>" rel="stylesheet">
 <link href="<?php Times::fileTime("../assets/css/custom.css"); ?>" rel="stylesheet">
+*/ ?>
 
 <script src="https://use.fontawesome.com/5b97f125c2.js"></script>
 <!-- Bootstrap core JavaScript-->
