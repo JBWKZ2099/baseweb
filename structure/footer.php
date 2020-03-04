@@ -31,6 +31,8 @@
 <?php /*Script custom*/ ?>
 <script src="<?php Times::fileTime("assets/js/script.js"); ?>"></script>
 <script src="<?php Times::fileTime("assets/js/img-to-svg.js"); ?>"></script>
+<?php /*Script custom*/ ?>
+<script src="<?php Times::fileTime("assets/js/stickyfill.js"); ?>"></script>
 <?php /*reCaptcha*/ ?>
 <?php if( $_SESSION["recaptcha"]=="v3" ) { ?>
 <script src='https://www.google.com/recaptcha/api.js?render=<?php echo $env->GRECAPTCHA_PUBLIC; ?>'></script>

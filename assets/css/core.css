@@ -267,6 +267,17 @@ CAROUSEL - CIRCLE INDICATORS
 	background-color: #FFF;
 	display: none;
 }
+.dark-indicators.circle-indicators .carousel-indicators li {
+	background-color: rgba(0,0,0,0);
+	background-color: #000;
+}
+.dark-indicators.circle-indicators .carousel-indicators .active {
+  background-color: transparent;
+  border: 1px solid #000;
+}
+.dark-indicators.circle-indicators .inner-circle {
+	background-color: #000;
+}
 /*=============================================================================
 reCaptcha v3
 =============================================================================*/
