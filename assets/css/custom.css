@@ -14,15 +14,8 @@ html { overflow-x: hidden; }
 .bg-default { background-color: #eee; border: 1px solid #ddd; }
 .bg-default-02 { background-color: #ddd; border: 1px solid #ccc; }
 .text-black { color: #000; }
-.text-blue-hard { color: var(--color-blue-hard); }
-.text-dark-gray { color: var(--color-dark-gray); }
 .bg-cover-index {
 	background-image: url("http://placehold.it/1920x1080");
-}
-.btn-blue-transp { color: var(--color-blue-hard); background-color: transparent; border: 1px solid var(--color-blue-hard); }
-.btn-blue-transp:hover { color: #FFF !important; }
-.btn-blue-transp::before {
-	background: radial-gradient(circle closest-side, var(--color-blue-hard), transparent);
 }
 /*=============================================================================
 THANKS PAGE
@@ -45,9 +38,15 @@ NAVBAR
 .navbar-light .navbar-nav .nav-link {
 	color: #333;
 }
+.navbar-light .navbar-nav .active .nav-link,
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
+	color: #333;
+	border-color: #333;
+}
 /* colores items menu */
 /* separación items menu */
-.navbar-light .navbar-nav .nav-link {
+.navbar-nav > .nav-item {
 	padding-left: 15px;
 	padding-right: 15px;
 }

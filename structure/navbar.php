@@ -28,7 +28,7 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto">
 				<?php foreach($items as $item) { ?>
-					<li class='nav-item<?php act($item->active, $active); if( $item->submenu ) echo " dropdown text-center"; ?> right-separator'>
+					<li class='nav-item<?php act($item->active, $active); if( $item->submenu ) echo " dropdown text-center"; ?>'>
 						<?php if( !$item->submenu ) { ?>
 							<a class='nav-link text-center' href='<?php echo $path.$item->link; ?>' <?php if( isset($item->data_target) && !empty($item->data_target) ) echo "data-target='".$item->data_target."'"; ?>><?php echo $item->word ?></a>
 						<?php } else { ?>
