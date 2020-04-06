@@ -61,7 +61,7 @@
 		// Global variables
 
 		// Mail method
-		$phpmailer = false;
+		$phpmailer = true;
 
 		//web site secret key
 		$secret = $env->GRECAPTCHA_SECRET;
@@ -107,19 +107,19 @@
 				);
 			}
 
-			$mysqli = conectar_db();
-			selecciona_db($mysqli);
+			$mysqli = Connection::conectar_db();
+			Connection::selecciona_db($mysqli);
 			$data = array(
 				0 => 'NULL',
 				1 => "'".$name = $_POST["name"]."'",
 				2 => "'".$usr_mail = $_POST["email"]."'",
 				3 => "'".$subject = $_POST["subject"]."'",
 				4 => "'".$mensaje = $_POST["msg"]."'",
-				5 => "'".setTimeStamp()."'",
+				5 => "'".Times::setTimeStamp()."'",
 				6 => 'NULL',
 				7 => 'NULL',
 			);
-			registro_nuevo("contact", $data, $columna=null);
+			DB::registro_nuevo("contact", $data, $columna=null);
 
 			$supplier_data = json_decode(json_encode(array(
 				"webmaster" => false,

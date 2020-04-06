@@ -31,10 +31,30 @@
 <?php /*Script custom*/ ?>
 <script src="<?php Times::fileTime("assets/js/script.js"); ?>"></script>
 <script src="<?php Times::fileTime("assets/js/img-to-svg.js"); ?>"></script>
-<?php /*Script custom*/ ?>
-<script src="<?php Times::fileTime("assets/js/stickyfill.js"); ?>"></script>
+<?php /*FormValidation v0.8.1*/ ?>
+<script src="assets/js/formvalidation/dist/js/formValidation.min.js"></script>
+<?php /*FormValidation v0.8.1*/ ?>
+<script src="assets/js/formvalidation/dist/js/framework/bootstrap.min.js"></script>
+<script src="assets/js/formvalidation/dist/js/language/es_ES.js"></script>
 <?php /*reCaptcha*/ ?>
 <?php if( $_SESSION["recaptcha"]=="v3" ) { ?>
 <script src='https://www.google.com/recaptcha/api.js?render=<?php echo $env->GRECAPTCHA_PUBLIC; ?>'></script>
 <?php } ?>
 <script src="<?php Times::fileTime("assets/js/footer.js"); ?>"></script>
+<script src="<?php Times::fileTime("assets/js/contact.js"); ?>"></script>
+
+<?php if( $_SESSION["recaptcha"]=="v3" ) { ?>
+	<script defer>
+		$("#msg").focus(function(){
+			grecaptcha.ready(function() {
+				// do request for recaptcha token
+				// response is promise with passed token
+				grecaptcha.execute('<?php echo $env->GRECAPTCHA_PUBLIC; ?>', {action: 'get_in_touch'}).then(function(token) {
+						// add token to form
+						$('form#contact-form').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
+						$('form#contact-form').prepend('<input type="hidden" name="action" value="get_in_touch">');
+				});
+			});
+		});
+	</script>
+<?php } ?>

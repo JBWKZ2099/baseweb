@@ -54,16 +54,16 @@
 					<?php include("alerts/alerts.php"); ?>
 					<form id="contact-form" action="<?php echo $path; ?>php/mailer/mailer.php" method="POST">
 						<div class="form-group">
-							<input type="text" class="form-control" name="name" value="" placeholder="Nombre:" required>
+							<input id="name" type="text" class="form-control" name="name" value="" placeholder="Nombre:" required>
 						</div>
 						<div class="form-group">
-							<input type="email" class="form-control" name="email" value="" placeholder="E-Mail:" required>
+							<input id="email" type="email" class="form-control" name="email" value="" placeholder="E-Mail:" required>
 						</div>
 						<div class="form-group">
-							<input type="text" class="form-control" name="subject" value="" placeholder="Asunto:" required>
+							<input id="subject" type="text" class="form-control" name="subject" value="" placeholder="Asunto:" required>
 						</div>
 						<div class="form-group">
-							<textarea class="form-control" name="msg" rows="5" placeholder="Mensaje:"></textarea>
+							<textarea id="msg" class="form-control" name="msg" rows="5" placeholder="Mensaje:"></textarea>
 						</div>
 						<?php if( $_SESSION["recaptcha"]=="v2" ) { ?>
 							<div class="form-group">
@@ -72,27 +72,6 @@
 						<?php } ?>
 						<button type="submit" class="btn btn-secondary">Enviar</button>
 					</form>
-					<?php if( $_SESSION["recaptcha"]=="v3" ) { ?>
-						<script>
-						  $('form#contact-form').submit(function(event) {
-						    // we stoped it
-						    event.preventDefault();
-						    // needs for recaptacha ready
-						    grecaptcha.ready(function() {
-						      // do request for recaptcha token
-						      // response is promise with passed token
-						      grecaptcha.execute('<?php echo $env->GRECAPTCHA_PUBLIC; ?>', {action: 'get_in_touch'}).then(function(token) {
-						          // add token to form
-						          $('form#contact-form').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
-						          $('form#contact-form').prepend('<input type="hidden" name="action" value="get_in_touch">');
-						          // return false;
-						          // submit form now
-						          $('form#contact-form').unbind('submit').submit();
-						      });
-						    });
-						  });
-						</script>
-					<?php } ?>
 				</div>
 			</div>
 		</div>

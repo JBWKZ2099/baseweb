@@ -13,7 +13,7 @@
 	<p>"%msg%"</p>
 	<b>Datos de contacto</b>
 	<p>
-		<b>Correo:</b> %email%<br>
+		<b>Correo:</b><br>%email%
 	</p>
 </div>
 </body>

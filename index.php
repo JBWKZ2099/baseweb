@@ -114,9 +114,5 @@
 	</section>
 
 	<?php include(/*$dir.*/"structure/footer.php"); ?>
-	<script type="text/javascript">
-		rackimg = document.getElementById("parallax-rack");
-		Stickyfill.add(rackimg);
-	</script>
 </body>
 </html>

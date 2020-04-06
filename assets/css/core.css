@@ -8,6 +8,10 @@ a, button, .btn, a.btn {
 	-o-transition: 0.2s;
 	transition: 0.2s;
 }
+.has-error [data-fv-for="sectors[]"] { display: block !important; }
+.has-error .form-control { border-color: #dc3545; }
+.has-error .help-block { color: #dc3545; }
+.has-success .form-control, .has-success button.dropdown-toggle { border-color: #28a745; }
 .p-relative { position: relative; }
 .p-absolute { position: absolute; }
 .container-custom { width: 100%; margin: 0 auto; padding: 0 1rem; position: relative; }
