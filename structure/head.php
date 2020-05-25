@@ -6,9 +6,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <?php /* CSS Tags */ ?>
 <?php /*Bootstrap css minified*/ ?>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <?php /*FormValidation v0.8.1 */ ?>
-<link rel="stylesheet" href="assets/js/formvalidation/dist/css/formValidation.min.css">
+<link rel="stylesheet" href="<?php Times::fileTime("assets/js/formvalidation/dist/css/formValidation.min.css"); ?>">
 <?php /*Style Core*/ ?>
 <link rel="stylesheet" href="<?php Times::fileTime("assets/css/core.css"); ?>">
 <?php /*Style Custom*/ ?>

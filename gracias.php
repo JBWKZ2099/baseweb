@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	$_SESSION["_success"] = true;
 	if( !isset($_SESSION['_success']) ) {
 		// echo "<script> window.location.href = 'contacto.php' </script>";
 		header("Location: index");
@@ -8,10 +9,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<?php $view_name="Gracias"; include("structure/head.php") ?>
+
+	<?php include('structure/head.php') ?>
+
+	<title>Serinnovatec | Sanitización | Gracias por contactarnos</title>
 </head>
-<body>
-	<?php $active="contact"; include("structure/navbar.php") ?>
+<body id="sanitizacion" style="overflow-x:hidden;">
+	<? $menu = "sanitizacion"; ?>
+	<?php include('structure/navbar.php') ?>
 
 	<section class="container-custom thanks-page">
 		<div class="row h-100 align-items-center">

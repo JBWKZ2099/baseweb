@@ -22,7 +22,7 @@
 		$up_dir = 0; for( $i01=1; $i01<=$up_dir; $i01++ ) { $dir.="../"; }
 	?>
 	<?php
-		$view_name="title";
+		$view_name="Inicio";
 		include(/*$dir.*/"structure/head.php");
 		$asset = "assets/img/folder_name/"; // Path where are storaged media files (img, video, etc)
 
@@ -30,9 +30,9 @@
 		// if(session_status()==="") session_start();
 		// logout();
 		// unset( $_SESSION );
-		// $pswd_ed = "asdasd";
-		// echo $pswd_encrypted = Auth::cryptBlowfish("asdasd");
-		// exit();
+		// $pswd_ed = "j4BB4W0CK33Z*";
+		// $pswd_encrypted = Auth::cryptBlowfish($pswd_ed);
+		// dd( $pswd_ed, $pswd_encrypted );
 	?>
 </head>
 <body>

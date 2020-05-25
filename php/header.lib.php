@@ -3,6 +3,7 @@
   $_SESSION["d_errors"] = 0;
   ini_set("display_errors",$_SESSION["d_errors"]);
 
+  // Si se sube a .info se debe agregar el nombre de la carpeta a $realpath
   $realpath = realpath($_SERVER["DOCUMENT_ROOT"]);
   $_SESSION["path"]["autoload"] = $realpath."/php/vendor/autoload.php";
   $_SESSION["path"]["env"] = $realpath."/env.php";

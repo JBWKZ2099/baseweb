@@ -282,6 +282,41 @@ CAROUSEL - CIRCLE INDICATORS
 .dark-indicators.circle-indicators .inner-circle {
 	background-color: #000;
 }
+/**
+ * Carousel with Circle indicator
+ * it needs to add <div class="inner-square"></div> on li elements
+ * (carousel-indicator)
+ */
+.square-indicators .carousel-indicators li {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	margin-top: 0;
+	text-indent: -999px;
+	cursor: pointer;
+	background-color: #FFF;
+	border: none;
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+	-o-border-radius: 0;
+	opacity: 1;
+}
+.square-indicators .carousel-indicators .active {
+  width: 15px;
+  height: 15px;
+  background-color: #FFF;
+  margin-top: 0;
+  margin-bottom: -2px;
+}
+.square-indicators .carousel-indicators li.active .inner-square { display: block; }
+.square-indicators .inner-square {
+	width: 15px;
+	height: 15px;
+	background-color: #FFF;
+	display: none;
+}
 /*=============================================================================
 reCaptcha v3
 =============================================================================*/
