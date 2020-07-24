@@ -33,9 +33,9 @@
 <script src="<?php Times::fileTime("assets/js/img-to-svg.js"); ?>"></script>
 <?php /*FormValidation v0.8.1*/ ?>
 <script src="<?php Times::fileTime("assets/js/formvalidation/dist/js/formValidation.min.js"); ?>"></script>
-<?php /*FormValidation v0.8.1*/ ?>
 <script src="<?php Times::fileTime("assets/js/formvalidation/dist/js/framework/bootstrap.min.js"); ?>"></script>
 <script src="<?php Times::fileTime("assets/js/formvalidation/dist/js/language/es_ES.js"); ?>"></script>
+<?php /*FormValidation v0.8.1*/ ?>
 <?php /*reCaptcha*/ ?>
 <?php if( $_SESSION["recaptcha"]=="v3" ) { ?>
 <script src='https://www.google.com/recaptcha/api.js?render=<?php echo $env->GRECAPTCHA_PUBLIC; ?>'></script>

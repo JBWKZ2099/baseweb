@@ -148,7 +148,7 @@
  				<div class="col-md-12 text-center mb-45">
  					<h1 class="mb-3"><strong><?php echo $rwd['name'] ?></strong></h1>
  				</div>
- 				<div class="col-md-10">
+ 				<div class="col-md-12">
  						<div class="blog-play-container">
  							<img class="img-fluid d-block m-auto" src="<?php echo $path; ?>uploads/<?php echo $rwd['img'] ?>">
  						</div>

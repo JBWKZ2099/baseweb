@@ -14,7 +14,10 @@ $(document).ready(function() {
 			email: {
 				validators: {
 					notEmpty: {},
-					emailAddress: {}
+					emailAddress: {},
+					regexp: {
+							regexp: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
+					}
 				}
 			},
 			msg: {

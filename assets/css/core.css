@@ -317,6 +317,42 @@ CAROUSEL - CIRCLE INDICATORS
 	background-color: #FFF;
 	display: none;
 }
+/**
+ * Carousel with Full Circle indicator
+ * it needs to add <div class="inner-full-circle"></div> on li elements
+ * (carousel-indicator)
+ */
+.full-circle-indicators .carousel-indicators li {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	margin-top: 0;
+	text-indent: -999px;
+	cursor: pointer;
+	background-color: transparent;
+	border: none;
+	border-radius: 100%;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	-ms-border-radius: 100%;
+	-o-border-radius: 100%;
+	opacity: 1;
+}
+.full-circle-indicators .carousel-indicators .active {
+  width: 12px;
+  height: 12px;
+  background-color: transparent;
+  margin-top: 0;
+	margin-bottom: -2px;
+	border-radius: 100%;
+}
+.full-circle-indicators .carousel-indicators li.active .inner-square { display: block; border-radius: 100%; }
+.full-circle-indicators .inner-square {
+	width: 12px;
+	height: 12px;
+	background-color: transparent;
+	display: none;
+}
 /*=============================================================================
 reCaptcha v3
 =============================================================================*/
