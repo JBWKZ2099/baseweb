@@ -1,6 +1,10 @@
 /*=============================================================================
 ADMIN - GENERAL STYLES
 =============================================================================*/
+.has-error [style=""] { display: block !important; }
+.has-error .form-control { border-color: #dc3545; }
+.has-error .help-block { color: #dc3545; }
+.has-success .form-control, .has-success button.dropdown-toggle { border-color: #28a745; }
 .btn-black {
 	color: #C85F45;
 	background-color: #363636;
@@ -106,4 +110,15 @@ ADMIN
 	padding: 0;
 	border: none;
 	background-color: rgba(0,0,0,0);
+}
+
+@media( max-width: 990px ) {
+	#mainNav .navbar-collapse .navbar-sidenav { margin-top: 0 !important; }
+	.admin-logo { width: 180px; height: auto; }
+	.navbar-dark .navbar-toggler { border-color: rgba(0,0,0,0.3); }
+	.navbar-dark .navbar-toggler-icon {
+		/*background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.8)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");*/
+	}
+	/*.navbar-nav { background-color: var(--color-blue-hard) !important; }*/
+	.navbar.navbar-expand-lg.navbar-dark.bg-dark.fixed-top .navbar-nav.ml-auto * { color: #adb5bd !important; }
 }

@@ -1,33 +1,20 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-  <a class="navbar-brand text-center" href="<?php echo $env->APP_URL_ADMIN; ?>">
-    <img class="admin-logo" src="http://placehold.it/200x50.svg?text=BrandLogo" alt="LogoAdmin">
-  </a>
-  <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarResponsive">
-    <?php include("menu.php"); ?>
-    <ul class="navbar-nav sidenav-toggler">
-      <li class="nav-item">
-        <a class="nav-link text-center" id="sidenavToggler">
-          <i class="fa fa-fw fa-angle-left"></i>
-        </a>
-      </li>
+<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+    <!-- Navbar Brand-->
+    <a class="navbar-brand ps-3" href="<?php echo $env->APP_URL_ADMIN; ?>">
+      <img class="admin-logo" src="http://placehold.it/200x50.svg?text=BrandLogo" alt="LogoAdmin">
+    </a>
+    <!-- Sidebar Toggle-->
+    <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
+
+    <!-- Navbar-->
+    <ul class="navbar-nav ms-auto me-0 me-md-3 my-2 my-md-0">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="<?php echo $env->APP_URL_ADMIN."customer-edit?id=".Auth::user()->id; ?>">Ajustes</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#!">Cerrar Sesión</a></li>
+            </ul>
+        </li>
     </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="<?php echo $env->APP_URL_ADMIN."customer-edit?id=".Auth::user()->id; ?>">
-          <i class="fa fa-fw fa-user"></i>
-          <?php
-            echo Auth::user()->name." ".Auth::user()->first_name;
-          ?>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
-          <i class="fa fa-fw fa-sign-out"></i>
-          Logout</a>
-      </li>
-    </ul>
-  </div>
 </nav>

@@ -1,6 +1,9 @@
 <?php
 	include("../php/admin.head.php");
 
+	$current_pg = "Usuario";
+	$word = "customer";
+	$table = "customers";
 	if( Auth::check() && Auth::user()->permission_users_u==1 ) {
 		$lets_pass = 0;
 
@@ -46,75 +49,87 @@
 				$sql = "SELECT * FROM $table WHERE id=$id";
 				$result = DB::consulta_tb($mysqli,$sql);
 			}
+			include("widgets/permissions.php");
 		}
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<?php
-		$title="Editar usuario";
+		$current_pg = "Usuario";
+		$title="Editar $current_pg";
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
-	<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.js"></script>
+	<?php /*<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.js"></script>*/ ?>
 	<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.dataTables.js"></script>
 </head>
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<body class="sb-nav-fixed">
 	<?php
-		$active_menu = "customer_mn";
-		$collapse = "customer";
-		$active_opt = "customer-view";
+		$active_menu = $word."_mn";
+		$collapse = $word;
+		$active_opt = $word."-view";
 		include("structure/navbar.php");
+		$word_esp = $current_pg;
+		$word_s = $table;
 	?>
 
-	<div class="content-wrapper">
-		<div class="contianer-fluid">
-			<div class="container-fluid">
-				<div class="row mt-3">
-					<div class="col-md-12">
-						<div class="card">
-							<div class="card-header bg-blue text-white">
-								<i class="fa fa-fw fa-pencil-square-o"></i>
-								Editando usuario
-							</div>
-							<div class="card-body">
-								<!-- alert row -->
-								<div id="my-alert" class="alert alert-dismissible" role="alert" style="display:none">
-									<button id="dismiss-my-alert" type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									<span id="alert-text"></span>
-								</div>
-								<!-- alert row -->
+	<div id="layoutSidenav">
+	  <div id="layoutSidenav_nav">
+	    <?php include("structure/menu.php"); ?>
+	  </div>
+	  <div id="layoutSidenav_content">
+	    <main>
+	      <div class="container-fluid px-4">
+	        <?php include("structure/breadcrumb.php"); ?>
 
-								<form id="users-form" action="<?php echo $env->APP_URL ?>php/db/requests.php" method="POST">
-									<input type="hidden" name="request" value="update-customer">
-									<input type="hidden" name="which" value="<?php echo $_GET["id"]; ?>">
-									<?php
-										$row = mysqli_fetch_array($result);
-										$sql = null; $sql = "SELECT * FROM permissions";
-										$u_result = DB::consulta_tb($mysqli,$sql);
+	        <div class="row mt-3">
+	        	<div class="col-md-12">
+	        		<div class="card">
+	        			<div class="card-header">
+	        				<i class="far fa-edit fa-fw"></i>
+	        				Editando <?php echo $word_esp; ?>
+	        			</div>
+	        			<div class="card-body">
+	        				<?php
+	        					include("../alerts/errors.php");
+	        					include("../alerts/success.php");
+	        				?>
+	        				<form id="form-validation" action="<?php echo $env->APP_URL ?>php/db/requests.php" method="POST" enctype="multipart/form-data">
+	        					<input type="hidden" name="request" value="update-<?php echo $word; ?>">
+	        					<input type="hidden" name="which" value="<?php echo $_GET["id"]; ?>">
+	        					<?php
+	        						$row = mysqli_fetch_array($result);
+	        						$sql = null; $sql = "SELECT * FROM permissions";
+	        						$u_result = DB::consulta_tb($mysqli,$sql);
 
-										$row_obj = json_decode( $row["permissions"] );
-										$edit = true;
-									?>
-									<?php include("forms/customer-form.php"); ?>
-									<button type="submit" class="btn btn-success">Actualizar</button>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	        						$row_obj = json_decode( $row["permissions"] );
+	        						$edit = true;
+	        						include("forms/".$word."-form.php");
+	        					?>
+	        					<button type="submit" class="btn btn-success">Actualizar</button>
+	        				</form>
+	        			</div>
+	        		</div>
+	        	</div>
+	        </div>
+	      </div>
+	    </main>
+	    <footer class="py-4 bg-light mt-auto">
+	      <?php include("structure/footer.php"); ?>
+	    </footer>
+	  </div>
 	</div>
 
-	<?php include("structure/footer.php"); ?>
+	<?php include("structure/footer-scripts.php"); ?>
 
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded" href="#page-top">
 		<i class="fa fa-angle-up"></i>
 	</a>
 	<?php include("widgets/modal.php"); ?>
-	<script src="<?php echo $abs_path."assets/js/users-form.js"; ?>"></script>
+
+	<?php include("forms/validations/".$collapse."_edit.php"); ?>
 </body>
 </html>
 <?php

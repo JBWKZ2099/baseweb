@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <?php /* CSS Tags */ ?>
 <?php /*Bootstrap css minified*/ ?>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 <?php /*FormValidation v0.8.1 */ ?>
 <link rel="stylesheet" href="<?php Times::fileTime("assets/js/formvalidation/dist/css/formValidation.min.css"); ?>">
 <?php /*Style Core*/ ?>

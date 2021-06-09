@@ -1,6 +1,13 @@
+<?php
+	$_create = Auth::user()->{"permission_".$table."_c"};
+	$_read = Auth::user()->{"permission_".$table."_r"};
+	$_update = Auth::user()->{"permission_".$table."_u"};
+	$_delete = Auth::user()->{"permission_".$table."_d"};
+?>
 <script>
 	$(document).ready(function() {
-		var dataTable = $('#table-gen').DataTable( {
+
+		dataTable = $('#table-gen').DataTable( {
 			"processing": true,
 			"serverSide": true,
 			"ajax":{
@@ -17,9 +24,24 @@
 				"bSortable": false, // Exclude actions column from ordering
 				"data": null,
 				<?php if( $dt_restore ) { ?>
-					"defaultContent": "<a id='restore' class='text-warning mr-2 link-table' data-toggle='modal' data-target='#restore-record'> <i class='fa fa-repeat'></i> </a>"
+					"defaultContent": "<a href='#' title='Restaurar' id='restore' class='text-warning mr-2 text-decoration-none' data-bs-toggle='modal' data-bs-target='#restore-record'> <i class='fas fa-undo'></i> </a>"
 				<?php } else { ?>
-					"defaultContent": "<a id='<?php echo $dt_which; ?>-info' class='text-info mr-2'> <i class='fa fa-info-circle'></i> </a> <a id='<?php echo $dt_which; ?>-edit' class='text-success mr-2'> <i class='fa fa-pencil-square-o'></i> </a> <a id='delete' class='text-danger mr-2' data-toggle='modal' data-target='#delete-record'> <i class='fa fa-times'></i> </a>"
+						<?php
+							$actions_btn = "";
+
+							if( $table!="blogs" ) {
+								if( $_read )
+									$actions_btn .= "<a href='#' title='Ver más' id='".$dt_which."-info' class='text-info mr-2 text-decoration-none'> <i class='fa fa-info-circle'></i> </a>";
+							}
+
+							if( $_update )
+								$actions_btn .= "<a href='#' title='Editar' id='".$dt_which."-edit' class='text-success mr-2 text-decoration-none'> <i class='fa fa-edit'></i> </a>";
+
+							if( $_delete )
+								$actions_btn .= "<a href='#' title='Eliminar' id='delete' class='text-danger mr-2 text-decoration-none' data-bs-toggle='modal' data-bs-target='#delete-record'> <i class='fa fa-times'></i> </a>";
+						?>
+
+						"defaultContent": "<?php echo $actions_btn; ?>"
 				<?php } ?>
 			}],
 			language: { "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}

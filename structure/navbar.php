@@ -19,7 +19,7 @@
 	<div class="container nb-container m-auto">
 		<a class="navbar-brand" href="<?php echo $path; ?>">
 			<!-- <img src="holder.js/200x50.svg?random=yes&text=200x50 SVG" alt="Brand" class="img-fluid"> -->
-			<img src="<?php Times::fileTime("http://palcehold.it/200x50.svg?text=200x50.svg") ?>" alt="logo" class="img-fluid nb-logo">
+			<img src="<?php Times::fileTime("http://placehold.it/200x50.svg?text=200x50.svg") ?>" alt="logo" class="img-fluid nb-logo">
 		</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -50,14 +50,14 @@
 					</form>
 	      </li>
 
-				<li class="nav-item dropdown text-center">
-					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						ES
-					</a>
-					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">EN</a>
-					</div>
-				</li>
+	      <li class="nav-item dropdown text-center">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            ES
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">EN</a>
+          </ul>
+        </li>
 			</ul>
 		</div>
 	</div>

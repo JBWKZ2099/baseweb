@@ -2,13 +2,25 @@
 GENERAL
 =============================================================================*/
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6, p { margin: 0; }
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { font-weight: 400 !important; }
 a, button, .btn, a.btn {
 	-webkit-transition: 0.2s;
 	-o-transition: 0.2s;
 	transition: 0.2s;
 }
-.has-error [data-fv-for="sectors[]"] { display: block !important; }
+.ox-scroll { overflow-x: scroll; }
+.oy-scroll { overflow-y: scroll; }
+.ox-hiden { overflow-x: hidden; }
+.oy-hidden { overflow-y: hidden; }
+.va-middle { vertical-align: middle; }
+.rounded-lg { border-radius: 15px !important; }
+.rounded-xl { border-radius: 30px !important; }
+.rounded-xxl { border-radius: 100px !important; }
+.border-top-right-0 { border-top-right-radius: 0 !important; }
+.border-top-left-0 { border-top-left-radius: 0 !important; }
+.border-bottom-right-0 { border-bottom-right-radius: 0 !important; }
+.border-bottom-left-0 { border-bottom-left-radius: 0 !important; }
+/*.has-error [data-fv-for="sectors[]"] { display: block !important; }*/
+.has-error [style=""] { display: block !important; }
 .has-error .form-control { border-color: #dc3545; }
 .has-error .help-block { color: #dc3545; }
 .has-success .form-control, .has-success button.dropdown-toggle { border-color: #28a745; }

@@ -1,4 +1,5 @@
 <?php
+	ini_set("display_errors",0);
 	session_start();
 	$_SESSION["_success"] = true;
 	if( !isset($_SESSION['_success']) ) {
@@ -9,10 +10,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-
-	<?php include('structure/head.php') ?>
-
-	<title>Serinnovatec | Sanitización | Gracias por contactarnos</title>
+	<?php
+		$view_name="Gracias por contactarnos";
+		include('structure/head.php');
+	?>
 </head>
 <body id="sanitizacion" style="overflow-x:hidden;">
 	<? $menu = "sanitizacion"; ?>

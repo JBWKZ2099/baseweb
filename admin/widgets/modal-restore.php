@@ -1,15 +1,13 @@
 <!-- Modal Restore -->
-<div class="modal fade" id="restore-record" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+<div class="modal fade" id="restore-record" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Restaurar registro</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body text-center">
-        ¿Está seguro que deseas restaurar este registro?
+      <div class="modal-body">
+        <p class="mb-0">¿Está seguro que deseas restaurar este registro?</p>
       </div>
       <div class="modal-footer">
         <form id="restore-form" action="<?php echo $env->APP_URL ?>php/db/requests.php" method="POST">

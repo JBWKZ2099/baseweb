@@ -26,14 +26,14 @@
 		include(/*$dir.*/"structure/head.php");
 		$asset = "assets/img/folder_name/"; // Path where are storaged media files (img, video, etc)
 
-
 		// if(session_status()==="") session_start();
 		// logout();
 		// unset( $_SESSION );
-		// $pswd_ed = "j4BB4W0CK33Z*";
+		// $pswd_ed = "Stratega2020*";
 		// $pswd_encrypted = Auth::cryptBlowfish($pswd_ed);
 		// dd( $pswd_ed, $pswd_encrypted );
 	?>
+
 </head>
 <body>
 	<?php $active="index"; include(/*$dir.*/"structure/navbar.php"); ?>
@@ -93,6 +93,15 @@
 					<p>Imágen con efecto wordpress al hacer hover</p>
 					<div class="wp-effect">
 						<img class="img-fluid" src="http://placehold.it/300x200.png?text=300x200.jpg" alt="300x200.jpg">
+					</div>
+
+					<h2 class="my-3">Botones al 100%</h2>
+					<div class="row justify-content-center mb-3">
+						<div class="col-md-12">
+							<div class="d-grid">
+								<button class="btn btn-primary rounded-0"><i class="fas fa-upload"></i>Subir archivo</button>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

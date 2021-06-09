@@ -1,4 +1,4 @@
-<footer class="pt-60 pb-60 bg-default" data-url="<?php echo $path; ?>" data-dir-ln="<?php echo substr($path,0,-1); ?>">
+<footer class="py-3 py-md-5 bg-default" data-url="<?php echo $path; ?>" data-dir-ln="<?php echo substr($path,0,-1); ?>">
 	<div class="container-custom">
 		<div class="row">
 			<div class="col-md-12">
@@ -11,14 +11,13 @@
 
 <?php /* JS Tags */ ?>
 <?php /*jQuery js minified*/ ?>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <?php /*jQuery UI*/ ?>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<?php /*Bootstrap js minified*/ ?>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<?php /*Bootstrap Bundle (Bootstrap and Popper) js minified*/ ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 <?php /*Script Font Awesome*/ ?>
-<script src="https://use.fontawesome.com/releases/v5.8.1/js/all.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
 <?php /*Scroll reveal*/ ?>
 <script src="https://unpkg.com/scrollreveal"></script>
 <?php /*Scroll Magic*/ ?>
@@ -50,11 +49,22 @@
 				// do request for recaptcha token
 				// response is promise with passed token
 				grecaptcha.execute('<?php echo $env->GRECAPTCHA_PUBLIC; ?>', {action: 'get_in_touch'}).then(function(token) {
-						// add token to form
-						$('form#contact-form').prepend('<input type="hidden" name="g-recaptcha-response" value="' + token + '">');
-						$('form#contact-form').prepend('<input type="hidden" name="action" value="get_in_touch">');
+					$(document).find(".g-recaptcha-generated").remove();
+					// add token to form
+					$('form#contact-form').prepend('<input class="g-recaptcha-generated" type="hidden" name="g-recaptcha-response" value="' + token + '">');
+					$('form#contact-form').prepend('<input class="g-recaptcha-generated" type="hidden" name="action" value="get_in_touch">');
 				});
 			});
 		});
 	</script>
 <?php } ?>
+
+<?php if( isset($_SESSION["_errors"]) || isset($_SESSION["_success"]) ) { ?>
+	<script>
+		$(function(){ $(".modal").modal("show"); });
+	</script>
+<?php
+		unset($_SESSION["_errors"]);
+		unset($_SESSION["_success"]);
+	}
+?>

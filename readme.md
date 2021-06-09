@@ -3,12 +3,16 @@
 # iRamizer
 
 You can use this base to develop your website using the most up-to-date CDNs:
-- [Bootstrap 4 (CSS and JS)](https://getbootstrap.com/)
+- [Bootstrap 5 (CSS and JS)](https://getbootstrap.com/)
 - [jQuery (JS)](http://jquery.com/)
 - [Scrollreveal (JS)](https://scrollrevealjs.org/)
 - [Font Awesome (JS)](https://fontawesome.com/)
 
 ## Changelog
+### v3.0
+	- Bootstrap updated to 5.0.1 (Front and Back)
+	- jQuery updated to 3.6.0
+	- Lot of improvements on back office like form validations on all modules, permissions
 ### v2.0
 	- DB functions and some many others are classes now.
 	- Blog is now working with this structure.

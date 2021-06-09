@@ -15,74 +15,100 @@
 				$sql = "SELECT * FROM $table WHERE id=$id";
 				$result = DB::consulta_tb($mysqli,$sql);
 			}
+
+			include("widgets/permissions.php");
 		}
 ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 	<?php
-		$title="Viendo cliente";
+		$current_pg = "Usuario";
+		$title="Viendo $current_pg";
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
 </head>
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<body class="sb-nav-fixed">
 	<?php
 		$active_menu = "customer_mn";
 		$collapse = "customer";
 		$active_opt = "customer-view";
 		include("structure/navbar.php");
+
+		$row=mysqli_fetch_array($result, MYSQLI_ASSOC);
+		$row_obj = json_decode( $row["permissions"] );
+		$titles = [
+			"ID",
+			"Nombre",
+			"Apellido(s)",
+			"Nombre de usuario",
+			"E-Mail",
+		];
+		$fields = [
+			"id",
+			"name",
+			"last_name",
+			"username",
+			"email",
+		];
+
+		$colspan = 4;
+		$extra = "";
+		$extra .= "
+			<tr>
+				<th> <p class='text-center mb-0'> Permisos </p></th>
+				<th class='text-center'>Crear (Create)</th>
+				<th class='text-center'>Leer (Read)</th>
+				<th class='text-center'>Actualizar (Update)</th>
+				<th class='text-center'>Eliminar (Delete)</th>
+			</tr>
+		";
+
+		foreach( $permissions as $key => $p ) {
+			$extra .= "
+				<tr>
+					<th>".$p["name"]."</th>
+					<td class='text-center'>".( in_array("create", $p["permissions"]) ? ( ( $row_obj->{$key."_c"} ? "<i class='fa fa-check'></i>" : "<i class='fa fa-times'></i>" )."</td>" ) : " - " )." </td>
+					<td class='text-center'>".( in_array("read", $p["permissions"]) ? ( ( $row_obj->{$key."_r"} ? "<i class='fa fa-check'></i>" : "<i class='fa fa-times'></i>" )."</td>" ) : " - " )." </td>
+					<td class='text-center'>".( in_array("update", $p["permissions"]) ? ( ( $row_obj->{$key."_u"} ? "<i class='fa fa-check'></i>" : "<i class='fa fa-times'></i>" )."</td>" ) : " - " )." </td>
+					<td class='text-center'>".( in_array("delete", $p["permissions"]) ? ( ( $row_obj->{$key."_d"} ? "<i class='fa fa-check'></i>" : "<i class='fa fa-times'></i>" )."</td>" ) : " - " )." </td>
+				</tr>
+			";
+		}
 	?>
 
-	<div class="content-wrapper">
-		<div class="contianer-fluid">
-			<div class="container-fluid">
-				<div class="row mt-3">
-					<div class="col-md-12">
-						<div class="card">
-							<div class="card-header bg-blue text-white">
-								<i class="fa fa-fw fa-info-circle"></i>
-								Viendo cliente
-							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-hover table-striped table-bordered">
-										<tody>
-											<?php
-												$row=mysqli_fetch_array($result);
+	<div id="layoutSidenav">
+	  <div id="layoutSidenav_nav">
+	    <?php include("structure/menu.php"); ?>
+	  </div>
+	  <div id="layoutSidenav_content" class="force-d-block">
+	    <main>
+	      <div class="container-fluid px-4">
+	        <?php include("structure/breadcrumb.php"); ?>
 
-												$html_resp = "<tr> <th>ID</th>";
-												$html_resp .= "<td>".$row["id"]."</td> </tr>";
-												$html_resp .= "<tr> <th>Nombre</th>";
-												$html_resp .= "<td>".$row["name"]."</td> </tr>";
-												$html_resp .= "<tr> <th>Apellido Paterno</th>";
-												$html_resp .= "<td> ".$row["first_name"]." </td> </tr>";
-												$html_resp .= "<tr> <th>Apellido Materno</th>";
-												$html_resp .= "<td> ".$row["last_name"]." </td> </tr>";
-												$html_resp .= "<tr> <th>Nombre de usuario</th>";
-												$html_resp .= "<td> ".$row["username"]." </td> </tr>";
-												$html_resp .= "<tr> <th>E-Mail</th>";
-												$html_resp .= "<td> ".$row["email"]." </td> </tr>";
-												$html_resp .= "<tr> <th>Permiso</th>";
-												if( $row["permission"]==1 )
-													$permission = "Administrador";
-												else
-													$permission = "Cliente";
-												$html_resp .= "<td> ".$permission." </td> </tr>";
-												echo $html_resp;
-											?>
-										</tody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	        <div class="row mt-3">
+	        	<div class="col-md-12">
+	        		<div class="card">
+	        			<div class="card-header">
+	        				<i class="fas fa-info-circle fa-fw"></i>
+	        				<?php echo $title; ?>
+	        			</div>
+	        			<div class="card-body">
+	        				<?php include("structure/table-info.php"); ?>
+	        			</div>
+	        		</div>
+	        	</div>
+	        </div>
+	      </div>
+	    </main>
+	    <footer class="py-4 bg-light mt-auto">
+	      <?php include("structure/footer.php"); ?>
+	    </footer>
+	  </div>
 	</div>
 
-	<?php include("structure/footer.php"); ?>
+	<?php include("structure/footer-scripts.php"); ?>
 
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded" href="#page-top">

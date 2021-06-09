@@ -99,7 +99,10 @@
 
 			$sql = "UPDATE $table SET ";
 			for( $i=0; $i<count($columns); $i++ ) {
-				$sql .= " $columns[$i]='$datas[$i]'";
+				if( $columns[$i]=="deleted_at" || $columns[$i]=="created_at" )
+					$sql .= " $columns[$i]='$datas[$i]'";
+				else
+					$sql .= " $columns[$i]='$datas[$i]'";
 				if( $i!=count($columnas)-1 )
 					$sql .= ", ";
 			}

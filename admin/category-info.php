@@ -19,56 +19,66 @@
 <html lang="es">
 <head>
 	<?php
-		$title="Viendo cliente";
+		$current_pg = "Categoría";
+		$title="Viendo $current_pg";
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
 	?>
 </head>
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<body class="sb-nav-fixed">
 	<?php
 		$active_menu = "categories_mn";
 		$collapse = "categories";
 		$active_opt = "categories-view";
 		include("structure/navbar.php");
+
+		$row=mysqli_fetch_array($result, MYSQLI_ASSOC);
+		$titles = [
+			"ID",
+			"Nombre",
+			"Slug",
+		];
+		$fields = [
+			"id",
+			"name",
+			"slug_name",
+		];
+
+		$colspan = null;
+		$extra = null;
 	?>
 
-	<div class="content-wrapper">
-		<div class="contianer-fluid">
-			<div class="container-fluid">
-				<div class="row mt-3">
-					<div class="col-md-12">
-						<div class="card">
-							<div class="card-header bg-blue text-white">
-								<i class="fa fa-fw fa-info-circle"></i>
-								Viendo Categoría
-							</div>
-							<div class="card-body">
-								<div class="table-responsive">
-									<table class="table table-hover table-striped table-bordered">
-										<tody>
-											<?php
-												$row=mysqli_fetch_array($result);
+	<div id="layoutSidenav">
+	  <div id="layoutSidenav_nav">
+	    <?php include("structure/menu.php"); ?>
+	  </div>
+	  <div id="layoutSidenav_content" class="force-d-block">
+	    <main>
+	      <div class="container-fluid px-4">
+	        <?php include("structure/breadcrumb.php"); ?>
 
-												$html_resp = "<tr> <th>ID</th>";
-												$html_resp .= "<td>".$row["id"]."</td> </tr>";
-												$html_resp .= "<tr> <th>Nombre</th>";
-												$html_resp .= "<td>".$row["name"]."</td> </tr>";
-												$html_resp .= "<tr> <th>Slug</th>";
-												$html_resp .= "<td> ".$row["slug_name"]." </td> </tr>";
-												echo $html_resp;
-											?>
-										</tody>
-									</table>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	        <div class="row mt-3">
+	        	<div class="col-md-12">
+	        		<div class="card">
+	        			<div class="card-header">
+	        				<i class="fas fa-info-circle fa-fw"></i>
+	        				<?php echo $title; ?>
+	        			</div>
+	        			<div class="card-body">
+	        				<?php include("structure/table-info.php"); ?>
+	        			</div>
+	        		</div>
+	        	</div>
+	        </div>
+	      </div>
+	    </main>
+	    <footer class="py-4 bg-light mt-auto">
+	      <?php include("structure/footer.php"); ?>
+	    </footer>
+	  </div>
 	</div>
 
-	<?php include("structure/footer.php"); ?>
+	<?php include("structure/footer-scripts.php"); ?>
 
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded" href="#page-top">

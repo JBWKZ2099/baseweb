@@ -1,10 +1,25 @@
 <?php
 	session_start();
-	ini_set("display_errors",$_SESSION["d_errors"]);
+	// ini_set("display_errors",$_SESSION["d_errors"]);
+	ini_set("display_errors",1);
 	require $_SESSION["path"]["autoload"];
 	include( $_SESSION["path"]["env"] );
 	// include( realpath($_SERVER["DOCUMENT_ROOT"])."/php/db/auth.php" );
 	$up_dir = "../../";
+
+	// GMAIL
+	$_mailer = json_decode(json_encode(array(
+		"settings" => array(
+			"host" => "smtp.gmail.com",
+			"port" => 465,
+			"smtpsecure" => "ssl",
+			"smtpauth" => true,
+			"username" => $env->MAIL_USER,
+			"password" => $env->MAIL_PASSWORD,
+			"setfrom" => $env->MAIL_USER,
+			"name" => $env->APP_NAME,
+		)
+	)), FALSE);
 
 
 	if( isset($_POST["request"]) || isset($_GET["req"]) ) {
@@ -35,6 +50,26 @@
 
 			case "logout":
 				Auth::logout();
+				break;
+
+			case "contact":
+				$tbl = "`contact`";
+				$columns = array(
+					"$tbl.id",
+					"$tbl.name",
+					"$tbl.email",
+				);
+				$col_clean = array(
+					"id",
+					"name",
+					"email",
+				);
+				$sql_data = array(
+					"$tbl.`id`, $tbl.`name`, $tbl.`email` ",
+					$tbl,
+					"WHERE $tbl.`deleted_at` IS NULL "
+				);
+				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
 
 			case "customer":
@@ -68,45 +103,8 @@
 				if( isset($_POST["password"]) && !empty($_POST["password"]) )
 					$password = $_POST["password"];
 
-				/* Llenamos array para saber si viene 1 o 0 */
-					$permissions = array(
-						"permission_users",
-						"permission_blogs",
-						"permission_categories",
-						"permission_subcategories",
-					);
-					$perms = array();
-
-					foreach( $permissions as $p ) {
-						$perms[$p."_c"] = ( $_POST[$p."_c"]=="on" ) ? 1 : 0;
-						$perms[$p."_r"] = ( $_POST[$p."_r"]=="on" ) ? 1 : 0;
-						$perms[$p."_u"] = ( $_POST[$p."_u"]=="on" ) ? 1 : 0;
-						$perms[$p."_d"] = ( $_POST[$p."_d"]=="on" ) ? 1 : 0;
-					}
-				/* Llenamos array para saber si viene 1 o 0 */
-
-				/* Armamos array para hacer implode de permisos */
-					$_perms = "{";
-
-					/* Seteamos las variables para superadmin y admin */
-					$_perms .= "\"permission_superadmin\":".(($_POST["permission_superadmin"]=="on") ? 1 : 0).",";
-					$_perms .= "\"permission_admin\":".(($_POST["permission_admin"]=="on") ? 1 : 0).",";
-					/* Seteamos las variables para superadmin y admin */
-					foreach( $perms as $key => $prm ) {
-						$_perms .= "\"$key\":".$prm.",";
-					}
-					$_perms = substr($_perms, 0, -1)."}";
-
-
-					// Assign permissions
-						if( $_POST["permission_superadmin"]=="on" )
-							$_perms = '{"permission_superadmin":1,"permission_admin":1,"permission_users_c":1,"permission_users_r":1,"permission_users_u":1,"permission_users_d":1,"permission_blogs_c":1,"permission_blogs_r":1,"permission_blogs_u":1,"permission_blogs_d":1,"permission_categories_c":1,"permission_categories_r":1,"permission_categories_u":1,"permission_categories_d":1,"permission_subcategories_c":1,"permission_subcategories_r":1,"permission_subcategories_u":1,"permission_subcategories_d":1}';
-					// /. Assign permissions
-				/* Armamos array para hacer implode de permisos */
-
-
-				// dd( json_decode($_perms, true)["permission_users_c"] );
-				// dd( $_perms );
+				$permissions = permissionJSONGenerator($_SESSION["permissions"], $_POST);
+				// dd( $permissions );
 
 				$columns = array(
 					"name",
@@ -128,7 +126,7 @@
 				if( isset($password) )
 					$data[] = Auth::cryptBlowfish($password);
 
-				$data[] = $_perms;
+				$data[] = $permissions;
 				$tbl = "users";
 				// dd( $data );
 				DB::updateData($_POST["which"], $columns, $data, $tbl);
@@ -140,45 +138,9 @@
 			case "create-customer":
 				$tbl = $_POST["table"];
 
-				/* Llenamos array para saber si viene 1 o 0 */
-					$permissions = array(
-						"permission_users",
-						"permission_blogs",
-						"permission_categories",
-						"permission_subcategories",
-					);
-					$perms = array();
+				$permissions = permissionJSONGenerator($_SESSION["permissions"], $_POST);
 
-					foreach( $permissions as $p ) {
-						$perms[$p."_c"] = ( $_POST[$p."_c"]=="on" ) ? 1 : 0;
-						$perms[$p."_r"] = ( $_POST[$p."_r"]=="on" ) ? 1 : 0;
-						$perms[$p."_u"] = ( $_POST[$p."_u"]=="on" ) ? 1 : 0;
-						$perms[$p."_d"] = ( $_POST[$p."_d"]=="on" ) ? 1 : 0;
-					}
-				/* Llenamos array para saber si viene 1 o 0 */
-
-				/* Armamos array para hacer implode de permisos */
-					$_perms = "{";
-
-					/* Seteamos las variables para superadmin y admin */
-					$_perms .= "\"permission_superadmin\":".(($_POST["permission_superadmin"]=="on") ? 1 : 0).",";
-					$_perms .= "\"permission_admin\":".(($_POST["permission_admin"]=="on") ? 1 : 0).",";
-					/* Seteamos las variables para superadmin y admin */
-					foreach( $perms as $key => $prm ) {
-						$_perms .= "\"$key\":".$prm.",";
-					}
-					$_perms = substr($_perms, 0, -1)."}";
-
-
-					// Assign permissions
-						if( $_POST["permission_superadmin"]=="on" )
-							$_perms = '{"permission_superadmin":1,"permission_admin":1,"permission_users_c":1,"permission_users_r":1,"permission_users_u":1,"permission_users_d":1,"permission_blogs_c":1,"permission_blogs_r":1,"permission_blogs_u":1,"permission_blogs_d":1,"permission_categories_c":1,"permission_categories_r":1,"permission_categories_u":1,"permission_categories_d":1,"permission_subcategories_c":1,"permission_subcategories_r":1,"permission_subcategories_u":1,"permission_subcategories_d":1}';
-					// /. Assign permissions
-				/* Armamos array para hacer implode de permisos */
-
-
-				// dd( json_decode($_perms, true)["permission_users_c"] );
-				// dd( $_perms );
+				// dd( $permissions );
 
 				$columns = array(
 					"id",
@@ -187,6 +149,7 @@
 					"username",
 					"email",
 					"password",
+					"forgot_password_token",
 					"permissions",
 					"created_at",
 					"update_at",
@@ -200,7 +163,8 @@
 					"'".$_POST["username"]."'",
 					"'".$_POST["email"]."'",
 					"'".$password."'",
-					"'".$_perms."'",
+					'NULL',
+					"'".$permissions."'",
 					"'".Times::setTimeStamp()."'",
 					'NULL',
 					'NULL',
@@ -259,6 +223,8 @@
 					$tbl,
 					" WHERE $tbl.`deleted_at` IS NULL "
 				);
+
+				// dd( $sql_data );
 				echo DataTables::dataTable($_POST, $columns, $col_clean, $sql_data);
 				break;
 
@@ -696,6 +662,124 @@
 				}
 				break;
 
+			case "forgot-password":
+				require ("../mailer/class.phpmailer.php");
+				require ("../mailer/PHPMailerAutoload.php");
+
+				$mail = new PHPMailer;
+
+				$mail->IsSMTP();
+				$mail->Debug = 0;
+
+				global $_mailer;
+
+				$mail->Host = $_mailer->settings->host;
+				$mail->Port = $_mailer->settings->port;
+				$mail->SMTPSecure = $_mailer->settings->smtpsecure;
+				$mail->SMTPAuth = $_mailer->settings->smtpauth;
+
+				$mail->Username = $_mailer->settings->username;
+				$mail->Password = $_mailer->settings->password;
+				$mail->From = $_mailer->settings->setfrom;
+				$mail->FromName = $_mailer->settings->name;
+
+				$mysqli = Connection::conectar_db();
+				Connection::selecciona_db($mysqli);
+
+				/* Obtenemos Nombre y Apellido del usuario */
+				$sql = "SELECT * FROM `users` WHERE `users`.`email`='".$_POST["email"]."' AND `users`.`deleted_at` IS NULL";
+				$result = DB::consulta_tb($mysqli,$sql);
+				$count_row = mysqli_num_rows($result);
+
+				if( $count_row>0 ) {
+					$row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+					$full_last_name = ( isset($row["last_name"]) && !empty($row["last_name"]) ? " ".$row["last_name"] : "" );
+
+					/* Add token */
+					$_token = randomString(20);
+					$columns[] = "forgot_password_token";
+					$data[] = $_token;
+					DB::updateData($row["id"], $columns, $data, "users");
+					$token_url = $env->APP_URL."admin/recuperar-contrasena-confirmar?token=$_token";
+
+					$msg = "
+						<table border='0' cellspacing='0' cellpadding='0' style='width: 600px; margin: 0 auto; font-family: Arial, Helvetica Neue, Helvetica, sans-serif;'>
+							<tbody>
+								<tr>
+									<!-- <td><img src='".$env->APP_URL."/assets/img/rak.png' alt='logo_rak'></td> -->
+									<!-- <td><img src='".$env->APP_URL."/assets/img/RimetAzul.png' alt='logo_rimet'></td> -->
+
+									<td><img style='width:150px;display:block;margin:0 auto;padding-bottom:15px;' src='".$env->APP_URL."assets/img/logo.png' alt='logo_email'></td>
+								</tr>
+								<tr>
+									<td colspan='2'>
+										<p style='font-family: Arial, Helvetica Neue, Helvetica, sans-serif;margin-bottom:15px;'>Hola,</p>
+										<p style='font-family: Arial, Helvetica Neue, Helvetica, sans-serif;margin-bottom:15px;'>Enviamos el enlace de recuperación de contraseña a continuación:</p>
+										<p style='font-family: Arial, Helvetica Neue, Helvetica, sans-serif;margin:0;'><a style='color:#006ea3;' href='".$token_url."' target='_blank'>Recuperar contraseña</a></p>
+
+										<p style='font-family: Arial, Helvetica Neue, Helvetica, sans-serif;margin-bottom:15px;'>Si el enlace anterior no funciona intenta copiar la siguiente dirección:</p>
+										<p style='font-family: Arial, Helvetica Neue, Helvetica, sans-serif;margin-bottom:15px;'>".$token_url."</p>
+										<p style='font-family: Arial, Helvetica Neue, Helvetica, sans-serif;margin-top:30px;'>Enviado desde <a style='color:#006ea3;' href='".$env->APP_URL."' target='_blank'>".$env->APP_URL."</a></p>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					";
+
+					// echo $msg;
+					// dd("???");
+
+					$mail->addAddress($_POST["email"], utf8_decode($row["name"].$full_last_name));
+					$mail->Subject = utf8_decode($env->APP_NAME." | Recuperar contraseña");
+					$mail->msgHTML( utf8_decode($msg) );
+
+					// dd( $token_url, $abs_path );
+					// dd( $mail->send() );
+
+					if( $mail->send() )
+						$_SESSION["message"] = "Le enviamos un correo con un enlace para reestablecer su contraseña.";
+					else
+						$_SESSION["error"] = "Ocurrió un error, si éste persiste contacte al administrador del sistema.";
+
+					header("Location: ".$up_dir."admin/login");
+				} else {
+					$_SESSION["error"] = "El correo proporcionado no existe, por favor intente de nuevo.";
+					header("Location: ".$up_dir."admin/recuperar-contrasena");
+				}
+
+				exit();
+
+				break;
+
+			case "reset-password":
+				session_start();
+
+				if( $_POST["password"]==$_POST["password_confirm"]  ) {
+
+					$id = $_SESSION["user_id"];
+
+					$columns[] = "forgot_password_token";
+					$columns[] = "password";
+
+					$data[] = NULL;
+					$data[] = Auth::cryptBlowfish($_POST["password"]);
+					DB::updateData($id, $columns, $data, "users");
+
+					unset($_SESSION["mail_forgot_password"]);
+					unset($_SESSION["forgot_password_token"]);
+					unset($_SESSION["user_id"]);
+
+					$_SESSION["message"] = "Se reestableció correctamente su contraseña.";
+
+					header("Location: ".$up_dir."admin/login");
+				} else {
+					$_SESSION["error"] = "Las contraseñas deben coincidir";
+					header("Location: ".$up_dir."admin/recuperar-contrasena-confirmar?token=".$_SESSION["forgot_password_token"]);
+					exit();
+				}
+
+				break;
+
 			case "delete":
 				$id = $_POST["id"];
 				$tbl = $_POST["table"];
@@ -719,5 +803,65 @@
 			default:
 				break;
 		}
+	}
+
+	function permissionJSONGenerator($permissions, $postvar) {
+		/* Llenamos array para saber si viene 1 o 0 */
+			$perms = array();
+
+			foreach( $permissions as $key => $p ) {
+				if( in_array("create", $p["permissions"]) )
+					$perms[$key."_c"] = ( $postvar[$key."_c"]=="on" ) ? 1 : 0;
+				if( in_array("read", $p["permissions"]) )
+					$perms[$key."_r"] = ( $postvar[$key."_r"]=="on" ) ? 1 : 0;
+				if( in_array("update", $p["permissions"]) )
+					$perms[$key."_u"] = ( $postvar[$key."_u"]=="on" ) ? 1 : 0;
+				if( in_array("delete", $p["permissions"]) )
+					$perms[$key."_d"] = ( $postvar[$key."_d"]=="on" ) ? 1 : 0;
+			}
+		/* Llenamos array para saber si viene 1 o 0 */
+
+		/* Armamos array para hacer implode de permisos */
+			$_perms = "{";
+
+			/* Seteamos las variables para superadmin y admin */
+			$_perms .= "\"permission_superadmin\":".(($postvar["permission_superadmin"]=="on") ? 1 : 0).",";
+			$_perms .= "\"permission_admin\":".(($postvar["permission_admin"]=="on") ? 1 : 0).",";
+			/* Seteamos las variables para superadmin y admin */
+			foreach( $perms as $key => $prm ) {
+				$_perms .= "\"$key\":".$prm.",";
+			}
+			$_perms = substr($_perms, 0, -1)."}";
+
+
+			// Assign permissions
+				if( $postvar["permission_superadmin"]=="on" ) {
+					$_perms = '{"permission_superadmin":1,"permission_admin":1,"permission_users_c":1,"permission_users_r":1,"permission_users_u":1,"permission_users_d":1,';
+
+					foreach( $perms as $key => $p_2 ) {
+						$_perms .= '"'.$key.'":1,';
+					}
+					$_perms = ( substr($_perms, 0, -1) ).'}';
+					// $_perms = '"permission_blogs_c":1,"permission_blogs_r":1,"permission_blogs_u":1,"permission_blogs_d":1,"permission_categories_c":1,"permission_categories_r":1,"permission_categories_u":1,"permission_categories_d":1,"permission_subcategories_c":1,"permission_subcategories_r":1,"permission_subcategories_u":1,"permission_subcategories_d":1}';
+					// dd("???", $_perms);
+				}
+			// /. Assign permissions
+		/* Armamos array para hacer implode de permisos */
+
+
+		// dd( json_decode($_perms, true)["permission_users_c"] );
+		// dd( $_perms, $postvar, $permissions );
+
+		return $_perms;
+	}
+
+	function randomString($length = 10) {
+    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    $charactersLength = strlen($characters);
+    $randomString = '';
+    for ($i = 0; $i < $length; $i++) {
+        $randomString .= $characters[rand(0, $charactersLength - 1)];
+    }
+    return $randomString;
 	}
 ?>

@@ -14,16 +14,26 @@
 		include("structure/head.php");
 	?>
 </head>
-<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+<body class="sb-nav-fixed">
 	<?php include("structure/navbar.php"); ?>
 
-	<div class="content-wrapper">
-		<div class="contianer-fluid">
-			Bienvenido
-		</div>
+	<div id="layoutSidenav">
+	  <div id="layoutSidenav_nav">
+	    <?php include("structure/menu.php"); ?>
+	  </div>
+	  <div id="layoutSidenav_content">
+	    <main>
+	      <div class="container-fluid px-4">
+	        <?php include("structure/breadcrumb.php"); ?>
+	      </div>
+	    </main>
+	    <footer class="py-4 bg-light mt-auto">
+	      <?php include("structure/footer.php"); ?>
+	    </footer>
+	  </div>
 	</div>
 
-	<?php include("structure/footer.php"); ?>
+	<?php include("structure/footer-scripts.php"); ?>
 
 	<!-- Scroll to Top Button-->
 	<a class="scroll-to-top rounded" href="#page-top">

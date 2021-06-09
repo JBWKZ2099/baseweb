@@ -1,7 +1,7 @@
-<div class="form-group">
+<div class="form-group mb-3">
 		<input type="text" class="form-control" name="name" value="<?php echo $row["name"]; ?>" placeholder="Nombre" required>
 </div>
-<div class="form-group">
+<div class="form-group mb-3">
 		<label for="pdf">Buscar Archivo</label>
 		<input id="pdf" type="file" class="form-control-file" name="pdf" <?php if( !isset($edit) ) echo 'required'; ?>>
 </div>
@@ -9,7 +9,7 @@
 		<?php if( $row["user"] == Auth::user()->id ) { ?>
 				<input type="hidden" name="user" value="<?php echo $row["user"]; ?>">
 		<?php } else { ?>
-				<div class="form-group">
+				<div class="form-group mb-3">
 					<label for="u-name">
 						<b>Cliente:</b>
 						<?php
@@ -24,7 +24,7 @@
 				</div>
 		<?php } ?>
 <?php } else { ?>
-		<div class="form-group">
+		<div class="form-group mb-3">
 			<select name="user" id="user" class="form-control">
 				<option value="null" checked hidden>Selecciona un usuario...</option>
 				<?php

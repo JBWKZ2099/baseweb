@@ -11,8 +11,7 @@
 			$mysqli = Connection::conectar_db();
 			Connection::selecciona_db( $mysqli );
 
-
-			$sql = "SELECT * FROM users WHERE username = '$usr' AND deleted_at IS NULL";
+			$sql = "SELECT * FROM users WHERE (username = '$usr' OR email = '$usr') AND deleted_at IS NULL";
 			$result = mysqli_query( $mysqli, $sql );
 
 			$row = mysqli_fetch_array($result);

@@ -86,7 +86,7 @@
 
 		/*success*/
 		if( $response_data ) {
-			if( $production ) {
+			if( $production=="live" || $production=="production" ) {
 				$mail_data_arr = array(
 					"webmaster" => true,
 					"main" => "mail1@example.com",
