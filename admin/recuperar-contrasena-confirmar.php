@@ -51,7 +51,7 @@
 								</div>
 								<div class="card-footer text-center py-3">
 									<p class="m-0 text-center small">
-										<a class="btn btn-link" href="<?php echo $env->APP_URL; ?>admin/login">
+										<a href="<?php echo $env->APP_URL; ?>admin/login">
 											<i class="fa fa-arrow-left"></i> Volver
 										</a>
 									</p>

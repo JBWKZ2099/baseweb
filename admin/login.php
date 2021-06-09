@@ -37,15 +37,15 @@
 										<input type="hidden" name="request" value="login">
 										<div class="form-group form-floating mb-3">
 											<input type="text" class="form-control" name="username" placeholder="Usuario">
-											<label for="username">Usuario</label>
+											<label for="username" class="small">Usuario</label>
 										</div>
 										<div class="form-group form-floating mb-3">
 											<input type="password" class="form-control" name="password" placeholder="Contraseña">
-											<label for="password">Contraseña</label>
+											<label for="password" class="small">Contraseña</label>
 										</div>
 
 										<div class="d-grid">
-											<button type="submit" class="btn btn-orange">Entrar</button>
+											<button type="submit" class="btn btn-primary">Iniciar Sesión</button>
 										</div>
 									</form>
 								</div>
