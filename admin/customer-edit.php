@@ -60,6 +60,20 @@
 		$title="Editar $current_pg";
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
+		$breadcrumb = [
+			[
+				"link" => "/",
+				"word" => "Dashboard",
+			],
+			[
+				"link" => "/customers",
+				"word" => "Usuarios",
+			],
+			[
+				"link" => "/customers/".$table,
+				"word" => $current_pg2,
+			]
+		];
 	?>
 	<?php /*<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.js"></script>*/ ?>
 	<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.dataTables.js"></script>

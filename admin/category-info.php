@@ -20,9 +20,25 @@
 <head>
 	<?php
 		$current_pg = "Categoría";
-		$title="Viendo $current_pg";
+		$current_pg3 = "Viendo ".$current_pg;
+		$title="Blogs | ".$current_pg3;
+		$current_pg2 = $current_pg3;
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
+		$breadcrumb = [
+			[
+				"link" => "/",
+				"word" => "Dashboard",
+			],
+			[
+				"link" => "/categories",
+				"word" => "Categorías",
+			],
+			[
+				"link" => "/categories/".$table,
+				"word" => $current_pg2,
+			]
+		];
 	?>
 </head>
 <body class="sb-nav-fixed">
@@ -62,7 +78,7 @@
 	        		<div class="card">
 	        			<div class="card-header">
 	        				<i class="fas fa-info-circle fa-fw"></i>
-	        				<?php echo $title; ?>
+	        				<?php echo $current_pg3; ?>
 	        			</div>
 	        			<div class="card-body">
 	        				<?php include("structure/table-info.php"); ?>

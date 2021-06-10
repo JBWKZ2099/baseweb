@@ -11,9 +11,15 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <li><a class="dropdown-item" href="<?php echo $env->APP_URL_ADMIN."customer-edit?id=".Auth::user()->id; ?>">Ajustes</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#!">Cerrar Sesión</a></li>
+                <li><a class="dropdown-item" href="<?php echo $env->APP_URL_ADMIN."customer-edit?id=".Auth::user()->id; ?>">
+                    <i class="fa fa-cog"></i>
+                    Ajustes
+                </a></li>
+                <li><hr class="dropdown-divider"/></li>
+                <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal" href="#!">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Cerrar Sesión
+                </a></li>
             </ul>
         </li>
     </ul>

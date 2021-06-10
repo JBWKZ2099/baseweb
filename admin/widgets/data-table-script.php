@@ -4,12 +4,18 @@
 	$_update = Auth::user()->{"permission_".$table."_u"};
 	$_delete = Auth::user()->{"permission_".$table."_d"};
 ?>
+<style>
+	<?php /*Fix para el mensaje procesando*/ ?>
+	.dataTables_wrapper .dataTables_processing { padding-bottom: 20px; height: 65px; font-size: 16px; }
+	.dataTables_length, .dataTables_filter { padding-bottom: 15px; }
+</style>
 <script>
 	$(document).ready(function() {
 
 		dataTable = $('#table-gen').DataTable( {
 			"processing": true,
 			"serverSide": true,
+			"dom": "<'top'bflrtip><'bottom'><'clear'>",
 			"ajax":{
 				url :"../php/db/requests.php?req=<?php if( $dt_restore ) echo $dt_which."-restore"; else echo $dt_which; ?>", // json datasource
 				type: "post",  // method  , by default get
@@ -44,7 +50,9 @@
 						"defaultContent": "<?php echo $actions_btn; ?>"
 				<?php } ?>
 			}],
-			language: { "url": "https://cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"}
+			"order": [[ 0, "desc" ]],
+			"language": { "url": "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Spanish.json" },
+			"lengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "Todos"]]
 		});
 
 		$("#table-gen tbody").on("click", "a", function(e) {

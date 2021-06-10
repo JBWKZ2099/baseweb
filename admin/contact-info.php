@@ -21,15 +21,29 @@
 <html lang="es">
 <head>
 	<?php
-		$title="Viendo Contacto";
+		$current_pg2 = $title = "Viendo Contacto";
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
+		$breadcrumb = [
+			[
+				"link" => "/",
+				"word" => "Dashboard",
+			],
+			[
+				"link" => "/contacts",
+				"word" => "Contactos",
+			],
+			[
+				"link" => "/contacts/".$table,
+				"word" => $current_pg2,
+			]
+		];
 	?>
 </head>
 <body class="sb-nav-fixed">
 	<?php
 		$active_menu = "contact_mn";
-		$collapse = "contact";
+		$collapse = "contacts";
 		$active_opt = "contact-view";
 		include("structure/navbar.php");
 

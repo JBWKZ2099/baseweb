@@ -7,9 +7,25 @@
 <html lang="es">
 <head>
 	<?php
-		$title="Blogs | Categorías eliminadas";
+		$current_pg = "Categorías eliminadas";
+		$title="Blogs | ".$current_pg;
+		$current_pg2 = $current_pg;
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
+		$breadcrumb = [
+			[
+				"link" => "/",
+				"word" => "Dashboard",
+			],
+			[
+				"link" => "/categories",
+				"word" => "Categorías",
+			],
+			[
+				"link" => "/categories/".$table,
+				"word" => $current_pg2,
+			]
+		];
 	?>
 	<?php /*<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.js"></script>*/ ?>
 	<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.dataTables.js"></script>

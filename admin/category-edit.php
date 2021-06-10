@@ -1,7 +1,7 @@
 <?php
 	include("../php/admin.head.php");
 
-	$current_pg = "Categoría";
+	$current_pg3 = "Categoría";
 	$word = "category";
 	$table = "categories";
 	if( Auth::check() && Auth::user()->permission_admin==1 && Auth::user()->permission_categories_u==1 ) {
@@ -29,9 +29,24 @@
 <html lang="es">
 <head>
 	<?php
-		$title="Editar Categoría";
+		$current_pg2 = $current_pg = "Editar Categoría";
+		$title="Blogs | ".$current_pg;
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
+		$breadcrumb = [
+			[
+				"link" => "/",
+				"word" => "Dashboard",
+			],
+			[
+				"link" => "/categories",
+				"word" => "Categorías",
+			],
+			[
+				"link" => "/categories/".$table,
+				"word" => $current_pg2,
+			]
+		];
 	?>
 	<?php /*<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.js"></script>*/ ?>
 	<script src="<?php echo $env->APP_URL_ADMIN; ?>assets/js/datatables/jquery.dataTables.js"></script>
@@ -45,7 +60,7 @@
 		$collapse = $word;
 		$active_opt = $word."-view";
 		include("structure/navbar.php");
-		$word_esp = $current_pg;
+		$word_esp = $current_pg3;
 		$word_s = $table;
 	?>
 

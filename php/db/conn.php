@@ -116,7 +116,12 @@
 		}
 		$query=mysqli_query($mysqli, $sql);
 		$totalFiltered = mysqli_num_rows($query); // when there is a search parameter then we have to modify total number filtered rows as per search result.
-		$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]." ".$requestData['order'][0]['dir']."  LIMIT ".$requestData['start'].", ".$requestData['length'];
+
+		/*handle para obtener todos los registros con -1 en pageLength del script de ajax*/
+		if( $requestData['length']!=-1 )
+			$sql_set_limit = "  LIMIT ".$requestData['start'].", ".$requestData['length'];
+
+		$sql.=" ORDER BY ". $columns[$requestData['order'][0]['column']]." ".$requestData['order'][0]['dir'].$sql_set_limit;
 		/* $requestData['order'][0]['column'] contains colmun index, $requestData['order'][0]['dir'] contains order such as asc/desc  */
 		$query=mysqli_query($mysqli, $sql);
 

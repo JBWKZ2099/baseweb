@@ -24,15 +24,29 @@
 <head>
 	<?php
 		$current_pg = "Usuario";
-		$title="Viendo $current_pg";
+		$current_pg2 = $title="Viendo $current_pg";
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
+		$breadcrumb = [
+			[
+				"link" => "/",
+				"word" => "Dashboard",
+			],
+			[
+				"link" => "/customers",
+				"word" => "Usuarios",
+			],
+			[
+				"link" => "/customers/".$table,
+				"word" => $current_pg2,
+			]
+		];
 	?>
 </head>
 <body class="sb-nav-fixed">
 	<?php
 		$active_menu = "customer_mn";
-		$collapse = "customer";
+		$collapse = "customers";
 		$active_opt = "customer-view";
 		include("structure/navbar.php");
 

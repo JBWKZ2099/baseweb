@@ -1,14 +1,17 @@
 <div class="row">
 	<div class="col-12">
 		<div class="card">
-			<div class="card-header">Lista de <?php echo $data_table_which; ?></div>
+			<div class="card-header">
+				<i class="fa fa-list fa-fw"></i>
+				Lista de <?php echo $data_table_which; ?>
+			</div>
 			<div class="card-body">
 				<?php
 					include("../alerts/errors.php");
 					include("../alerts/success.php");
 				?>
 				<div class="table-responsive">
-					<table id="table-gen" class="table table-striped table-bordered table-dark">
+					<table id="table-gen" class="table table-inverse table-hover table-striped table-bordered">
 						<thead>
 							<tr>
 								<th>ID</th>

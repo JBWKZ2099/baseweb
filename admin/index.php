@@ -10,8 +10,15 @@
 <head>
 	<?php
 		$title="Inicio";
+		$current_pg = "Dashboard";
 		$copy_year = date("Y",strtotime("today"));
 		include("structure/head.php");
+		$breadcrumb = [
+			[
+				"link" => "/",
+				"word" => $current_pg,
+			]
+		];
 	?>
 </head>
 <body class="sb-nav-fixed">
