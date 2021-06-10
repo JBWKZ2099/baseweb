@@ -43,20 +43,20 @@
 	<div id="carouselExampleSlidesOnly" class="carousel full-carousel slide" data-ride="carousel">
 	  <div class="carousel-inner">
 	    <div class="carousel-item active" style="background-image:url('http://placehold.it/1900x1080');">
-	      <span class="sr-only">First slide</span>
+	      <span class="visually-hidden">First slide</span>
 	    </div>
 	    <div class="carousel-item" style="background-image:url('http://placehold.it/1900x1080');">
-	      <span class="sr-only">Second slide</span>
+	      <span class="visually-hidden">Second slide</span>
 	    </div>
 	    <div class="carousel-item" style="background-image:url('http://placehold.it/1900x1080');">
-	      <span class="sr-only">Third slide</span>
+	      <span class="visually-hidden">Third slide</span>
 	    </div>
 	  </div>
 	</div>
 	*/ ?>
 
 	<section class="cover bg-cover-index">
-		<span class="sr-only">If you need to add a cover to your page</span>
+		<span class="visually-hidden">If you need to add a cover to your page</span>
 	</section>
 
 	<div class="container-fluid py-3">
