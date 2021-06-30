@@ -4,7 +4,8 @@
 	$current_pg = "Usuario";
 	$word = "customer";
 	$table = "customers";
-	if( Auth::check() && Auth::user()->permission_users_u==1 ) {
+
+	if( Auth::check() && Auth::user()->permission_users_u==1 || Auth::user()->id==$_GET["id"] ) {
 		$lets_pass = 0;
 
 		/* Si el usuario tiene permiso de admin entra */
@@ -29,6 +30,12 @@
 				}
 			}
 		}
+
+		/*Esto es para que en caso de que el usuario no tenga ppermisos para editar usuarios si pueda editar los datos de su propio perfil*/
+		if( Auth::user()->id==$_GET["id"] )
+				$lets_pass++;
+
+		/*dd( $lets_pass );*/
 
 		// if( $lets_pass<2 )
 		// 	var_dump("redirect :/");

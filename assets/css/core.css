@@ -21,9 +21,9 @@ a, button, .btn, a.btn {
 .border-bottom-left-0 { border-bottom-left-radius: 0 !important; }
 /*.has-error [data-fv-for="sectors[]"] { display: block !important; }*/
 .has-error [style=""] { display: block !important; }
-.has-error .form-control { border-color: #dc3545; }
+.has-error .form-control, .has-error .form-select { border-color: #dc3545; }
 .has-error .help-block { color: #dc3545; }
-.has-success .form-control, .has-success button.dropdown-toggle { border-color: #28a745; }
+.has-success .form-control, .has-success .form-select, .has-success button.dropdown-toggle { border-color: #28a745; }
 .p-relative { position: relative; }
 .p-absolute { position: absolute; }
 .container-custom { width: 100%; margin: 0 auto; padding: 0 1rem; position: relative; }
