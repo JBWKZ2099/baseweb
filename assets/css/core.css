@@ -366,6 +366,19 @@ CAROUSEL - CIRCLE INDICATORS
 	display: none;
 }
 /*=============================================================================
+Custom bullets
+=============================================================================*/
+.list-custom-bullets { list-style: none; }
+.list-custom-bullets li { position: relative }
+.list-custom-bullets li::before {
+	content: "•";
+	font-size: 25px;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: -20px;
+}
+/*=============================================================================
 reCaptcha v3
 =============================================================================*/
 .grecaptcha-badge { display: none; visibility: hidden; opacity: 0; position: absolute; z-index: -10000; }

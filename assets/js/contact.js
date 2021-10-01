@@ -16,7 +16,8 @@ $(document).ready(function() {
 					notEmpty: {},
 					emailAddress: {},
 					regexp: {
-							regexp: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/
+							regexp: /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/,
+							message: "Ejemplo: correo@ejemplo.com"
 					}
 				}
 			},
